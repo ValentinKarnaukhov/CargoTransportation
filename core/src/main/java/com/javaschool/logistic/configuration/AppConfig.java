@@ -42,6 +42,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	    return messageSource;
 	}
 
+
 	@Override
     public void configurePathMatch(PathMatchConfigurer matcher) {
         matcher.setUseRegisteredSuffixPatternMatch(true);
