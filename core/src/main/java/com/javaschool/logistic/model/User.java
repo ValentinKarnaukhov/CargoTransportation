@@ -1,39 +1,49 @@
 package com.javaschool.logistic.model;
 
+import org.springframework.jmx.export.metadata.ManagedResource;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.Set;
+
 
 import javax.persistence.*;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
 @Table(name="USER")
 public class User implements Serializable{
 
+
+	public enum Role{
+		ADMIN,
+		MANAGER,
+		DRIVER
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "USER_ID", nullable = false)
+	@Column(name = "user_id", nullable = false)
 	private Integer user_id;
 
 
-	@Column(name = "USERNAME", nullable = false)
+	@Column(name = "username", nullable = false)
 	private String username;
 
 
-	@Column(name="EMAIL", nullable=false)
+	@Column(name="email", nullable=false, unique = true)
 	private String email;
 
-	@Column(name="PASSWORD", nullable=false)
+	@Column(name="password", nullable=false)
 	private String password;
 
-	@Column(name="ROLE",nullable = false)
-	private String role;
 
-	@Column(name="ENABLED",nullable = false)
-	private boolean enabled;
+	@Enumerated(EnumType.STRING)
+	@Column(name="role",nullable = false)
+	private Role role = Role.MANAGER;
+
+	@Column(name="enabled",nullable = false)
+	private boolean enabled = true;
 
 	public Integer getUser_id() {
 		return user_id;
@@ -67,11 +77,11 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 
