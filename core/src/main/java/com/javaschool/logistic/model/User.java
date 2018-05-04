@@ -1,7 +1,8 @@
 package com.javaschool.logistic.model;
 
-import org.springframework.jmx.export.metadata.ManagedResource;
-import org.springframework.security.core.GrantedAuthority;
+
+
+
 
 import java.io.Serializable;
 
@@ -11,8 +12,10 @@ import javax.persistence.*;
 
 
 @Entity
+
 @Table(name="USER")
 public class User implements Serializable{
+
 
 
 	public enum Role{
@@ -44,6 +47,7 @@ public class User implements Serializable{
 
 	@Column(name="enabled",nullable = false)
 	private boolean enabled = true;
+
 
 	public Integer getUser_id() {
 		return user_id;
