@@ -11,7 +11,7 @@ create table USER (
   username VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
   password VARCHAR(100) NOT NULL,
-  role ENUM('ADMIN','MANAGER','DRIVER') NOT NULL,
+  role ENUM('ADMIN','MANAGER','DRIVER') DEFAULT 'MANAGER' NOT NULL,
   enabled BOOLEAN NOT NULL DEFAULT TRUE ,
   PRIMARY KEY (user_id),
   UNIQUE (email)
@@ -29,7 +29,7 @@ create table TRUCK(
   reg_number VARCHAR(30) NOT NULL,
   max_drivers INT(30) NOT NULL,
   capacity INT(11) NOT NULL,
-  status ENUM('OK','BROKEN') NOT NULL,
+  status ENUM('OK','BROKEN') DEFAULT 'OK' NOT NULL,
   city_id BIGINT NOT NULL,
   PRIMARY KEY (truck_id),
   UNIQUE (reg_number),
@@ -40,8 +40,8 @@ create table ORDERS(
   order_id BIGINT NOT NULL AUTO_INCREMENT,
   truck_id BIGINT NOT NULL,
   is_complete BOOLEAN NOT NULL,
-  begin DATETIME NOT NULL,
-  ended DATETIME NOT NULL ,
+  begin DATETIME ,
+  ended DATETIME ,
   PRIMARY KEY (order_id),
   FOREIGN KEY (truck_id) REFERENCES TRUCK(truck_id)
 );
@@ -76,7 +76,7 @@ create table DRIVER(
   first_name VARCHAR(30) NOT NULL ,
   last_name VARCHAR(30) NOT NULL ,
   worked_time INT(11) NOT NULL ,
-  status ENUM('REST','WORD','DRIVE') NOT NULL ,
+  status ENUM('REST','WORK','DRIVE') DEFAULT 'REST' NOT NULL ,
   city_id BIGINT NOT NULL,
   truck_id BIGINT,
   order_id BIGINT,
@@ -93,6 +93,8 @@ INSERT INTO USER(username, email, password, role) VALUES ('admin',
                                                           'admin@admin.com',
                                                           '$2a$10$/YL1sca6O7ZFhtrAwUKULOv8FVYz96VXCl896CMbyCWikzrRCvs6q',
                                                           'ADMIN');
+
+
 
 
 

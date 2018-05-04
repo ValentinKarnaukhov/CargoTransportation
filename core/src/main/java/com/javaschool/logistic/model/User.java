@@ -12,7 +12,6 @@ import javax.persistence.*;
 
 
 @Entity
-
 @Table(name="USER")
 public class User implements Serializable{
 
@@ -48,6 +47,9 @@ public class User implements Serializable{
 	@Column(name="enabled",nullable = false)
 	private boolean enabled = true;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private Driver driver;
 
 	public Integer getUser_id() {
 		return user_id;
@@ -95,5 +97,13 @@ public class User implements Serializable{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
 	}
 }
