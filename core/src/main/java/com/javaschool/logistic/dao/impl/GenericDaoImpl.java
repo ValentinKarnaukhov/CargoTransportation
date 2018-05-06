@@ -1,6 +1,7 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.GenericDao;
+import org.hibernate.Session;
 import org.hibernate.SessionBuilder;
 import org.hibernate.SessionFactory;
 
@@ -23,16 +24,16 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Override
     public void create(T entity) {
-        entityManager.persist(entity);
+        getEntityManager().persist(entity);
     }
 
     @Override
     public void update(T entity) {
-        entityManager.merge(entity);
+        getEntityManager().merge(entity);
     }
 
     @Override
-    public void delete(T entity) {entityManager.remove(entity);}
+    public void delete(T entity) {getEntityManager().remove(entity);}
 
 
 }

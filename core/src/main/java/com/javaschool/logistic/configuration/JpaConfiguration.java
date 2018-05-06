@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -44,6 +45,8 @@ public class JpaConfiguration {
 		factoryBean.setJpaProperties(jpaProperties());
 		return factoryBean;
 	}
+
+
 
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
