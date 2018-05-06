@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface CityDao extends GenericDao<City> {
 
-    List<Truck> getTrucks(String cityName);
+    List<Truck> findAllTrucks(String cityName);
+
+    List<City> findAll();
 }

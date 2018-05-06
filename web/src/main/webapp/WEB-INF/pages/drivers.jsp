@@ -8,42 +8,42 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Drivers</title>
-    <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
-</head>
-<body>
-<div class="panel-heading"><span class="lead">List of Users </span></div>
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>SSO ID</th>
-        <th width="100"></th>
-        <th width="100"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${users}" var="user">
-        <tr>
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
-            <td>${user.email}</td>
-            <td>${user.ssoId}</td>
-            <td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success
-
-custom-width">edit</a></td>
-            <td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger
-
-custom-width">delete</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
-</div>
-<div class="well">
-    <a href="<c:url value='/newuser' />">Add New User</a>
-</body>
+    <head>
+        <title>Drivers</title>
+        <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
+    </head>
+    <body>
+    <div class="panel-heading"><span class="lead">List of drivers </span></div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Personal code</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Status</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${drivers}" var="driver">
+                <tr>
+                    <td>${driver.personal_code}</td>
+                    <td>${driver.first_name}</td>
+                    <td>${driver.last_name}</td>
+                    <td>${driver.user.email}</td>
+                    <td>${driver.city.name}</td>
+                    <td>${driver.status.name()}</td>
+                    <td><a href="<c:url value='/manager_/edit_driver_${driver.driver_id}'/>"
+                           class="btn btn-success custom-width">edit</a></td>
+                    <td><a href="<c:url value='/manager_/delete_driver_${driver.driver_id}'/>"
+                           class="btn btn-danger custom-width">delete</a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    <div class="well"><a href="<c:url value='/manager_/drivers/newdriver' />">Add new driver</a></div>
+    </body>
 </html>

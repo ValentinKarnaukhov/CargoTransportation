@@ -14,7 +14,7 @@ import java.util.List;
 public class City implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "city_id", nullable = false)
     private int city_id;
 

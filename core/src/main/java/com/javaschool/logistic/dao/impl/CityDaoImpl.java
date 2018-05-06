@@ -15,9 +15,14 @@ import java.util.List;
 public class CityDaoImpl extends GenericDaoImpl<City> implements CityDao {
 
     @Override
-    public List<Truck> getTrucks(String cityName) {
+    public List<Truck> findAllTrucks(String cityName) {
         return getEntityManager()
                 .createQuery("SELECT u FROM Truck u WHERE u.city.name LIKE :cityName")
                 .setParameter("cityName",cityName).getResultList();
+    }
+
+    @Override
+    public List<City> findAll() {
+        return getEntityManager().createQuery("SELECT u FROM City u").getResultList();
     }
 }

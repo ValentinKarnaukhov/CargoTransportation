@@ -9,5 +9,7 @@ public interface CityService {
 
     void createCity(City city);
 
-    List<Truck> getTruck(String cityName);
+    List<Truck> findAllTrucks(String cityName);
+
+    List<City> findAll();
 }

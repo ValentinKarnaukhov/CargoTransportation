@@ -27,7 +27,14 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public List<Truck> getTruck(String cityName){
-        return cityDao.getTrucks(cityName);
+    public List<Truck> findAllTrucks(String cityName) {
+        return cityDao.findAllTrucks(cityName);
     }
+
+    @Override
+    public List<City> findAll() {
+        return cityDao.findAll();
+    }
+
+
 }

@@ -25,9 +25,6 @@ import javax.persistence.PersistenceContext;
 public class UserController {
 
 
-    @PersistenceContext
-    EntityManager entityManager;
-
     @Autowired
     UserService userService;
 

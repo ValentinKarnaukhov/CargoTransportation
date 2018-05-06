@@ -19,7 +19,7 @@ public class Driver {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "driver_id", nullable = false)
     private int driver_id;
 
@@ -33,25 +33,27 @@ public class Driver {
     private String last_name;
 
     @Column(name = "worked_time", nullable = false)
-    private int worked_time;
+    private int worked_time=0;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status;
+    private Status status=Status.REST;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id")
     private City city;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "truck_id")
     private Truck truck;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @OneToOne(mappedBy = "driver")
+
+    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
 
     public int getDriver_id() {
@@ -133,4 +135,6 @@ public class Driver {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }

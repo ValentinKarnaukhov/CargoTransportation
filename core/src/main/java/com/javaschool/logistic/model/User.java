@@ -24,9 +24,9 @@ public class User implements Serializable{
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name = "user_id", nullable = false)
-	private Integer user_id;
+	private int user_id;
 
 
 	@Column(name = "username", nullable = false)
@@ -47,8 +47,8 @@ public class User implements Serializable{
 	@Column(name="enabled",nullable = false)
 	private boolean enabled = true;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
+
+	@OneToOne(mappedBy="user")
 	private Driver driver;
 
 	public Integer getUser_id() {
@@ -106,4 +106,6 @@ public class User implements Serializable{
 	public void setDriver(Driver driver) {
 		this.driver = driver;
 	}
+
+
 }

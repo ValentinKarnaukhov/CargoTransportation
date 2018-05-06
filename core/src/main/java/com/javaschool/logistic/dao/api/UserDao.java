@@ -8,7 +8,7 @@ public interface UserDao extends GenericDao<User> {
 
 	void createUser(User user);
 	
-	List<User> findAllUsers();
+	List<User> findAll();
 
 	User findByEmail(String email);
 

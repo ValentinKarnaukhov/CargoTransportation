@@ -17,11 +17,10 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 	}
 
 	@Override
-	public List<User> findAllUsers() {
-		List<User> users=getEntityManager()
+	public List<User> findAll() {
+		return getEntityManager()
 				.createQuery("SELECT u FROM User u ORDER BY u.username ASC")
 				.getResultList();
-		return users;
 	}
 
     @Override
