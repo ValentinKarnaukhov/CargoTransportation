@@ -32,7 +32,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public List<City> findAll() {
+    public List<City> findAllCities() {
         return cityDao.findAll();
     }
 

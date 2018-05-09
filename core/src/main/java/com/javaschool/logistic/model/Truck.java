@@ -35,7 +35,7 @@ public class Truck implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id")
     private City city;
 

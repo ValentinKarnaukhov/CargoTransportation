@@ -52,7 +52,7 @@ public class Driver {
     private Order order;
 
 
-    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.REMOVE})
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 

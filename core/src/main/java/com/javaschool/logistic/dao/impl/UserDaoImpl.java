@@ -11,17 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
-	@Override
-	public void createUser(User user) {
-		create(user);
-	}
-
-	@Override
-	public List<User> findAll() {
-		return getEntityManager()
-				.createQuery("SELECT u FROM User u ORDER BY u.username ASC")
-				.getResultList();
-	}
 
     @Override
     public User findByEmail(String email) {

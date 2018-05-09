@@ -33,6 +33,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/css/**").addResourceLocations("/static/css/");
+		registry.addResourceHandler("/static/img/**").addResourceLocations("/static/img/");
 	}
 
 

@@ -21,8 +21,4 @@ public class CityDaoImpl extends GenericDaoImpl<City> implements CityDao {
                 .setParameter("cityName",cityName).getResultList();
     }
 
-    @Override
-    public List<City> findAll() {
-        return getEntityManager().createQuery("SELECT u FROM City u").getResultList();
-    }
 }

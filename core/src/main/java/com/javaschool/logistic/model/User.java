@@ -47,7 +47,6 @@ public class User implements Serializable{
 	@Column(name="enabled",nullable = false)
 	private boolean enabled = true;
 
-
 	@OneToOne(mappedBy="user")
 	private Driver driver;
 

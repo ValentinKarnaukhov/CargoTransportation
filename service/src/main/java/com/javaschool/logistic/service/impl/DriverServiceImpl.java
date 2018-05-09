@@ -1,6 +1,7 @@
 package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.DriverDao;
+import com.javaschool.logistic.dao.api.UserDao;
 import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.service.api.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,11 @@ public class DriverServiceImpl implements DriverService {
     @Autowired
     DriverDao driverDao;
 
+
+
     @Override
     public List<Driver> findAllDrivers() {
-        return driverDao.findAllDrivers();
+        return driverDao.findAll();
     }
 
     @Override

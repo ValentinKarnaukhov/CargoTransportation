@@ -12,20 +12,10 @@ import java.util.List;
 @Repository
 public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
 
-    @Override
-    public List<Driver> findAllDrivers() {
-        return getEntityManager()
-                .createQuery("SELECT u FROM Driver u ORDER BY u.personal_code ASC")
-                .getResultList();
-    }
 
     @Override
     public void deleteById(int driver_id) {
-        Driver driver = (Driver) getEntityManager()
-                .createQuery("SELECT u FROM Driver u WHERE u.driver_id=:driver_id")
-                .setParameter("driver_id",driver_id)
-                .getSingleResult();
-        delete(driver);
+        delete(findById(driver_id));
     }
 
     @Override

@@ -4,13 +4,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>HelloWorld Login page</title>
-    <link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet"></link>
-    <link href="<c:url value='/static/css/styles.css' />" rel="stylesheet"></link>
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+    <link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet">
+    <link href="<c:url value='/static/css/styles.css' />"  rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<c:url value="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css"/>" />
+
 </head>
 
 <body>
+
+
 <div id="mainWrapper">
+    <div id="img-container">
+        <img src="<c:url value="/static/img/HfZiyDHM_400x400.jpg"/>"/>
+    </div>
     <div class="login-container">
         <div class="login-card">
             <div class="login-form">
@@ -18,7 +24,7 @@
                 <form action="${loginUrl}" method="post" class="form-horizontal">
                     <c:if test="${param.error != null}">
                         <div class="alert alert-danger">
-                            <p>Invalid email and password.</p>
+                            <p>Invalid email and/or password.</p>
                         </div>
                     </c:if>
                     <c:if test="${param.logout != null}">

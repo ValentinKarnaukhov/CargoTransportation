@@ -1,46 +1,33 @@
 
-html{
-	background-color:#2F2F2F;
-}
 
 body, #mainWrapper {
-	height: 100%;
-	background-image: -webkit-gradient(
-	linear,
-	right bottom,
-	right top,
-	color-stop(0, #EDEDED),
-	color-stop(0.08, #EAEAEA),
-	color-stop(1, #2F2F2F),
-	color-stop(1, #AAAAAA)
-);
-background-image: -o-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
-background-image: -moz-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
-background-image: -webkit-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
-background-image: -ms-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
-background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
+    height: 100%;
 }
 
-body, #mainWrapper, .form-control{
-	font-size:12px!mportant;
-}
 
 #mainWrapper {
-	/*height: 720px; Without explicit px values, % in children's does not work*/
-	height: 100vh; /*with Viewport-Percentage, we can handles all devices screens  */
-	padding-left:10px;
-	padding-right:10px;
-	padding-bottom:10px;
+    /*height: 720px; Without explicit px values, % in children's does not work*/
+    height: 100vh; /*with Viewport-Percentage, we can handles all devices screens  */
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:10px;
+    background: #255ea2;
 }
 
 .login-container {
-    margin-top: 100px;
-    background-color: floralwhite;
-    width: 40%;
-    left: 30%;
+    border-radius: 15%;
+    margin-top: 350px;
+    background-color: #f1f2b9;
+    width: 30%;
+    left: 35%;
     position: absolute;
 }
 
+#img-container{
+    position: absolute;
+    width: 30%;
+    left: 38%;
+}
 .login-card {
     width: 80%;
     margin: auto;
@@ -50,34 +37,39 @@ body, #mainWrapper, .form-control{
 }
 
 .form-container {
-  position:fiexd;
-  width:50%;
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #E8E1E1;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+    position:fiexd;
+    width:50%;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #E8E1E1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .floatRight{
-	float:right;
-	margin-right: 18px;
+    float:right;
+    margin-right: 18px;
 }
 
 .has-error{
-	color:red;
+    color:red;
 }
 
 
 .success{
-  position:fiexd;
-  width:50%;
-  margin-left: 50px;
-  margin-top:20px;
-  padding: 20px;
-  background-color: #E8E1E1;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+    position:fiexd;
+    width:50%;
+    margin-left: 50px;
+    margin-top:20px;
+    padding: 20px;
+    background-color: #E8E1E1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
+
+body {
+    background: #F1F3FA;
+}
+

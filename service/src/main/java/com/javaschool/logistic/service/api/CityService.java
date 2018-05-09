@@ -11,5 +11,5 @@ public interface CityService {
 
     List<Truck> findAllTrucks(String cityName);
 
-    List<City> findAll();
+    List<City> findAllCities();
 }

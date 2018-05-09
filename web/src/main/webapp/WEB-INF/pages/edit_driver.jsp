@@ -54,6 +54,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label class="col-md-3 control-lable" for="status">Cities</label>
+            <div class="col-md-7">
+                <form:select id ="status" path="status" items="${statuses}" class="form-control input-sm"/>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="form-group col-md-12">
@@ -72,6 +81,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
