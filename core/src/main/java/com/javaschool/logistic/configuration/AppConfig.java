@@ -34,9 +34,16 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/css/**").addResourceLocations("/static/css/");
 		registry.addResourceHandler("/static/img/**").addResourceLocations("/static/img/");
+		registry.addResourceHandler("/static/js/**").addResourceLocations("/static/js/");
+		registry.addResourceHandler("/static/font/**").addResourceLocations("/static/font/");
 	}
 
-
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasename("validation");
+		return messageSource;
+	}
 
 	@Override
     public void configurePathMatch(PathMatchConfigurer matcher) {

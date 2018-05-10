@@ -5,6 +5,7 @@ package com.javaschool.logistic.service.impl;
 import com.javaschool.logistic.dao.api.UserDao;
 import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.UserService;
+import com.javaschool.logistic.utils.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,14 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private PasswordGenerator passwordGenerator;
+
     @Override
     public void createUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        String password = passwordGenerator.getGeneratedPassword();
+        System.out.println(password+"*************************");
+        user.setPassword(passwordEncoder.encode(password));
         userDao.create(user);
     }
 

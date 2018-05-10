@@ -30,7 +30,12 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public void createDriver(Driver driver) {
+        driver.setPersonal_code("d"+(driverDao.getLastId()+1));
         driverDao.create(driver);
+    }
+
+    public int getLastId(){
+        return driverDao.getLastId();
     }
 
     @Override

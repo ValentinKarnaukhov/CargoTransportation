@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface DriverService {
 
-
     List<Driver> findAllDrivers();
 
     void createDriver(Driver driver);
@@ -17,5 +16,7 @@ public interface DriverService {
     Driver findById(int driver_id);
 
     void updateDriver(Driver driver);
+
+    int getLastId();
 
 }

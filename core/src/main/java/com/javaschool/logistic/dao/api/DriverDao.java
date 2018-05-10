@@ -9,4 +9,6 @@ public interface DriverDao extends GenericDao<Driver> {
     void deleteById(int id);
 
     Driver findById(int id);
+
+    int getLastId();
 }

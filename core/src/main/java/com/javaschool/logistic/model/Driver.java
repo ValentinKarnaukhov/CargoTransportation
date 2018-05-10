@@ -39,7 +39,7 @@ public class Driver {
     @Column(name = "status", nullable = false)
     private Status status=Status.REST;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
 
@@ -52,7 +52,7 @@ public class Driver {
     private Order order;
 
 
-    @OneToOne(cascade = {CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 

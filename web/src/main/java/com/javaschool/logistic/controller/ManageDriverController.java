@@ -7,9 +7,11 @@ import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.UserService;
+import com.javaschool.logistic.validators.DriverFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,18 +32,29 @@ public class ManageDriverController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    DriverFormValidator driverFormValidator;
+
     @RequestMapping(value = "/manager_/drivers/newdriver", method = RequestMethod.GET)
     public String newDriverPage(Model model){
+        System.out.println(driverService.getLastId()+"*********************");
         model.addAttribute("driver", new Driver());
         return "newdriver";
     }
 
     @RequestMapping(value = "/manager_/drivers/newdriver", method = RequestMethod.POST)
-    public String createNewDriver(@ModelAttribute Driver driver){
-        driver.getUser().setRole(User.Role.DRIVER);
-        userService.createUser(driver.getUser());
-        driverService.createDriver(driver);
-        return "redirect:/manager_/drivers";
+    public String createNewDriver(@ModelAttribute Driver driver, BindingResult driverResult){
+        driverFormValidator.validate(driver, driverResult);
+        if(driverResult.hasErrors()){
+            return "newdriver";
+        }else {
+            driver.getUser().setRole(User.Role.DRIVER);
+            driver.getUser().setUsername(driver.getFirst_name());
+            userService.createUser(driver.getUser());
+            driverService.createDriver(driver);
+            return "redirect:/manager_/drivers";
+        }
+
     }
 
     @RequestMapping(value = "/manager_/delete_driver_{driver_id}")
@@ -58,7 +71,7 @@ public class ManageDriverController {
 
     @RequestMapping(value = "/manager_/edit_driver_{driver_id}", method = RequestMethod.POST)
     public String updateDriver(@ModelAttribute  Driver driver, @PathVariable int driver_id){
-        driver.setUser(driverService.findById(driver_id).getUser());
+        //driver.setUser(driverService.findById(driver_id).getUser());
         driverService.updateDriver(driver);
         return "redirect:/manager_/drivers";
     }

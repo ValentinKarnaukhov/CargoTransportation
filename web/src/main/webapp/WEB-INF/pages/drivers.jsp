@@ -16,8 +16,8 @@
         <jsp:param name="drivers" value="active"/>
 </jsp:include>
 
-<div style="margin-left: 15%">
-    <table class="table table-hover" >
+
+    <table class="centered striped">
         <thead>
         <tr>
             <th>Personal code</th>
@@ -25,6 +25,7 @@
             <th>Last name</th>
             <th>Email</th>
             <th>City</th>
+            <th>Worked time</th>
             <th>Status</th>
             <th width="100"></th>
             <th width="100"></th>
@@ -38,15 +39,17 @@
                 <td>${driver.last_name}</td>
                 <td>${driver.user.email}</td>
                 <td>${driver.city.name}</td>
+                <td>${driver.worked_time}</td>
                 <td>${driver.status.name()}</td>
-                <td><a href="<c:url value='/manager_/edit_driver_${driver.driver_id}'/>"
-                       class="btn btn-success custom-width">edit</a></td>
-                <td><a href="<c:url value='/manager_/delete_driver_${driver.driver_id}'/>"
-                       class="btn btn-danger custom-width">delete</a></td>
+                <td><a href="<c:url value='/manager_/edit_driver_${driver.driver_id}'/>">
+                    <i class="material-icons right">edit</i></a></td>
+                <td><a href="<c:url value='/manager_/delete_driver_${driver.driver_id}'/>">
+                    <i class="material-icons right">delete_forever</i></a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-<div class="well"><a href="<c:url value='/manager_/drivers/newdriver' />">Add new driver</a></div>
-</div>
+<div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/drivers/newdriver' />">Add new driver
+    <i class="material-icons left">person_add</i></a></div>
+
 <jsp:include page="footer.jsp"/>
