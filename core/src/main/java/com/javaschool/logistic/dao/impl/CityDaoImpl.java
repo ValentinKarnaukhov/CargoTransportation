@@ -21,4 +21,12 @@ public class CityDaoImpl extends GenericDaoImpl<City> implements CityDao {
                 .setParameter("cityName",cityName).getResultList();
     }
 
+    @Override
+    public City findById(int city_id) {
+        return (City) getEntityManager()
+                .createQuery("SELECT u FROM City u WHERE u.city_id=:city_id")
+                .setParameter("city_id",city_id)
+                .getSingleResult();
+    }
+
 }

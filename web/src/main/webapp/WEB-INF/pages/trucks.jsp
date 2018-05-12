@@ -7,14 +7,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Trucks</title>
-    <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
-</head>
-<body>
-<div class="panel-heading"><span class="lead">List of drivers </span></div>
-<table class="table table-hover">
+
+<jsp:include page="header.jsp">
+    <jsp:param name="title" value="Trucks"/>
+</jsp:include>
+
+<jsp:include page="leftMenu.jsp">
+    <jsp:param name="trucks" value="active"/>
+</jsp:include>
+
+<h5 class="indigo-text" style="margin-left: 1%">Truck list</h5>
+<table class="centered striped">
     <thead>
     <tr>
         <th>Registration number</th>
@@ -22,6 +25,7 @@
         <th>Capacity</th>
         <th>Status</th>
         <th>City</th>
+        <th>Order</th>
         <th width="100"></th>
         <th width="100"></th>
     </tr>
@@ -34,14 +38,17 @@
             <td>${truck.capacity}</td>
             <td>${truck.status}</td>
             <td>${truck.city.name}</td>
-            <td><a href="<c:url value='/manager_/edit_truck_${truck.truck_id}'/>"
-                   class="btn btn-success custom-width">edit</a></td>
-            <td><a href="<c:url value='/manager_/delete_truck_${truck.truck_id}'/>"
-                   class="btn btn-danger custom-width">delete</a></td>
+            <td>${truck.order.order_id}</td>
+            <td><a href="<c:url value='/manager_/edit_truck_${truck.truck_id}'/>">
+                <i class="material-icons">edit</i></a></td>
+            <td><a href="<c:url value='/manager_/delete_truck_${truck.truck_id}'/>">
+                <i class="material-icons">delete_forever</i></a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<div class="well"><a href="<c:url value='/manager_/trucks/newtruck' />">Add new truck</a></div>
-</body>
-</html>
+
+<div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/trucks/newtruck' />">Add new truck
+    <i class="material-icons left">local_shipping</i></a></div>
+
+<jsp:include page="footer.jsp"/>

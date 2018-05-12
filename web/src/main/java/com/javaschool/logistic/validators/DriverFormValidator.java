@@ -24,7 +24,6 @@ public class DriverFormValidator implements Validator {
     public void validate(Object o, Errors errors) {
 
         Driver driver = (Driver) o;
-        User user = driver.getUser();
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "first_name", "NotEmpty.driverForm.first_name");
 
@@ -38,6 +37,5 @@ public class DriverFormValidator implements Validator {
             errors.rejectValue("last_name", "Digit.driverForm.firstAndLastName");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "NotEmpty.userForm.email");
     }
 }

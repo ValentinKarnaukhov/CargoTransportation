@@ -1,6 +1,9 @@
 package com.javaschool.logistic.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author Valentin
@@ -23,7 +26,7 @@ public class Driver {
     @Column(name = "driver_id", nullable = false)
     private int driver_id;
 
-    @Column(name = "personal_code", unique = true, nullable = false)
+    @Column(name = "personal_code", unique = true)
     private String personal_code;
 
     @Column(name = "first_name", nullable = false)
@@ -53,8 +56,12 @@ public class Driver {
 
 
     @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name="user_id")
     private User user;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "start")
+    private Date start;
 
     public int getDriver_id() {
         return driver_id;
@@ -136,5 +143,11 @@ public class Driver {
         this.user = user;
     }
 
+    public Date getStart() {
+        return start;
+    }
 
+    public void setStart(Date start) {
+        this.start = start;
+    }
 }

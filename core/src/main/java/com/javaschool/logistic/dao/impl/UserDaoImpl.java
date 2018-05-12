@@ -6,6 +6,7 @@ import com.javaschool.logistic.dao.api.UserDao;
 import com.javaschool.logistic.model.User;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 
 
 @Repository
@@ -14,10 +15,15 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
     @Override
     public User findByEmail(String email) {
-		User user= (User) getEntityManager()
-				.createQuery("SELECT u FROM User u WHERE u.email LIKE :email")
-				.setParameter("email",email)
-				.getSingleResult();
+		User user;
+    	try{
+			user= (User) getEntityManager()
+					.createQuery("SELECT u FROM User u WHERE u.email LIKE :email")
+					.setParameter("email",email)
+					.getSingleResult();
+		}catch (NoResultException e){
+    		return null;
+		}
 		return user;
     }
 

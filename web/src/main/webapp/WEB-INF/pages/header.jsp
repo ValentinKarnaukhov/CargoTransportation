@@ -12,6 +12,6 @@
     <title><c:out value="${param.title}"/></title>
     <link href="<c:url value="/static/css/material-icons.css"/>" rel="stylesheet">
     <link href="<c:url value='/static/css/materialize.css' />" rel="stylesheet"/>
-
+    <link href="<c:url value='/static/css/styles.css' />" rel="stylesheet"/>
 </head>
 

@@ -37,7 +37,6 @@ public class UserController {
 
     @RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
     public String loginPage() {
-        System.out.println("********************TEST**********************");
         return "login";
     }
 

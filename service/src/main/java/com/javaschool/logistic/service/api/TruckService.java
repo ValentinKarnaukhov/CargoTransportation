@@ -1,6 +1,8 @@
 package com.javaschool.logistic.service.api;
 
+import com.javaschool.logistic.model.OrderWaypoint;
 import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Waypoint;
 
 import java.util.List;
 
@@ -16,5 +18,9 @@ public interface TruckService {
     Truck findById(int truck_id);
 
     void updateTruck(Truck truck);
+
+    List<Truck> findSuitableTrucks(List<Waypoint> waypoints);
+
+
 
 }

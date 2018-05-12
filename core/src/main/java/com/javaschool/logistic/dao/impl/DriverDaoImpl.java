@@ -39,5 +39,10 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
         return id;
     }
 
-
+    @Override
+    public List<Driver> findAll() {
+        return getEntityManager()
+                .createQuery("SELECT u FROM Driver u WHERE u.user.enabled = true ")
+                .getResultList();
+    }
 }

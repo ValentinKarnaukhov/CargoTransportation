@@ -1,0 +1,7 @@
+.editHover {
+    background: #E8F3FF
+}
+
+span[id$=".errors"]{
+    color: #d0181e;
+}

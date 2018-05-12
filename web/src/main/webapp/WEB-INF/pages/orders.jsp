@@ -7,35 +7,40 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Orders</title>
-    <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"/>
-</head>
-<body>
-<div class="panel-heading"><span class="lead">List of drivers </span></div>
-<table class="table table-hover">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<jsp:include page="header.jsp">
+    <jsp:param name="title" value="Orders"/>
+</jsp:include>
+
+<jsp:include page="leftMenu.jsp">
+    <jsp:param name="orders" value="active"/>
+</jsp:include>
+
+<h5 class="indigo-text" style="margin-left: 1%">Order list</h5>
+<table class="centered striped">
     <thead>
     <tr>
         <th>Number</th>
         <th>Truck</th>
-        <th>Is Completed</th>
-        <th width="100"></th>
-        <th width="100"></th>
+        <th>Is complete</th>
+        <th width="50"></th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${orders}" var="order">
         <tr>
-            <td>${order.order_id}</td>
-            <td>${order.truck.reg_number}</td>
-            <td>${order.complete}</td>
-            <td><a href="<c:url value='/manager_/orders/info_${order.order_id}'/>"
-                   class="btn btn-success custom-width">info</a></td>
+            <td >${order.order_id}</td>
+            <td >${order.truck.reg_number}</td>
+            <td >${order.complete}</td>
+
+            <td><a href="<c:url value='/manager_/edit_driver_${driver.driver_id}'/>">
+                <i class="material-icons">info</i></a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<div class="well"><a href="<c:url value='/manager_/orders/neworder' />">Add new order</a></div>
-</body>
-</html>
+<div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/orders/neworder' />">Add new order
+    <i class="material-icons left">add_box</i></a></div>
+
+<jsp:include page="footer.jsp"/>

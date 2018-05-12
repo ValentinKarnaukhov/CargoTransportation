@@ -20,8 +20,6 @@
         <div class="container">
             <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 43px 0 43px; border: 1px solid #EEE;">
                 <form class="col s12" method="post" action="<c:url value="/login"/>">
-                    <label for="test">TEST</label>
-                    <input id="test" type="text"/>
                     <div class='row'>
                         <div class='col s12'>
                         </div>

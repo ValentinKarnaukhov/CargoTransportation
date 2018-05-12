@@ -35,7 +35,10 @@ public class Truck implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @Column(name = "enabled")
+    private boolean enabled = true;
+
+    @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
 
@@ -108,5 +111,13 @@ public class Truck implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

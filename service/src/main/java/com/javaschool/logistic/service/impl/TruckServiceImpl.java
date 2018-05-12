@@ -3,12 +3,14 @@ package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.TruckDao;
 import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.TruckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -31,8 +33,10 @@ public class TruckServiceImpl implements TruckService {
 
 
     @Override
-    public void deleteById(int driver_id) {
-        truckDao.deleteById(driver_id);
+    public void deleteById(int truck_id) {
+        Truck truck = findById(truck_id);
+        truck.setEnabled(false);
+        truckDao.update(truck);
     }
 
     @Override
@@ -44,4 +48,23 @@ public class TruckServiceImpl implements TruckService {
     public void updateTruck(Truck truck) {
         truckDao.update(truck);
     }
+
+    @Override
+    public List<Truck> findSuitableTrucks(List<Waypoint> waypoints) {
+        if(getMaxWeight(waypoints)==0){
+            return new LinkedList<>();
+        }else {
+            return truckDao.findSuitableTrucks(getMaxWeight(waypoints));
+        }
+    }
+
+
+    private int getMaxWeight(List<Waypoint> waypoints){
+        int max=0;
+        for(Waypoint waypoint:waypoints){
+            if(max<=waypoint.getCargo().getWeight()) max=waypoint.getCargo().getWeight();
+        }
+        return max;
+    }
+
 }

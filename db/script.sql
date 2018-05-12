@@ -31,6 +31,7 @@ create table TRUCK(
   capacity INT(11) NOT NULL,
   status ENUM('OK','BROKEN') DEFAULT 'OK' NOT NULL,
   city_id BIGINT NOT NULL,
+  enabled BOOLEAN,
   PRIMARY KEY (truck_id),
   UNIQUE (reg_number),
   FOREIGN KEY (city_id) REFERENCES CITY(city_id)
@@ -40,8 +41,6 @@ create table ORDERS(
   order_id BIGINT NOT NULL AUTO_INCREMENT,
   truck_id BIGINT NOT NULL,
   is_complete BOOLEAN NOT NULL,
-  begin DATETIME ,
-  ended DATETIME ,
   PRIMARY KEY (order_id),
   FOREIGN KEY (truck_id) REFERENCES TRUCK(truck_id)
 );
@@ -81,6 +80,7 @@ create table DRIVER(
   truck_id BIGINT,
   order_id BIGINT,
   user_id BIGINT NOT NULL,
+  start DATETIME,
   PRIMARY KEY (driver_id),
   UNIQUE (personal_code),
   FOREIGN KEY (city_id) REFERENCES CITY(city_id),
@@ -88,6 +88,9 @@ create table DRIVER(
   FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
   FOREIGN KEY (user_id) REFERENCES USER(user_id)
 );
+
+
+
 
 INSERT INTO USER(username, email, password, role) VALUES ('admin',
                                                           'admin@admin.com',

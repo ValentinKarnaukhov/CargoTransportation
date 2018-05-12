@@ -1,12 +1,15 @@
 package com.javaschool.logistic.configuration;
 
 
+import com.javaschool.logistic.converters.CityConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -20,6 +23,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = "com.javaschool.logistic")
 public class AppConfig extends WebMvcConfigurerAdapter{
 
+
+	@Autowired
+	CityConverter cityConverter;
 
 	@Bean
 	public InternalResourceViewResolver resolver(){
@@ -43,6 +49,11 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("validation");
 		return messageSource;
+	}
+
+	@Override
+	public void addFormatters(FormatterRegistry registry) {
+		registry.addConverter(cityConverter);
 	}
 
 	@Override

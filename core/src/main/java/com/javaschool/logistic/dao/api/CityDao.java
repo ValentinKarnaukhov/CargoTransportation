@@ -9,4 +9,6 @@ public interface CityDao extends GenericDao<City> {
 
     List<Truck> findAllTrucks(String cityName);
 
+    City findById(int city_id);
+
 }

@@ -5,6 +5,7 @@ import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +31,7 @@ public class ManagerController {
     @Autowired
     TruckService truckService;
 
+
     @RequestMapping(value = "/manager_/drivers", method = RequestMethod.GET)
     public String managerToDrivers(Model model){
         model.addAttribute("drivers",driverService.findAllDrivers());
@@ -48,8 +50,6 @@ public class ManagerController {
         model.addAttribute("orders", orderService.findAllOrders());
         return "orders";
     }
-
-
 
 
 }

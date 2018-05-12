@@ -7,9 +7,11 @@ import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.TruckService;
+import com.javaschool.logistic.validators.TruckFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,9 @@ public class ManageTruckController {
     @Autowired
     TruckService truckService;
 
+    @Autowired
+    TruckFormValidator truckFormValidator;
+
 
     @RequestMapping(value = "/manager_/trucks/newtruck", method = RequestMethod.GET)
     public String newTruckPage(Model model){
@@ -35,9 +40,17 @@ public class ManageTruckController {
     }
 
     @RequestMapping(value = "/manager_/trucks/newtruck", method = RequestMethod.POST)
-    public String createNewTruck(@ModelAttribute Truck truck){
-        truckService.createTruck(truck);
-        return "redirect:/manager_/trucks";
+    public String createNewTruck(@ModelAttribute Truck truck,
+                                 BindingResult bindingResult, Model model){
+        truckFormValidator.validate(truck,bindingResult);
+        if(bindingResult.hasErrors()){
+            model.addAttribute("truck", truck);
+            return "newtruck";
+        }else {
+            truckService.createTruck(truck);
+            return "redirect:/manager_/trucks";
+        }
+
     }
 
     @RequestMapping(value = "/manager_/delete_truck_{truck_id}")
@@ -54,9 +67,17 @@ public class ManageTruckController {
     }
 
     @RequestMapping(value = "/manager_/edit_truck_{truck_id}", method = RequestMethod.POST)
-    public String updateDriver(Truck truck, @PathVariable int truck_id){
-        truckService.updateTruck(truck);
-        return "redirect:/manager_/trucks";
+    public String updateDriver(Truck truck, @PathVariable int truck_id,
+                               BindingResult bindingResult, Model model){
+        truckFormValidator.validate(truck,bindingResult);
+        if(bindingResult.hasErrors()){
+            model.addAttribute("truck", truck);
+            return "edit_truck";
+        }else {
+            truckService.updateTruck(truck);
+            return "redirect:/manager_/trucks";
+        }
+
     }
 
     @ModelAttribute("cities")
@@ -68,4 +89,6 @@ public class ManageTruckController {
     public Truck.Status[] initializeStatuses(){
         return Truck.Status.values();
     }
+
+
 }

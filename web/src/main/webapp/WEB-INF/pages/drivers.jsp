@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Valentin
@@ -16,7 +17,7 @@
         <jsp:param name="drivers" value="active"/>
 </jsp:include>
 
-
+    <h5 class="indigo-text" style="margin-left: 1%">Driver list</h5>
     <table class="centered striped">
         <thead>
         <tr>
@@ -25,26 +26,57 @@
             <th>Last name</th>
             <th>Email</th>
             <th>City</th>
-            <th>Worked time</th>
             <th>Status</th>
-            <th width="100"></th>
-            <th width="100"></th>
+            <th>Order</th>
+            <th>Worked time</th>
+            <th width="50"></th>
+            <th width="50"></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${drivers}" var="driver">
             <tr>
-                <td>${driver.personal_code}</td>
-                <td>${driver.first_name}</td>
-                <td>${driver.last_name}</td>
-                <td>${driver.user.email}</td>
-                <td>${driver.city.name}</td>
+                <td >${driver.personal_code}</td>
+                <td >${driver.first_name}</td>
+                <td >${driver.last_name}</td>
+                <td >${driver.user.email}</td>
+                <td >${driver.city.name}</td>
+                <td>${driver.status}</td>
+                <td>${driver.order.order_id}</td>
                 <td>${driver.worked_time}</td>
-                <td>${driver.status.name()}</td>
+
+                    <%--<select class="browser-default" style="background-color: transparent; margin-top: -10px; margin-bottom: -10px">--%>
+                        <%--<c:forEach items="${cities}" var="city">--%>
+                            <%--<c:choose>--%>
+                                <%--<c:when test="${city.city_id==driver.city.city_id}">--%>
+                                    <%--<option selected value="${city.city_id}">${city.name}</option>--%>
+                                <%--</c:when>--%>
+                                <%--<c:when test="${city.city_id!=driver.city.city_id}">--%>
+                                    <%--<option value="${city.city_id}">${city.name}</option>--%>
+                                <%--</c:when>--%>
+                            <%--</c:choose>--%>
+                        <%--</c:forEach>--%>
+                    <%--</select>--%>
+
+
+                <%--<td class="status">--%>
+                    <%--<select class="browser-default" style="background-color: transparent; margin-top: -10px; margin-bottom: -10px">--%>
+                        <%--<c:forEach items="${statuses}" var="status">--%>
+                            <%--<c:choose>--%>
+                                <%--<c:when test="${driver.status==status}">--%>
+                                    <%--<option selected>${status}</option>--%>
+                                <%--</c:when>--%>
+                                <%--<c:when test="${driver.status!=status}">--%>
+                                    <%--<option >${status}</option>--%>
+                                <%--</c:when>--%>
+                            <%--</c:choose>--%>
+                        <%--</c:forEach>--%>
+                    <%--</select>--%>
+                <%--</td>--%>
                 <td><a href="<c:url value='/manager_/edit_driver_${driver.driver_id}'/>">
-                    <i class="material-icons right">edit</i></a></td>
+                    <i class="material-icons">edit</i></a></td>
                 <td><a href="<c:url value='/manager_/delete_driver_${driver.driver_id}'/>">
-                    <i class="material-icons right">delete_forever</i></a></td>
+                    <i class="material-icons">delete_forever</i></a></td>
             </tr>
         </c:forEach>
         </tbody>

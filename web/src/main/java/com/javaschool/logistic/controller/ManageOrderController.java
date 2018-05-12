@@ -1,6 +1,7 @@
 package com.javaschool.logistic.controller;
 
 import com.javaschool.logistic.model.*;
+import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.TruckService;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,14 +32,34 @@ public class ManageOrderController {
     TruckService truckService;
 
 
-    private List<Double> list = new LinkedList<>();
+    private List<Waypoint> waypoints = new LinkedList<>();
 
     @RequestMapping(value = "/manager_/orders/neworder", method = RequestMethod.GET)
     public String newOrder(Model model){
-        list.add(Math.random());
-        model.addAttribute("test",list);
+        model.addAttribute("waypoints",waypoints);
+        model.addAttribute("order", new Order());
+        model.addAttribute("trucks",truckService.findSuitableTrucks(waypoints));
         return "neworder";
     }
+
+    @RequestMapping(value = "/manager_/orders/newcargo", method = RequestMethod.GET)
+    public String newCargo(Model model){
+        model.addAttribute("waypoint", new Waypoint());
+        return "newpoint";
+    }
+
+    @RequestMapping(value = "/manager_/orders/newcargo", method = RequestMethod.POST)
+    public String createNewCargo(@ModelAttribute Waypoint waypoint){
+        waypoints.add(waypoint);
+        return "redirect:/manager_/orders/neworder";
+    }
+
+    @RequestMapping(value = "/manager_/orders/delete_point_{id}")
+    public String deletePoint(@PathVariable int id){
+        waypoints.remove(id);
+        return "redirect:/manager_/orders/neworder";
+    }
+
 
 
     @ModelAttribute("cities")
@@ -50,10 +72,7 @@ public class ManageOrderController {
         return driverService.findAllDrivers();
     }
 
-    @ModelAttribute("trucks")
-    public List<Truck> initializeTrucks(){
-        return truckService.findAllTrucks();
-    }
+
 
 
 }

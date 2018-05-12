@@ -24,16 +24,17 @@
 <div  class="row" style="width: 60%; margin-right: 40%">
     <form:form modelAttribute="driver" class="col s12" method="post" >
         <form:input path="personal_code" type="hidden"/>
+        <form:input path="user.email" type="hidden"/>
         <div class="row">
             <div class="input-field col s6">
                 <form:input path="first_name" id="first_name" type="text" class="validate" required="true"/>
                 <label for="first_name">First Name</label>
-                <form:errors path="first_name" element="div"/>
+                <form:errors path="first_name"/>
             </div>
             <div class="input-field col s6">
                 <form:input path="last_name" id="last_name" type="text" class="validate" required="true"/>
                 <label for="last_name">Last Name</label>
-                <form:errors path="last_name" element="div"/>
+                <form:errors path="last_name"/>
 
             </div>
         </div>
@@ -47,14 +48,14 @@
         <%--</div>--%>
         <div class="row">
             <div class="input-field col s12">
-                <form:select id ="city" path="city.city_id" items="${cities}" itemLabel="name" itemValue="city_id"/>
+                <form:select id ="city" path="city" items="${cities}" itemLabel="name" itemValue="city_id"/>
                 <label for="city">City</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <form:select id ="city" path="status" items="${statuses}"/>
-                <label for="city">Status</label>
+                <form:select id ="status" path="status" items="${statuses}"/>
+                <label for="status">Status</label>
             </div>
         </div>
         <div class="row">
@@ -67,9 +68,12 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Add driver
-                    <i class="material-icons right">person_add</i>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Edit driver
+                    <i class="material-icons right">edit</i>
                 </button>
+                <a href="<c:url value="/manager_/drivers"/>" class="btn waves-effect waves-light">Cancel
+                    <i class="material-icons right">undo</i>
+                </a>
             </div>
         </div>
     </form:form>

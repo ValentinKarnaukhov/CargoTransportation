@@ -81,10 +81,10 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
-        	<groupId>org.hibernate</groupId>
-        	<artifactId>hibernate-entitymanager</artifactId>
-        	<version>${hibernate.version}</version>
-    	</dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
 
 		<!-- jsr303 validation -->
 		<dependency>
@@ -117,9 +117,9 @@
 			<version>2.3.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>jstl</artifactId>
-		    <version>1.2</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 		<!-- Logging -->
