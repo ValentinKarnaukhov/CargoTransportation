@@ -22,7 +22,7 @@
     <ul id="tabs-swipe-demo" class="tabs">
         <li class="tab col s6"><a class="active"href="#test-swipe-1">Test 1</a></li>
         <li class="tab col s6"><a href="#test-swipe-2">Test 2</a></li>
-        <li class="tab col s6"><a href="#test-swipe-3">Test 3</a></li>
+        <li class="tab col s6"><a href="#test-swipe-3" id="selectDriver">Test 3</a></li>
     </ul>
     <!-- FIRST STEP -->
     <div id="test-swipe-1" class="col s12 ">
@@ -74,7 +74,7 @@
 
 
     </div>
-    <div id="test-swipe-3" class="col s12">Test 3</div>
+    <div id="test-swipe-3" class="col s12"></div>
 
 </div>
 

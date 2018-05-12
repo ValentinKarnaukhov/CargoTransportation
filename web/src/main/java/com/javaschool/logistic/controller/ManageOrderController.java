@@ -61,6 +61,12 @@ public class ManageOrderController {
     }
 
 
+    @RequestMapping(value = "/manager_/orders/test", method = RequestMethod.GET)
+    public String test(Model model){
+        model.addAttribute("drivers", new LinkedList<Driver>());
+        return "select_drivers";
+    }
+
 
     @ModelAttribute("cities")
     public List<City> initializeCities() {

@@ -19,7 +19,13 @@ public class City implements Serializable {
     private int city_id;
 
     @Column(name = "name", nullable = false)
-    public String name;
+    private String name;
+
+    @Column(name = "latitude")
+    private double  latitude;
+
+    @Column(name = "longitude")
+    private double longitude;
 
     @OneToMany(mappedBy = "city")
     private List<Truck> trucks;
@@ -44,6 +50,22 @@ public class City implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public List<Truck> getTrucks() {

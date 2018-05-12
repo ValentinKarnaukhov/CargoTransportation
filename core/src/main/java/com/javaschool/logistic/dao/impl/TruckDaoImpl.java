@@ -32,6 +32,14 @@ public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
     }
 
     @Override
+    public List<Truck> findByNumber(String number) {
+        return  getEntityManager()
+                .createQuery("SELECT u FROM Truck u WHERE u.reg_number=:number")
+                .setParameter("number",number)
+                .getResultList();
+    }
+
+    @Override
     public List<Truck> findAll() {
         return getEntityManager()
                 .createQuery("SELECT u FROM Truck u WHERE u.enabled = true ")

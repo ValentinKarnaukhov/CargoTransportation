@@ -1,23 +1,16 @@
 package com.javaschool.logistic.validators;
 
+
 import com.javaschool.logistic.model.Truck;
-import com.javaschool.logistic.service.api.TruckService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-
 @Component
 @PropertySource(value = { "classpath:validation.properties" })
-public class TruckFormValidator implements Validator {
-
-    @Autowired
-    TruckService truckService;
-
-
+public class EditTruckValidator  implements Validator {
     @Override
     public boolean supports(Class<?> aClass) {
         return Truck.class.equals(aClass);
@@ -25,7 +18,6 @@ public class TruckFormValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-
         Truck truck = (Truck) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"reg_number","NotEmpty.truckForm.reg_number");
@@ -37,10 +29,5 @@ public class TruckFormValidator implements Validator {
         if(!truck.getReg_number().matches("^([a-z]){2}(\\d){5}$")){
             errors.rejectValue("reg_number", "NonCorrect.truckForm.reg_number");
         }
-
-        if(!truckService.findByNumber(truck.getReg_number()).isEmpty()){
-            errors.rejectValue("reg_number", "Exist.truckForm.reg_number");
-        }
-
     }
 }

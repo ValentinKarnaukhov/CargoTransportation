@@ -21,6 +21,7 @@ public interface TruckService {
 
     List<Truck> findSuitableTrucks(List<Waypoint> waypoints);
 
+    List<Truck> findByNumber(String number);
 
 
 }

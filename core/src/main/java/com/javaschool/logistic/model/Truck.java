@@ -45,6 +45,7 @@ public class Truck implements Serializable {
     @OneToMany(mappedBy = "truck")
     private List<Driver> drivers;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "truck_id")
     private Order order;

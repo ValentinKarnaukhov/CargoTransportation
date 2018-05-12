@@ -1,6 +1,36 @@
 $(document).ready(function(){
     $('select').material_select();
+    $('#selectDriver').click(function () {
+        $.ajax({
+            url: 'test',
+            type: 'get',
+            success: function (data) {
+                $('#test-swipe-3').append(
+                    data
+                );
+            }
+        });
+
+    });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $( document ).ready(function() {
     $(".inline-editable").hover(

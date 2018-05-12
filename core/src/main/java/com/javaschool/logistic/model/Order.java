@@ -19,19 +19,12 @@ public class Order {
     @Column(name = "order_id", nullable = false)
     private int order_id;
 
+
     @OneToOne(mappedBy = "order")
     private Truck truck;
 
     @Column(name = "is_complete", nullable = false)
     private boolean complete;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "begin")
-    private Date begin;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "ended")
-    private Date ended;
 
 
     @OneToMany(mappedBy = "order")
@@ -65,22 +58,6 @@ public class Order {
 
     public void setComplete(boolean complete) {
         this.complete = complete;
-    }
-
-    public Date getBegin() {
-        return begin;
-    }
-
-    public void setBegin(Date begin) {
-        this.begin = begin;
-    }
-
-    public Date getEnded() {
-        return ended;
-    }
-
-    public void setEnded(Date ended) {
-        this.ended = ended;
     }
 
     public List<Cargo> getCargoes() {

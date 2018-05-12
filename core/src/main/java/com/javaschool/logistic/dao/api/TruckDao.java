@@ -12,4 +12,6 @@ public interface TruckDao extends GenericDao<Truck> {
 
     List<Truck> findSuitableTrucks(int weight);
 
+    List<Truck> findByNumber(String number);
+
 }
