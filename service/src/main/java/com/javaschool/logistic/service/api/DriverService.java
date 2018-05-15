@@ -2,6 +2,7 @@ package com.javaschool.logistic.service.api;
 
 
 import com.javaschool.logistic.model.Driver;
+import com.javaschool.logistic.model.Truck;
 
 import java.util.List;
 
@@ -18,5 +19,7 @@ public interface DriverService {
     void updateDriver(Driver driver);
 
     int getLastId();
+
+    List<Driver> findSuitableDrivers(int distance, Truck truck);
 
 }

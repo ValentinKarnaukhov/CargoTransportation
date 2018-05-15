@@ -24,4 +24,5 @@ public interface TruckService {
     List<Truck> findByNumber(String number);
 
 
+
 }

@@ -15,17 +15,11 @@
 <jsp:include page="leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
-<h5 class="indigo-text" style="margin-left: 1%">Create new driver</h5>
+<h5 class="indigo-text">Create new order</h5>
 <div class="section"></div>
-<div  class="row" style="width: 90%; margin-right: 10%">
+<div  class="row" style="width: 90%; margin-right: 5%">
 
-    <ul id="tabs-swipe-demo" class="tabs">
-        <li class="tab col s6"><a class="active"href="#test-swipe-1">Test 1</a></li>
-        <li class="tab col s6"><a href="#test-swipe-2">Test 2</a></li>
-        <li class="tab col s6"><a href="#test-swipe-3" id="selectDriver">Test 3</a></li>
-    </ul>
-    <!-- FIRST STEP -->
-    <div id="test-swipe-1" class="col s12 ">
+    <h5 class="indigo-text">Add a cargoes</h5>
 
         <table class="centered striped">
             <thead>
@@ -50,32 +44,36 @@
             </c:forEach>
             </tbody>
         </table>
-        <div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/orders/newcargo' />">Add new cargo
-            <i class="material-icons left">add_box</i></a></div>
+        <a class="waves-effect waves-light btn" href="<c:url value='/manager_/orders/newcargo' />">Add new cargo
+            <i class="material-icons left">add_box</i></a>
+    <div class="section"></div>
+    <h5 class="indigo-text">Select a truck</h5>
+    <form:form  modelAttribute="order"  method="post" >
 
-    </div>
-
-    <!-- SECOND STEP -->
-
-    <div id="test-swipe-2" class="col s12 ">
-
-        <form:form  modelAttribute="order" class="col s12" method="post" >
-            <div class="row">
                 <div class="input-field col s12">
-                    <form:select id ="truck" path="truck" items="${trucks}" itemLabel="reg_number" itemValue="truck_id"/>
+                    <form:select id ="truck" path="truck">
+                        <form:options items="${trucks}" itemLabel="reg_number" itemValue="truck_id"/>
+                     </form:select>
                     <label for="truck">Truck</label>
                 </div>
-            </div>
-        </form:form>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Select a drivers
+            <i class="material-icons left">person_add</i>
+        </button>
+        <a href="<c:url value="/manager_/orders"/>" class="btn waves-effect waves-light">Cancel
+            <i class="material-icons left">undo</i>
+        </a>
+    </form:form>
 
 
 
 
 
-
-    </div>
-    <div id="test-swipe-3" class="col s12"></div>
 
 </div>
+
+
+
+
 
 <jsp:include page="footer.jsp"/>

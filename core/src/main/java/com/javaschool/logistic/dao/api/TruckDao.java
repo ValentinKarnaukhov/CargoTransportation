@@ -10,8 +10,10 @@ public interface TruckDao extends GenericDao<Truck> {
 
     Truck findById(int id);
 
-    List<Truck> findSuitableTrucks(int weight);
+    List findSuitableTrucks(int weight);
 
     List<Truck> findByNumber(String number);
+
+
 
 }

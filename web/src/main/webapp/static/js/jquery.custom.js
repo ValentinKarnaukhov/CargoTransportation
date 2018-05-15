@@ -1,9 +1,14 @@
 $(document).ready(function(){
     $('select').material_select();
     $('#selectDriver').click(function () {
+        var text = $('li.selected').html();
+        if(text === undefined) text = "null";
         $.ajax({
             url: 'test',
             type: 'get',
+            data : ({
+                text: text
+            }),
             success: function (data) {
                 $('#test-swipe-3').append(
                     data

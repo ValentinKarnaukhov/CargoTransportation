@@ -2,6 +2,8 @@ package com.javaschool.logistic.configuration;
 
 
 import com.javaschool.logistic.converters.CityConverter;
+
+import com.javaschool.logistic.converters.TruckConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +28,13 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
 	@Autowired
 	CityConverter cityConverter;
+
+	@Autowired
+	TruckConverter truckConverter;
+
+
+
+
 
 	@Bean
 	public InternalResourceViewResolver resolver(){
@@ -53,6 +62,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
+		registry.addConverter(truckConverter);
 		registry.addConverter(cityConverter);
 	}
 

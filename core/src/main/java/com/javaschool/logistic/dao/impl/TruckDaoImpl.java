@@ -2,6 +2,7 @@ package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.TruckDao;
 import com.javaschool.logistic.model.Truck;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,11 +26,13 @@ public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
     @Override
     public List<Truck> findSuitableTrucks(int weight) {
         return getEntityManager().
-                createQuery("SELECT u FROM Truck u WHERE u.capacity>=:weight AND u.status=:status")
+                createQuery("SELECT u FROM Truck u LEFT JOIN u.order o WHERE  u.capacity>=:weight AND u.enabled=true AND u.status=:status AND o is NULL")
                 .setParameter("weight",weight)
                 .setParameter("status",Truck.Status.OK)
                 .getResultList();
     }
+
+
 
     @Override
     public List<Truck> findByNumber(String number) {

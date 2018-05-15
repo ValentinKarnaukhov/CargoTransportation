@@ -2,6 +2,7 @@ package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.DriverDao;
 import com.javaschool.logistic.model.Driver;
+import com.javaschool.logistic.model.Truck;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,9 +41,30 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
     }
 
     @Override
+    public List<Driver> findSuitableDrivers(int distance, int avgSpeed, int shift, int mounth, int utoday, Truck truck) {
+
+        return getEntityManager()
+                .createQuery("SELECT u FROM Driver u WHERE " +
+                        "NOT(((:mounth-u.worked_time)/:shift<=:utoday) " +
+                        "AND (:distance/(:avgSpeed*:shift)>=(:mounth-u.worked_time)/:shift)) " +
+                        "AND (u.city.city_id =:city_id)" +
+                        "AND (u.user.enabled=true)")
+                .setParameter("distance",(double) distance)
+                .setParameter("avgSpeed",(double) avgSpeed)
+                .setParameter("shift", shift)
+                .setParameter("mounth", mounth)
+                .setParameter("utoday", utoday)
+                .setParameter("city_id", truck.getCity().getCity_id())
+                .getResultList();
+
+    }
+
+    @Override
     public List<Driver> findAll() {
         return getEntityManager()
                 .createQuery("SELECT u FROM Driver u WHERE u.user.enabled = true ")
                 .getResultList();
     }
+
+
 }

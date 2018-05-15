@@ -20,7 +20,8 @@ public class Order {
     private int order_id;
 
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne
+    @JoinColumn(name = "truck_id")
     private Truck truck;
 
     @Column(name = "is_complete", nullable = false)

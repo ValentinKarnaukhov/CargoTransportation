@@ -2,12 +2,18 @@ package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.DriverDao;
 import com.javaschool.logistic.model.Driver;
+import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.DriverService;
+import com.javaschool.logistic.utils.DistanceCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -16,10 +22,14 @@ import java.util.List;
 
 @Service
 @Transactional
+@PropertySource(value = { "classpath:appConfig.properties" })
 public class DriverServiceImpl implements DriverService {
 
     @Autowired
     DriverDao driverDao;
+
+    @Autowired
+    private Environment environment;
 
 
     @Override
@@ -57,7 +67,6 @@ public class DriverServiceImpl implements DriverService {
         Date date = new Date();
 
 
-
         if(!driver.getStatus().equals(Driver.Status.REST)){
             driver.setStart(currentDriver.getStart());
         }
@@ -81,6 +90,16 @@ public class DriverServiceImpl implements DriverService {
 
         driver.setUser(currentDriver.getUser());
         driverDao.update(driver);
+    }
+
+    @Override
+    public List<Driver> findSuitableDrivers(int distance, Truck truck){
+
+        return driverDao.findSuitableDrivers(distance,
+                Integer.parseInt(environment.getProperty("avgSpeed")),
+                Integer.parseInt(environment.getProperty("shift")),
+                Integer.parseInt(environment.getProperty("mounth")),
+                30- new GregorianCalendar().get(Calendar.DAY_OF_MONTH),truck);
     }
 
 

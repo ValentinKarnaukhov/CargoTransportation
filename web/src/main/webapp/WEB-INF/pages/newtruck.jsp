@@ -20,6 +20,7 @@
 <div class="section"></div>
 <div  class="row" style="width: 60%; margin-right: 40%">
     <form:form id="formValidate" modelAttribute="truck" class="col s12" method="post" >
+
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="reg_number" id="reg_number" type="text" class="validate" required="true"/>

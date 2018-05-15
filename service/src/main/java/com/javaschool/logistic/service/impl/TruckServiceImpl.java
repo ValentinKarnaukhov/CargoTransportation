@@ -51,7 +51,7 @@ public class TruckServiceImpl implements TruckService {
 
     @Override
     public List<Truck> findSuitableTrucks(List<Waypoint> waypoints) {
-        if(getMaxWeight(waypoints)==0){
+        if(waypoints.isEmpty()){
             return new LinkedList<>();
         }else {
             return truckDao.findSuitableTrucks(getMaxWeight(waypoints));
