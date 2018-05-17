@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS DRIVER;
 DROP TABLE IF EXISTS ORDER_WAYPOINT;
 DROP TABLE IF EXISTS CARGO;
-DROP TABLE IF EXISTS TRUCK;
 DROP TABLE IF EXISTS ORDERS;
+DROP TABLE IF EXISTS TRUCK;
 DROP TABLE IF EXISTS CITY;
 DROP TABLE IF EXISTS USER;
 
@@ -44,7 +44,7 @@ create table TRUCK(
 create table ORDERS(
   order_id BIGINT NOT NULL AUTO_INCREMENT,
   is_complete BOOLEAN NOT NULL,
-  truck_id BIGINT,
+  truck_id BIGINT NOT NULL ,
   PRIMARY KEY (order_id),
   FOREIGN KEY (truck_id) REFERENCES TRUCK(truck_id)
 );
@@ -82,14 +82,12 @@ create table DRIVER(
   status ENUM('REST','WORK','DRIVE') DEFAULT 'REST' NOT NULL ,
   city_id BIGINT NOT NULL,
   truck_id BIGINT,
-  order_id BIGINT,
   user_id BIGINT NOT NULL,
   start DATETIME,
   PRIMARY KEY (driver_id),
   UNIQUE (personal_code),
   FOREIGN KEY (city_id) REFERENCES CITY(city_id),
   FOREIGN KEY (truck_id) REFERENCES TRUCK(truck_id),
-  FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
   FOREIGN KEY (user_id) REFERENCES USER(user_id)
 );
 

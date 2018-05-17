@@ -5,10 +5,12 @@ import com.javaschool.logistic.models.Waypoint;
 
 import java.util.List;
 
-public interface OrderService {
+public interface OrderWaypointService {
 
-    List<Order> findAllOrders();
 
-    void createOrder(List<Waypoint> waypointList,Order order);
+
+    void createWaypoints(List<Waypoint> waypointList, Order order);
+
+
 
 }

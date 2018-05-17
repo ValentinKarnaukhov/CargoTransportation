@@ -3,6 +3,7 @@ package com.javaschool.logistic.configuration;
 
 import com.javaschool.logistic.converters.CityConverter;
 
+import com.javaschool.logistic.converters.DriverConverter;
 import com.javaschool.logistic.converters.TruckConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -31,6 +32,9 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
 	@Autowired
 	TruckConverter truckConverter;
+
+	@Autowired
+	DriverConverter driverConverter;
 
 
 
@@ -64,6 +68,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(truckConverter);
 		registry.addConverter(cityConverter);
+		registry.addConverter(driverConverter);
 	}
 
 	@Override

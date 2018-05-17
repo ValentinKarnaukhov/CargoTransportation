@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp">
-    <jsp:param name="title" value="New order page"/>
+    <jsp:param name="title" value="Add drivers page"/>
 </jsp:include>
 
 <jsp:include page="leftMenu.jsp">
@@ -20,18 +20,25 @@
 <div class="section"></div>
 <div  class="row" style="width: 90%; margin-right: 5%">
 
-<form:form modelAttribute="order" method="post" action="/manager_/orders/neworder/finish" >
-    <form:input path="truck" type="hidden"/>
-    <%--<div class="row">--%>
-        <%--<div class="input-field col s12">--%>
-            <%--<form:select  id ="driver" path="drivers" items="${driverList}" itemLabel="first_name" itemValue="driver_id"/>--%>
-            <%--<label for="driver">Driver</label>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Select a drivers
-        <i class="material-icons left">person_add</i>
+<form:form name="finish" modelAttribute="order" method="post" action="/manager_/orders/neworder/finish" >
+    <form:input path="truck.truck_id" type="hidden"/>
+    <form:input path="truck.max_drivers" type="hidden" class="maxDrivers"/>
+    <div class="input-field col s12">
+        <div >Drivers</div>
+        <form:select id ="driver" path="drivers" multiple="true">
+            <form:option value="" disabled="true" selected="true">Select ${amount} drivers</form:option>
+            <c:forEach items="${driverList}" var="driver">
+                <form:option value="driver_id">${driver.last_name} ${driver.first_name}</form:option>
+            </c:forEach>
+        </form:select>
+        <form:errors path="drivers"/>
+        <div class="errors" style="color: red"></div>
+        <div class="section"></div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Finish
+        <i class="material-icons left">check</i>
     </button>
-    <a href="<c:url value="/manager_/orders"/>" class="btn waves-effect waves-light">Cancel
+    <a href="<c:url value="/manager_/orders/neworder"/>" class="btn waves-effect waves-light">Back
         <i class="material-icons left">undo</i>
     </a>
 </form:form>

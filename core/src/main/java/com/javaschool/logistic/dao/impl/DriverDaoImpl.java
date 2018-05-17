@@ -35,7 +35,7 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
                     .createQuery("SELECT MAX(u.driver_id) FROM Driver u")
                     .getSingleResult();
         }catch (NullPointerException e){
-            return 1;
+            return 0;
         }
         return id;
     }

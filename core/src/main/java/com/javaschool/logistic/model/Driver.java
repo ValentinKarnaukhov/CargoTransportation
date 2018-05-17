@@ -46,13 +46,9 @@ public class Driver {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "truck_id")
     private Truck truck;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 
 
     @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
@@ -62,6 +58,9 @@ public class Driver {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start")
     private Date start;
+
+    public Driver() {
+    }
 
     public int getDriver_id() {
         return driver_id;
@@ -125,14 +124,6 @@ public class Driver {
 
     public void setTruck(Truck truck) {
         this.truck = truck;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public User getUser() {

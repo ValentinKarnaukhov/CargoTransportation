@@ -26,15 +26,16 @@ public class OrderWaypoint {
     @Column(name = "order_waypoint_id", nullable = false)
     private int order_waypoint_id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToOne(mappedBy = "orderWaypoint")
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
     @Enumerated(EnumType.STRING)
@@ -43,7 +44,7 @@ public class OrderWaypoint {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private Status status;
+    private Status status = Status.PROGRESS;
 
     public int getOrder_waypoint_id() {
         return order_waypoint_id;

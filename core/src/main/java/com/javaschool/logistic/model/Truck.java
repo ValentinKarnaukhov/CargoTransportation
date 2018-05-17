@@ -42,8 +42,7 @@ public class Truck implements Serializable {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToMany(mappedBy = "truck")
-    private List<Driver> drivers;
+
 
     @OneToOne(mappedBy = "truck")
     private Order order;
@@ -96,13 +95,7 @@ public class Truck implements Serializable {
         this.city = city;
     }
 
-    public List<Driver> getDrivers() {
-        return drivers;
-    }
 
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
-    }
 
     public Order getOrder() {
         return order;

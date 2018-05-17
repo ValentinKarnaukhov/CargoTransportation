@@ -1,8 +1,11 @@
 package com.javaschool.logistic.model;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Valentin
@@ -20,7 +23,7 @@ public class Order {
     private int order_id;
 
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "truck_id")
     private Truck truck;
 
@@ -31,8 +34,10 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<Cargo> cargoes;
 
-    @OneToMany(mappedBy = "order")
-    private List<Driver> drivers;
+
+    @OneToMany(mappedBy = "truck")
+    private Truck truck;
+
 
     @OneToMany(mappedBy = "order")
     private List<OrderWaypoint> orderWaypoints;
@@ -69,13 +74,6 @@ public class Order {
         this.cargoes = cargoes;
     }
 
-    public List<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
-    }
 
     public List<OrderWaypoint> getOrderWaypoints() {
         return orderWaypoints;
@@ -83,5 +81,13 @@ public class Order {
 
     public void setOrderWaypoints(List<OrderWaypoint> orderWaypoints) {
         this.orderWaypoints = orderWaypoints;
+    }
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers = drivers;
     }
 }

@@ -1,23 +1,28 @@
 $(document).ready(function(){
     $('select').material_select();
-    $('#selectDriver').click(function () {
-        var text = $('li.selected').html();
-        if(text === undefined) text = "null";
-        $.ajax({
-            url: 'test',
-            type: 'get',
-            data : ({
-                text: text
-            }),
-            success: function (data) {
-                $('#test-swipe-3').append(
-                    data
-                );
-            }
-        });
-
+    // $('#selectDriver').click(function () {
+    //     var text = $('li.selected').html();
+    //     if(text === undefined) text = "null";
+    //     $.ajax({
+    //         url: 'test',
+    //         type: 'get',
+    //         data : ({
+    //             text: text
+    //         }),
+    //         success: function (data) {
+    //             $('#test-swipe-3').append(
+    //                 data
+    //             );
+    //         }
+    //     });
+    //
+    // });
+    $('[name = finish]').on('submit',function () {
+        if($('.active').length !==$('.maxDrivers').val()){
+            $('.errors').append("You should choose ",$('.maxDrivers').val()," drivers")
+            return false;
+        }
     });
-
 });
 
 

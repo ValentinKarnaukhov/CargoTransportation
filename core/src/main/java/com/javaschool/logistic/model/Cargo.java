@@ -1,6 +1,8 @@
 package com.javaschool.logistic.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @author Valentin
@@ -19,12 +21,13 @@ public class Cargo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cargo_id", nullable = false)
+    @Column(name = "cargo_id")
     private int cargo_id;
 
     @Column(name = "number", nullable = false)
     private String number;
 
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -33,15 +36,14 @@ public class Cargo {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status;
+    private Status status = Status.PREPARE;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cargo_id")
-    private OrderWaypoint orderWaypoint;
+    @OneToMany(mappedBy = "cargo")
+    private List<OrderWaypoint> orderWaypoint;
 
     public int getCargo_id() {
         return cargo_id;
@@ -91,11 +93,11 @@ public class Cargo {
         this.order = order;
     }
 
-    public OrderWaypoint getOrderWaypoint() {
+    public List<OrderWaypoint> getOrderWaypoint() {
         return orderWaypoint;
     }
 
-    public void setOrderWaypoint(OrderWaypoint orderWaypoint) {
+    public void setOrderWaypoint(List<OrderWaypoint> orderWaypoint) {
         this.orderWaypoint = orderWaypoint;
     }
 }

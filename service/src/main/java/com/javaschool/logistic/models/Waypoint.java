@@ -3,10 +3,18 @@ package com.javaschool.logistic.models;
 import com.javaschool.logistic.model.Cargo;
 import com.javaschool.logistic.model.City;
 
+import javax.validation.constraints.NotNull;
+
 public class Waypoint {
 
+
+    @NotNull
     private Cargo cargo;
+
+    @NotNull
     private City loadingCity;
+
+    @NotNull
     private City unloadingCity;
 
 

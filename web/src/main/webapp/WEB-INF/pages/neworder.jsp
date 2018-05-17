@@ -44,23 +44,26 @@
             </c:forEach>
             </tbody>
         </table>
+
         <a class="waves-effect waves-light btn" href="<c:url value='/manager_/orders/newcargo' />">Add new cargo
             <i class="material-icons left">add_box</i></a>
-    <div class="section"></div>
-    <h5 class="indigo-text">Select a truck</h5>
+
+    <h5 style="margin-top: 100px" class="indigo-text">Select a truck</h5>
     <form:form  modelAttribute="order"  method="post" >
 
-                <div class="input-field col s12">
-                    <form:select id ="truck" path="truck">
-                        <form:options items="${trucks}" itemLabel="reg_number" itemValue="truck_id"/>
-                     </form:select>
-                    <label for="truck">Truck</label>
-                </div>
+        <div class="input-field col s12">
+            <form:select id ="truck" path="truck">
+                <form:options items="${trucks}" itemLabel="reg_number" itemValue="truck_id"/>
+            </form:select>
+            <label for="truck">Truck</label>
+            <form:errors path="truck"/>
+            <div class="section"></div>
+        </div>
 
         <button class="btn waves-effect waves-light" type="submit" name="action">Select a drivers
             <i class="material-icons left">person_add</i>
         </button>
-        <a href="<c:url value="/manager_/orders"/>" class="btn waves-effect waves-light">Cancel
+        <a href="<c:url value="/manager_/orders/cancel"/>" class="btn waves-effect waves-light">Cancel
             <i class="material-icons left">undo</i>
         </a>
     </form:form>

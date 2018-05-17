@@ -1,4 +1,4 @@
-package com.javaschool.logistic.controller;
+package com.javaschool.logistic.controller.manager;
 
 
 import com.javaschool.logistic.model.City;

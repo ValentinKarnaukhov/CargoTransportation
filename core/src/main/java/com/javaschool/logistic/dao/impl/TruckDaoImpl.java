@@ -18,10 +18,10 @@ public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
     @Override
     public Truck findById(int id) {
         return (Truck) getEntityManager()
-                .createQuery("SELECT u FROM Truck u WHERE u.truck_id=:truck_id")
+                .createQuery("SELECT u FROM Truck u  WHERE u.truck_id=:truck_id")
                 .setParameter("truck_id", id)
                 .getSingleResult();
-    }
+        }
 
     @Override
     public List<Truck> findSuitableTrucks(int weight) {

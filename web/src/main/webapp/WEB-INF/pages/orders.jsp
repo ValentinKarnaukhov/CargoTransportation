@@ -17,7 +17,7 @@
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text" style="margin-left: 1%">Order list</h5>
+<h5 class="indigo-text" style="margin-left: 1%">Orders list</h5>
 <table class="centered striped">
     <thead>
     <tr>
@@ -42,5 +42,9 @@
 </table>
 <div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/orders/neworder' />">Add new order
     <i class="material-icons left">add_box</i></a></div>
-
+<c:if test="${param.created != null}">
+    <div class="alert alert-danger">
+        <p>Order has been created!</p>
+    </div>
+</c:if>
 <jsp:include page="footer.jsp"/>
