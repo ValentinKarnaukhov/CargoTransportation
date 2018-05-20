@@ -93,4 +93,13 @@ public class OrderWaypoint {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "OrderWaypoint{" +
+                "order_waypoint_id=" + order_waypoint_id +
+                ", operation=" + operation +
+                ", status=" + status +
+                '}';
+    }
 }

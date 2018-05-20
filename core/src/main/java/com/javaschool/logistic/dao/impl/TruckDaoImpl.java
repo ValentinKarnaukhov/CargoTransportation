@@ -18,7 +18,7 @@ public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
     @Override
     public Truck findById(int id) {
         return (Truck) getEntityManager()
-                .createQuery("SELECT u FROM Truck u  WHERE u.truck_id=:truck_id")
+                .createQuery("SELECT u FROM Truck u LEFT JOIN FETCH u.drivers WHERE u.truck_id=:truck_id")
                 .setParameter("truck_id", id)
                 .getSingleResult();
         }
@@ -26,7 +26,7 @@ public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
     @Override
     public List<Truck> findSuitableTrucks(int weight) {
         return getEntityManager().
-                createQuery("SELECT u FROM Truck u LEFT JOIN u.order o WHERE  u.capacity>=:weight AND u.enabled=true AND u.status=:status AND o is NULL")
+                createQuery("SELECT u FROM Truck u LEFT JOIN u.order o WHERE  u.capacity>=:weight AND u.enabled=true AND u.status=:status AND o is NULL AND u.drivers is EMPTY ")
                 .setParameter("weight",weight)
                 .setParameter("status",Truck.Status.OK)
                 .getResultList();

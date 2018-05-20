@@ -46,7 +46,8 @@ public class Driver {
     @JoinColumn(name = "city_id")
     private City city;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "truck_id")
     private Truck truck;
 

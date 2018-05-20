@@ -1,116 +1,80 @@
 $(document).ready(function(){
     $('select').material_select();
-    // $('#selectDriver').click(function () {
-    //     var text = $('li.selected').html();
-    //     if(text === undefined) text = "null";
-    //     $.ajax({
-    //         url: 'test',
-    //         type: 'get',
-    //         data : ({
-    //             text: text
-    //         }),
-    //         success: function (data) {
-    //             $('#test-swipe-3').append(
-    //                 data
-    //             );
-    //         }
-    //     });
-    //
-    // });
-    $('[name = finish]').on('submit',function () {
-        if($('.active').length !==$('.maxDrivers').val()){
-            $('.errors').append("You should choose ",$('.maxDrivers').val()," drivers")
-            return false;
-        }
+    $('#changeStatus').on('click',function () {
+        $('#ok').show();
+        $('#decline').show();
     });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$( document ).ready(function() {
-    $(".inline-editable").hover(
-        function() {$(this).addClass("editHover"); },
-        function() { $(this).removeClass("editHover"); }
-    );
-
-    var oldText,
-        newText;
-
-    $(".inline-editable").bind("click", replaceHTML)
-
-    function replaceHTML() {
-        if(! $(".editing").length){
-            oldText = $(this).html()
-            $(this).addClass("editing");
-            var form = createForm(oldText);
-            $(this).html("")
-                .html(form);
-            $(this).unbind('click', replaceHTML);
-        }
-    }
-
-    function createForm(text) {
-        var form = "<form class=\"inline-editor\">";
-        form += "<input type=\"text\" class=\"editBox\" value=\"";
-        form += oldText;
-        form += "\" /> </form>";
-        form += "<a class=\"btnSave white-text btn \" style='margin-right: 10px'><i class=\"material-icons \">save</i></a></a>";
-        form += "<a class=\"btnDiscard white-text btn\"><i class=\"material-icons \">cancel</i></a></a>";
-        return form
-    }
-
-    $(document.body).on("click", ".btnDiscard", function() {
-        $(this).parent().html(oldText);
-        $(".inline-editable").removeClass("editing");
-        $(".inline-editable").bind('click', replaceHTML);
-        $(".inline-editable").removeClass("editHover");
-    });
-
-    $(document.body).on("click", ".btnSave", function() {
-        newText = $(this).parent()
-            .find(".editBox")
-            .val();
-        saveChanges(this, newText)
-    });
-
-    // use enter button
-    $(document.body).on("submit", ".inline-editor", function(e) {
-        e.preventDefault();
-        var newText = $(this).find(".editBox").val()
-        saveChanges(this, newText)
-    })
-
-    function saveChanges(x, newText) {
-        var id =  $(x).closest("tr").attr("id");
+    $('#ok').on('click',function () {
         $.ajax({
-            url: '/test',
             type: 'get',
-            dataType: 'json',
+            contentType: 'application/json',
+            url: '/driver/'+$('#driver_id').val()+'/change',
             data: ({
-                id: id,
-                text: newText
+                status: $('#changeStatus option:selected').text()
             })
-
         });
-        $(".inline-editable").removeClass("editing");
-        $(this).parent().html(newText);
-        $(".inline-editable").bind('click', replaceHTML);
-        $(".inline-editable").removeClass("editHover");
+        $('#ok').hide();
+        $('#decline').hide();
+    });
+    $('#decline').on('click',function () {
+        $('#ok').hide();
+        $('#decline').hide();
+    });
 
+});
+
+$('[name = finish]').on('submit',function () {
+    var choose = $('.active').length-1;
+    var max = $('.maxDrivers').val();
+    var errors = $('.errors');
+    errors.empty();
+    if(choose!=max){
+        errors.append("You should choose ", max, " drivers");
+        return false;
     }
 });
+
+if($('.created').length==1)Materialize.toast("Order was created", 2000)
+
+
+$(document).on('click','.row_data',function () {
+    var tbl_row = $(this).closest('tr');
+    // var row_id = tbl_row.attr('row_id');
+    // alert(tbl_row.find('.cargoStatus option:selected').text());
+    tbl_row.find('.btn_ok').show();
+    tbl_row.find('.btn_decline').show();
+});
+
+$(document).on('click','.btn_ok',function () {
+
+    var tbl_row = $(this).closest('tr');
+    var row_id = tbl_row.attr('row_id');
+    $.ajax({
+        type: 'get',
+        contentType: 'application/json',
+        url: '/driver/'+row_id+'/cargo_change',
+        data: ({
+            status: tbl_row.find('.cargoStatus option:selected').text()
+        })
+    });
+    tbl_row.find('.btn_ok').hide();
+    tbl_row.find('.btn_decline').hide();
+
+});
+$(document).on('click', '.btn_decline',function () {
+    var tbl_row = $(this).closest('tr');
+    tbl_row.find('.btn_ok').hide();
+    tbl_row.find('.btn_decline').hide();
+});
+
+
+
+
+
+
+
+
+
+
+
+

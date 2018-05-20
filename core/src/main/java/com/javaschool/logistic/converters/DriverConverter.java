@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class DriverConverter implements Converter<Object, Driver> {
 
@@ -20,10 +22,10 @@ public class DriverConverter implements Converter<Object, Driver> {
         try {
             driver = (Driver) o;
         }catch (ClassCastException e){
+            if(o.equals(""))return null;
             int driver_id = Integer.parseInt((String)o);
             return driverDao.findById(driver_id);
         }
-
         return driver;
     }
 }

@@ -736,11 +736,11 @@
 }
 
 .blue.darken-4 {
-    background-color: #0D47A1 !important;
+    background-color: #1976d2 !important;
 }
 
 .blue-text.text-darken-4 {
-    color: #0D47A1 !important;
+    color: #1976d2 !important;
 }
 
 .blue.accent-1 {
@@ -861,7 +861,7 @@
 
 
 .light-blue.accent-999 {
-    background-color: #0D47A1 !important;
+    background-color: #1976d2 !important;
 }
 
 .light-blue-text.text-accent-999 {
@@ -8128,7 +8128,7 @@ small {
 .btn, .btn-large {
     text-decoration: none;
     color: #fff;
-    background-color: #0D47A1;
+    background-color: #1976d2;
     text-align: center;
     letter-spacing: .5px;
     transition: .2s ease-out;
@@ -9838,7 +9838,7 @@ select {
 }
 
 .side-nav li:hover, .side-nav li.active {
-    background-color: #0D47A1;
+    background-color: #1976d2;
 }
 
 .side-nav a {

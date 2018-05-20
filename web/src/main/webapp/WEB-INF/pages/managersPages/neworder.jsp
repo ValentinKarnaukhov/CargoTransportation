@@ -8,11 +8,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="header.jsp">
+<jsp:include page="../header.jsp">
     <jsp:param name="title" value="New order page"/>
 </jsp:include>
 
-<jsp:include page="leftMenu.jsp">
+<jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 <h5 class="indigo-text">Create new order</h5>
@@ -21,7 +21,7 @@
 
     <h5 class="indigo-text">Add a cargoes</h5>
 
-        <table class="centered striped">
+        <table class="centered striped card-panel">
             <thead>
             <tr>
                 <th>Cargo</th>
@@ -49,8 +49,7 @@
             <i class="material-icons left">add_box</i></a>
 
     <h5 style="margin-top: 100px" class="indigo-text">Select a truck</h5>
-    <form:form  modelAttribute="order"  method="post" >
-
+    <form:form class="card-panel" modelAttribute="order"  method="post" >
         <div class="input-field col s12">
             <form:select id ="truck" path="truck">
                 <form:options items="${trucks}" itemLabel="reg_number" itemValue="truck_id"/>
@@ -79,4 +78,4 @@
 
 
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>

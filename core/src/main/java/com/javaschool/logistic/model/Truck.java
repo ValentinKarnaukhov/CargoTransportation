@@ -38,14 +38,17 @@ public class Truck implements Serializable {
     @Column(name = "enabled")
     private boolean enabled = true;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "city_id")
     private City city;
 
-
-
-    @OneToOne(mappedBy = "truck")
+    @OneToOne
+    @JoinColumn(name = "order_id")
     private Order order;
+
+    @OneToMany(mappedBy = "truck", cascade = CascadeType.ALL)
+    private List<Driver> drivers;
+
 
     public int getTruck_id() {
         return truck_id;
@@ -95,7 +98,13 @@ public class Truck implements Serializable {
         this.city = city;
     }
 
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
 
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers = drivers;
+    }
 
     public Order getOrder() {
         return order;
@@ -111,5 +120,19 @@ public class Truck implements Serializable {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Truck{" +
+                "truck_id=" + truck_id +
+                ", reg_number='" + reg_number + '\'' +
+                ", max_drivers=" + max_drivers +
+                ", capacity=" + capacity +
+                ", status=" + status +
+                ", city=" + city +
+                ", order=" + order +
+                '}';
     }
 }

@@ -12,9 +12,9 @@
 <div class="row light-blue-text text-accent-999">
     <div class="col s3">
         <ul id="nav-mobile" class="side-nav fixed z-depth-2" style="width: 240px;">
-            <div style="background-color: #0D47A1; height: 350px;">
+            <div style= "height: 350px" class=" blue darken-2">
                 <img src="<c:url value="/static/img/Fry_rev.jpg"/>" class="circle z-depth-2" style="width:130px; height:130px; margin-top:130px; margin-left: 55px;">
-                <p style="margin-left: 90px; margin-top:10px; color:#FFFFFF">${pageContext.request.userPrincipal.name} </p>
+                <p class="center" style="margin-top:10px; color:#FFFFFF">${pageContext.request.userPrincipal.name} </p>
                 <br>
                 <br>
             </div>

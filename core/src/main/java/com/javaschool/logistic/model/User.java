@@ -50,6 +50,8 @@ public class User implements Serializable{
 	@OneToOne(mappedBy="user")
 	private Driver driver;
 
+
+
 	public Integer getUser_id() {
 		return user_id;
 	}

@@ -8,11 +8,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="header.jsp">
+<jsp:include page="../header.jsp">
     <jsp:param name="title" value="Add drivers page"/>
 </jsp:include>
 
-<jsp:include page="leftMenu.jsp">
+<jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
@@ -25,13 +25,13 @@
     <form:input path="truck.max_drivers" type="hidden" class="maxDrivers"/>
     <div class="input-field col s12">
         <div >Drivers</div>
-        <form:select id ="driver" path="drivers" multiple="true">
+        <form:select id ="driver" path="truck.drivers" multiple="true">
             <form:option value="" disabled="true" selected="true">Select ${amount} drivers</form:option>
             <c:forEach items="${driverList}" var="driver">
-                <form:option value="driver_id">${driver.last_name} ${driver.first_name}</form:option>
+                <form:option value="${driver.driver_id}">${driver.last_name} ${driver.first_name}</form:option>
             </c:forEach>
         </form:select>
-        <form:errors path="drivers"/>
+        <form:errors path="truck.drivers"/>
         <div class="errors" style="color: red"></div>
         <div class="section"></div>
     </div>
@@ -44,4 +44,4 @@
 </form:form>
 </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>

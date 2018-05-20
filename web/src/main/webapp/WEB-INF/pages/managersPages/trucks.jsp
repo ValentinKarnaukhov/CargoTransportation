@@ -8,16 +8,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="header.jsp">
+<jsp:include page="../header.jsp">
     <jsp:param name="title" value="Trucks"/>
 </jsp:include>
 
-<jsp:include page="leftMenu.jsp">
+<jsp:include page="../leftMenu.jsp">
     <jsp:param name="trucks" value="active"/>
 </jsp:include>
 
 <h5 class="indigo-text" style="margin-left: 1%">Truck list</h5>
-<table class="centered striped">
+<table class="centered striped card-panel">
     <thead>
     <tr>
         <th>Registration number</th>
@@ -51,4 +51,4 @@
 <div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/trucks/newtruck' />">Add new truck
     <i class="material-icons left">local_shipping</i></a></div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>

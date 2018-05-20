@@ -6,6 +6,7 @@ import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
+import com.javaschool.logistic.service.api.TruckService;
 import com.javaschool.logistic.service.api.UserService;
 import com.javaschool.logistic.validators.DriverFormValidator;
 import com.javaschool.logistic.validators.UserValidator;
@@ -36,10 +37,13 @@ public class ManageDriverController {
     @Autowired
     UserValidator userValidator;
 
+    @Autowired
+    TruckService truckService;
+
     @RequestMapping(value = "/manager_/drivers/newdriver", method = RequestMethod.GET)
     public String newDriverPage(Model model){
         model.addAttribute("driver", new Driver());
-        return "newdriver";
+        return "managersPages/newdriver";
     }
 
     @RequestMapping(value = "/manager_/drivers/newdriver", method = RequestMethod.POST)
@@ -49,7 +53,7 @@ public class ManageDriverController {
         userValidator.validate(driver.getUser(),driverResult);
         if(driverResult.hasErrors()){
             model.addAttribute("driver", driver);
-            return "newdriver";
+            return "managersPages/newdriver";
         }else {
             driver.getUser().setRole(User.Role.DRIVER);
             driver.getUser().setUsername(driver.getFirst_name());
@@ -69,7 +73,7 @@ public class ManageDriverController {
     @RequestMapping(value = "/manager_/edit_driver_{driver_id}")
     public String editDriver(@PathVariable int driver_id, Model model){
         model.addAttribute("driver", driverService.findById(driver_id));
-        return "edit_driver";
+        return "managersPages/edit_driver";
     }
 
     @RequestMapping(value = "/manager_/edit_driver_{driver_id}", method = RequestMethod.POST)
@@ -78,8 +82,9 @@ public class ManageDriverController {
         driverFormValidator.validate(driver,bindingResult);
         if(bindingResult.hasErrors()){
             model.addAttribute("driver", driver);
-            return "edit_driver";
+            return "managersPages/edit_driver";
         }else {
+            if(driver.getTruck().getTruck_id()==0)driver.setTruck(null);
             driverService.updateDriver(driver);
             return "redirect:/manager_/drivers";
         }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
@@ -41,12 +40,15 @@ public class ManageOrderController {
     @Autowired
     OrderWaypointService orderWaypointService;
 
+    @Autowired
+    CargoService cargoService;
+
     private List<Waypoint> waypoints = new LinkedList<>();
 
     @RequestMapping(value = "/manager_/orders/newcargo", method = RequestMethod.GET)
     public String newCargo(Model model){
         model.addAttribute("waypoint", new Waypoint());
-        return "newpoint";
+        return "managersPages/newpoint";
     }
 
     @RequestMapping(value = "/manager_/orders/newcargo", method = RequestMethod.POST)
@@ -60,7 +62,7 @@ public class ManageOrderController {
         model.addAttribute("waypoints",waypoints);
         model.addAttribute("order", new Order());
         model.addAttribute("trucks",truckService.findSuitableTrucks(waypoints));
-        return "neworder";
+        return "managersPages/neworder";
     }
 
 
@@ -77,31 +79,36 @@ public class ManageOrderController {
 
         if(waypoints.isEmpty()){
             bindingResult.addError(new FieldError("order","truck","Waypoints and truck can't be empty!"));
-            return "neworder";
+            return "managersPages/neworder";
         }
 
         int distance = distanceCalculator.calculate(order.getTruck(),waypoints);
         model.addAttribute("driverList", driverService.findSuitableDrivers(distance,order.getTruck()));
         model.addAttribute("order", order);
         model.addAttribute("amount",order.getTruck().getMax_drivers());
-        return "add_drivers";
+        model.addAttribute("truck",order.getTruck());
+        return "managersPages/add_drivers";
     }
 
     @RequestMapping(value = "/manager_/orders/neworder/finish", method = RequestMethod.POST)
-    public String createOrder(@ModelAttribute Order order, BindingResult bindingResult, Model model){
-        if(order.getDrivers().size()!=order.getTruck().getMax_drivers()){
-            bindingResult.addError(new FieldError("order", "drivers", "Choose the right number of drivers!"));
-            return "add_drivers";
-        }
+    public String createOrder(@ModelAttribute Order order){
+        Truck truck = truckService.findById(order.getTruck().getTruck_id());
         orderService.createOrder(waypoints,order);
-        for(Driver driver:order.getDrivers()){
-            driver.setOrder(order);
-            driverService.updateDriver(driver);
+        truck.setOrder(order);
+        truck.setDrivers(order.getTruck().getDrivers());
+        for(Driver driver:order.getTruck().getDrivers()){
+            driver.setTruck(truck);
         }
+        truckService.updateTruck(truck);
         waypoints.clear();
         return "redirect:/manager_/orders?created";
     }
 
+    @RequestMapping(value = "/manager_/orders/order_info_{order_id}")
+    public String getOrderInfo(@PathVariable int order_id, Model model){
+        model.addAttribute("cargoes",cargoService.findByOrderId(order_id) );
+        return "managersPages/orderInfo";
+    }
 
     @RequestMapping(value = "/manager_/orders/cancel")
     public String cancelCreate(){

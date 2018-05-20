@@ -5,6 +5,7 @@ import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.Truck;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -21,10 +22,18 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
 
     @Override
     public Driver findById(int driver_id) {
-        return (Driver) getEntityManager()
-                .createQuery("SELECT u FROM Driver u WHERE u.driver_id=:driver_id")
-                .setParameter("driver_id", driver_id)
-                .getSingleResult();
+        try{
+            return (Driver) getEntityManager()
+                    .createQuery("SELECT u FROM Driver u JOIN FETCH u.truck t JOIN FETCH t.drivers WHERE u.driver_id=:driver_id")
+                    .setParameter("driver_id", driver_id)
+                    .getSingleResult();
+        }catch (NoResultException e){
+            return (Driver) getEntityManager()
+                    .createQuery("SELECT u FROM Driver u  WHERE u.driver_id=:driver_id")
+                    .setParameter("driver_id", driver_id)
+                    .getSingleResult();
+        }
+
     }
 
     @Override
@@ -48,7 +57,8 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
                         "NOT(((:mounth-u.worked_time)/:shift<=:utoday) " +
                         "AND (:distance/(:avgSpeed*:shift)>=(:mounth-u.worked_time)/:shift)) " +
                         "AND (u.city.city_id =:city_id)" +
-                        "AND (u.user.enabled=true)")
+                        "AND (u.user.enabled=true)" +
+                        "AND (u.truck is null)")
                 .setParameter("distance",(double) distance)
                 .setParameter("avgSpeed",(double) avgSpeed)
                 .setParameter("shift", shift)

@@ -9,16 +9,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="header.jsp">
+<jsp:include page="../header.jsp">
     <jsp:param name="title" value="Drivers"/>
 </jsp:include>
 
-<jsp:include page="leftMenu.jsp">
+<jsp:include page="../leftMenu.jsp">
         <jsp:param name="drivers" value="active"/>
 </jsp:include>
 
-    <h5 class="indigo-text" style="margin-left: 1%">Driver list</h5>
-    <table class="centered striped">
+    <h5 class="indigo-text">Driver list</h5>
+    <table class="centered striped card-panel">
         <thead>
         <tr>
             <th>Personal code</th>
@@ -42,7 +42,7 @@
                 <td >${driver.user.email}</td>
                 <td >${driver.city.name}</td>
                 <td>${driver.status}</td>
-                <td>${driver.order.order_id}</td>
+                <td>${driver.truck.order.order_id}</td>
                 <td>${driver.worked_time}</td>
 
                     <%--<select class="browser-default" style="background-color: transparent; margin-top: -10px; margin-bottom: -10px">--%>
@@ -84,4 +84,4 @@
 <div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/drivers/newdriver' />">Add new driver
     <i class="material-icons left">person_add</i></a></div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>

@@ -9,18 +9,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="header.jsp">
+<jsp:include page="../header.jsp">
     <jsp:param name="title" value="Edit truck page"/>
 </jsp:include>
 
-<jsp:include page="leftMenu.jsp">
+<jsp:include page="../leftMenu.jsp">
     <jsp:param name="trucks" value="active"/>
 </jsp:include>
 
 <h5 class="indigo-text" style="margin-left: 1%">Edit truck</h5>
 <div class="section"></div>
-<div  class="row" style="width: 60%; margin-right: 40%">
+<div  class="row card-panel" style="width: 60%; margin-right: 40%">
     <form:form id="formValidate" modelAttribute="truck" class="col s12" method="post" >
+        <form:input path="order.order_id" type="hidden"/>
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="reg_number" id="reg_number" type="text" class="validate" required="true"/>
@@ -45,15 +46,36 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <form:select id ="status" path="status" items="${statuses}"/>
+                <form:select id ="status" path="status">
+                    <c:forEach items="${statuses}" var="item">
+                        <c:choose>
+                            <c:when test="${item.name()==truck.status.name()}">
+                                <form:option value="${item}" selected="true">${item.name()}</form:option>
+                            </c:when>
+                            <c:when  test="${item.name()!=truck.status.name()}">
+                                <form:option value="${item}">${item.name()}</form:option>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+                </form:select>
                 <label for="status">Status</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <form:select id ="city" path="city" items="${cities}" itemLabel="name" itemValue="city_id"/>
-                <label for="city">City</label>
+                <form:select id ="city" path="city">
+                    <c:forEach items="${cities}" var="item">
+                        <c:choose>
+                            <c:when test="${item.city_id==truck.city.city_id}">
+                                <form:option value="${item.city_id}" selected="true">${item.name}</form:option>
+                            </c:when>
+                            <c:when  test="${item.city_id!=truck.city.city_id}">
+                                <form:option value="${item.city_id}">${item.name}</form:option>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+                </form:select>                <label for="city">City</label>
             </div>
         </div>
         <div class="row">
@@ -69,4 +91,4 @@
     </form:form>
 </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>

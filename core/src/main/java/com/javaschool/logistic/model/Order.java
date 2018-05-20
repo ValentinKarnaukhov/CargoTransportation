@@ -23,8 +23,7 @@ public class Order {
     private int order_id;
 
 
-    @OneToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "truck_id")
+    @OneToOne(mappedBy = "order", cascade = CascadeType.REFRESH)
     private Truck truck;
 
     @Column(name = "is_complete", nullable = false)
@@ -35,11 +34,8 @@ public class Order {
     private List<Cargo> cargoes;
 
 
-    @OneToMany(mappedBy = "truck")
-    private Truck truck;
 
-
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.REFRESH)
     private List<OrderWaypoint> orderWaypoints;
 
     public int getOrder_id() {
@@ -83,11 +79,12 @@ public class Order {
         this.orderWaypoints = orderWaypoints;
     }
 
-    public List<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "order_id=" + order_id +
+                ", truck=" + truck +
+                ", complete=" + complete +
+                '}';
     }
 }

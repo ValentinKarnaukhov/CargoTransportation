@@ -1,6 +1,7 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.GenericDao;
+import com.javaschool.logistic.exeption.DaoException;
 import org.hibernate.Session;
 import org.hibernate.SessionBuilder;
 import org.hibernate.SessionFactory;
@@ -26,8 +27,13 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     }
 
     @Override
-    public void create(T entity) {
-        getEntityManager().persist(entity);
+    public void create(T entity) throws DaoException{
+        try {
+            getEntityManager().persist(entity);
+        }catch (Exception e){
+            throw new DaoException();
+        }
+
     }
 
     @Override
