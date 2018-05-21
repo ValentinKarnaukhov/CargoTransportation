@@ -2,14 +2,19 @@ package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.TruckDao;
 import com.javaschool.logistic.model.Truck;
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 
 @Repository
 public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
+
+    private static final Logger LOGGER = Logger.getLogger(TruckDaoImpl.class);
+
     @Override
     public void deleteById(int id) {
         delete(findById(id));
@@ -17,11 +22,16 @@ public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
 
     @Override
     public Truck findById(int id) {
-        return (Truck) getEntityManager()
-                .createQuery("SELECT u FROM Truck u LEFT JOIN FETCH u.drivers WHERE u.truck_id=:truck_id")
-                .setParameter("truck_id", id)
-                .getSingleResult();
+        try {
+            return (Truck) getEntityManager()
+                    .createQuery("SELECT u FROM Truck u LEFT JOIN FETCH u.drivers WHERE u.truck_id=:truck_id")
+                    .setParameter("truck_id", id)
+                    .getSingleResult();
+        }catch (NoResultException e){
+            LOGGER.error("Truck doesn't exist",e);
+            return null;
         }
+    }
 
     @Override
     public List<Truck> findSuitableTrucks(int weight) {

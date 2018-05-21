@@ -21,16 +21,16 @@ import java.util.List;
 public class ManageTruckController {
 
     @Autowired
-    CityService cityService;
+    private CityService cityService;
 
     @Autowired
-    TruckService truckService;
+    private TruckService truckService;
 
     @Autowired
-    TruckFormValidator truckFormValidator;
+    private TruckFormValidator truckFormValidator;
 
     @Autowired
-    EditTruckValidator editTruckValidator;
+    private EditTruckValidator editTruckValidator;
 
 
     @RequestMapping(value = "/manager_/trucks/newtruck", method = RequestMethod.GET)

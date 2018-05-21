@@ -6,6 +6,7 @@ import com.javaschool.logistic.dao.api.UserDao;
 import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.UserService;
 import com.javaschool.logistic.utils.PasswordGenerator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService{
+
+    private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
+
 
     @Autowired
     private UserDao userDao;
@@ -33,6 +37,7 @@ public class UserServiceImpl implements UserService{
         System.out.println(password+"*************************");
         user.setPassword(passwordEncoder.encode(password));
         userDao.create(user);
+        LOGGER.info("User "+user+" has been created" );
     }
 
     @Override

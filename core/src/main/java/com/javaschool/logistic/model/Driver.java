@@ -142,4 +142,16 @@ public class Driver {
     public void setStart(Date start) {
         this.start = start;
     }
+
+    @Override
+    public String toString() {
+        return "Driver[" +
+                "driver_id=" + driver_id +
+                ", personal_code='" + personal_code + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", worked_time=" + worked_time +
+                ", status=" + status +
+                ']';
+    }
 }

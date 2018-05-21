@@ -5,6 +5,7 @@ import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.utils.DistanceCalculator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -25,8 +26,10 @@ import java.util.List;
 @PropertySource(value = { "classpath:appConfig.properties" })
 public class DriverServiceImpl implements DriverService {
 
+    private static final Logger LOGGER = Logger.getLogger(DriverServiceImpl.class);
+
     @Autowired
-    DriverDao driverDao;
+    private DriverDao driverDao;
 
     @Autowired
     private Environment environment;
@@ -41,6 +44,7 @@ public class DriverServiceImpl implements DriverService {
     public void createDriver(Driver driver) {
         driver.setPersonal_code("d"+(driverDao.getLastId()+1));
         driverDao.create(driver);
+        LOGGER.info("Driver "+driver+"has been created");
     }
 
     public int getLastId(){
@@ -52,6 +56,7 @@ public class DriverServiceImpl implements DriverService {
         Driver driver = driverDao.findById(driver_id);
         driver.getUser().setEnabled(false);
         driverDao.update(driver);
+        LOGGER.info("Driver "+driver+"has been removed");
     }
 
     @Override
@@ -65,7 +70,6 @@ public class DriverServiceImpl implements DriverService {
         Driver currentDriver = driverDao.findById(driver.getDriver_id());
 
         Date date = new Date();
-
 
         if(!driver.getStatus().equals(Driver.Status.REST)){
             driver.setStart(currentDriver.getStart());
@@ -86,20 +90,18 @@ public class DriverServiceImpl implements DriverService {
             driver.setWorked_time(currentDriver.getWorked_time()+workedTime);
         }
 
-
-
         driver.setUser(currentDriver.getUser());
+        LOGGER.info("Driver "+driver+"has been updated");
         driverDao.update(driver);
     }
 
     @Override
     public List<Driver> findSuitableDrivers(int distance, Truck truck){
-
         return driverDao.findSuitableDrivers(distance,
                 Integer.parseInt(environment.getProperty("avgSpeed")),
                 Integer.parseInt(environment.getProperty("shift")),
                 Integer.parseInt(environment.getProperty("mounth")),
-                30- new GregorianCalendar().get(Calendar.DAY_OF_MONTH),truck);
+                30-new GregorianCalendar().get(Calendar.DAY_OF_MONTH),truck);
     }
 
 

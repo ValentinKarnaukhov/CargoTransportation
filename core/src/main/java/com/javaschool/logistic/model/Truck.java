@@ -131,8 +131,6 @@ public class Truck implements Serializable {
                 ", max_drivers=" + max_drivers +
                 ", capacity=" + capacity +
                 ", status=" + status +
-                ", city=" + city +
-                ", order=" + order +
                 '}';
     }
 }

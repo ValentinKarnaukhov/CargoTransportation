@@ -9,6 +9,7 @@ import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,15 +21,14 @@ import java.util.List;
 @Transactional
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    OrderDao orderDao;
+    private static final Logger LOGGER = Logger.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    TruckDao truckDao;
+    private OrderDao orderDao;
 
 
     @Autowired
-    OrderWaypointService orderWaypointService;
+    private OrderWaypointService orderWaypointService;
 
     @Override
     public List<Order> findAllOrders() {
@@ -39,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
     public void createOrder(List<Waypoint> waypointList, Order order) {
         orderDao.create(order);
         orderWaypointService.createWaypoints(waypointList,order);
+        LOGGER.info("Order "+order+" has been created");
     }
 
     @Override
@@ -57,6 +58,7 @@ public class OrderServiceImpl implements OrderService {
             }
             order.setComplete(true);
             orderDao.update(order);
+            LOGGER.info("Order "+order+" has been completed");
         }
 
     }

@@ -22,10 +22,10 @@ import java.util.List;
 public class DriverController {
 
     @Autowired
-    DriverService driverService;
+    private DriverService driverService;
 
     @Autowired
-    OrderWaypointService orderWaypointService;
+    private OrderWaypointService orderWaypointService;
 
     //TODO-login for security NOT id
     @RequestMapping(value = "/driver/{driver_id}")

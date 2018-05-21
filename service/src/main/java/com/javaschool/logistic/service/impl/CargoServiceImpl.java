@@ -1,6 +1,7 @@
 package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.CargoDao;
+import com.javaschool.logistic.exception.DatabaseException;
 import com.javaschool.logistic.model.Cargo;
 import com.javaschool.logistic.service.api.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 public class CargoServiceImpl implements CargoService {
 
     @Autowired
-    CargoDao cargoDao;
+    private CargoDao cargoDao;
 
 
     @Override

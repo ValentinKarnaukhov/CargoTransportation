@@ -108,5 +108,13 @@ public class User implements Serializable{
 		this.driver = driver;
 	}
 
-
+	@Override
+	public String toString() {
+		return "User{" +
+				"user_id=" + user_id +
+				", username='" + username + '\'' +
+				", email='" + email + '\'' +
+				", role=" + role +
+				'}';
+	}
 }

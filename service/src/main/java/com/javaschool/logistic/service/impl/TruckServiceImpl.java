@@ -5,6 +5,7 @@ import com.javaschool.logistic.dao.api.TruckDao;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.TruckService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +18,10 @@ import java.util.List;
 @Transactional
 public class TruckServiceImpl implements TruckService {
 
+    private static final Logger LOGGER = Logger.getLogger(TruckServiceImpl.class);
+
     @Autowired
-    TruckDao truckDao;
+    private TruckDao truckDao;
 
     @Override
     public List<Truck> findAllTrucks() {
@@ -28,6 +31,7 @@ public class TruckServiceImpl implements TruckService {
     @Override
     public void createTruck(Truck truck) {
         truckDao.create(truck);
+        LOGGER.info("Truck "+truck+" has been created");
     }
 
 
@@ -37,6 +41,7 @@ public class TruckServiceImpl implements TruckService {
         Truck truck = findById(truck_id);
         truck.setEnabled(false);
         truckDao.update(truck);
+        LOGGER.info("Truck "+truck+" has been removed");
     }
 
     @Override
@@ -47,6 +52,7 @@ public class TruckServiceImpl implements TruckService {
     @Override
     public void updateTruck(Truck truck) {
         truckDao.update(truck);
+        LOGGER.info("Truck "+truck+" has been updated");
     }
 
     @Override

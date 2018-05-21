@@ -100,4 +100,15 @@ public class Cargo {
     public void setOrderWaypoint(List<OrderWaypoint> orderWaypoint) {
         this.orderWaypoint = orderWaypoint;
     }
+
+    @Override
+    public String toString() {
+        return "Cargo[" +
+                "cargo_id=" + cargo_id +
+                ", number='" + number + '\'' +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", status=" + status +
+                ']';
+    }
 }

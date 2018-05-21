@@ -16,13 +16,13 @@ public class ManagerController {
 
 
     @Autowired
-    DriverService driverService;
+    private DriverService driverService;
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @Autowired
-    TruckService truckService;
+    private TruckService truckService;
 
 
     @RequestMapping(value = "/manager_/drivers", method = RequestMethod.GET)

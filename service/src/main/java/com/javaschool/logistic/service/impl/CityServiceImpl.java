@@ -19,11 +19,12 @@ import java.util.List;
 public class CityServiceImpl implements CityService {
 
     @Autowired
-    CityDao cityDao;
+    private CityDao cityDao;
 
     @Override
     public void createCity(City city) {
         cityDao.create(city);
+
     }
 
     @Override

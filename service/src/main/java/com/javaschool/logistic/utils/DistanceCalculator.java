@@ -33,8 +33,8 @@ public class DistanceCalculator{
         return res;
     }
 
-    public int getDistance(double latitude1, double longitude1,
-                           double latitude2, double longitude2){
+    private int getDistance(double latitude1, double longitude1,
+                            double latitude2, double longitude2){
 
         int radius = 6371;
         double dLat = Math.toRadians(latitude2 - latitude1);

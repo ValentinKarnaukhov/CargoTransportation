@@ -23,22 +23,19 @@ public class ManageDriverController {
 
 
     @Autowired
-    DriverService driverService;
+    private DriverService driverService;
 
     @Autowired
-    CityService cityService;
+    private CityService cityService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    DriverFormValidator driverFormValidator;
+    private DriverFormValidator driverFormValidator;
 
     @Autowired
-    UserValidator userValidator;
-
-    @Autowired
-    TruckService truckService;
+    private UserValidator userValidator;
 
     @RequestMapping(value = "/manager_/drivers/newdriver", method = RequestMethod.GET)
     public String newDriverPage(Model model){

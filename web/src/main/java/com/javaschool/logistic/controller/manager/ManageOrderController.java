@@ -23,25 +23,22 @@ import java.util.List;
 public class ManageOrderController {
 
     @Autowired
-    CityService cityService;
+    private CityService cityService;
 
     @Autowired
-    DriverService driverService;
+    private DriverService driverService;
 
     @Autowired
-    TruckService truckService;
+    private TruckService truckService;
 
     @Autowired
-    DistanceCalculator distanceCalculator;
+    private DistanceCalculator distanceCalculator;
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @Autowired
-    OrderWaypointService orderWaypointService;
-
-    @Autowired
-    CargoService cargoService;
+    private CargoService cargoService;
 
     private List<Waypoint> waypoints = new LinkedList<>();
 
@@ -90,6 +87,8 @@ public class ManageOrderController {
         return "managersPages/add_drivers";
     }
 
+
+    //TODO - move business logic to service
     @RequestMapping(value = "/manager_/orders/neworder/finish", method = RequestMethod.POST)
     public String createOrder(@ModelAttribute Order order){
         Truck truck = truckService.findById(order.getTruck().getTruck_id());

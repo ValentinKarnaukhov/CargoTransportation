@@ -4,6 +4,7 @@ package com.javaschool.logistic.dao.impl;
 import java.util.List;
 import com.javaschool.logistic.dao.api.UserDao;
 import com.javaschool.logistic.model.User;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -12,6 +13,7 @@ import javax.persistence.NoResultException;
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
+	private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
     @Override
     public User findByEmail(String email) {
@@ -29,10 +31,15 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
 	@Override
 	public User findByUsername(String username) {
-		User user= (User) getEntityManager()
-				.createQuery("SELECT u FROM User u WHERE u.username LIKE :username")
-				.setParameter("username",username)
-				.getSingleResult();
-		return user;
+    	try {
+			return (User) getEntityManager()
+					.createQuery("SELECT u FROM User u WHERE u.username LIKE :username")
+					.setParameter("username",username)
+					.getSingleResult();
+		}catch (NoResultException e){
+    		LOGGER.error("User doesn't exist",e);
+    		return null;
+		}
+
 	}
 }

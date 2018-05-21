@@ -15,7 +15,7 @@ import org.springframework.validation.Validator;
 public class TruckFormValidator implements Validator {
 
     @Autowired
-    TruckService truckService;
+    private TruckService truckService;
 
 
     @Override
