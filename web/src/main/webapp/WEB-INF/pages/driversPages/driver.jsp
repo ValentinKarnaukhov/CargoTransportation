@@ -18,13 +18,13 @@
             <div class="nav-wrapper blue darken-2">
                 <a href="#" class="brand-logo"><img style="height: 70px;" src="<c:url value="/static/img/logo.png"/>"></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="<c:url value="/login?logout"/>">Sass</a></li>
+                    <li><a href="<c:url value="/login?logout"/>">Log out</a></li>
                 </ul>
             </div>
         </nav>
             <div style="float: left; margin-left: 10px; margin-top: 10px; margin-right: 2%">
                 <input id="driver_id" value="${driver.driver_id}" type="hidden"/>
-                    <table class="card-panel responsive-table">
+                    <table class="card-panel highlight responsive-table">
                         <thead>
                         <tr>
                             <th>Personal information</th>
@@ -69,7 +69,7 @@
                     </table>
 
 
-                    <table class="card-panel responsive-table">
+                    <table class="card-panel highlight responsive-table">
                         <thead>
                         <tr>
                             <th>Additional information</th>
@@ -87,7 +87,7 @@
                         </tbody>
                     </table>
 
-                    <table class="card-panel responsive-table">
+                    <table class="card-panel highlight responsive-table">
                         <thead>
                         <tr>
                             <th>Co-drivers</th>
@@ -107,7 +107,7 @@
                     </table>
             </div>
         <div style="float: left; width: 60%; margin-top: 10px">
-            <table class="card-panel responsive-table centered">
+            <table class="card-panel highlight responsive-table centered">
                 <thead>
                 <tr>
                     <th>Cargo number</th>

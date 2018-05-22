@@ -17,7 +17,7 @@
 </jsp:include>
 
 <h5 class="indigo-text" style="margin-left: 1%">Truck list</h5>
-<table class="centered striped card-panel">
+<table class="centered highlight card-panel">
     <thead>
     <tr>
         <th>Registration number</th>

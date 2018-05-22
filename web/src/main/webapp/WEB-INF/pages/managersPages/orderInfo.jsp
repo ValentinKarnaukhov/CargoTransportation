@@ -15,7 +15,7 @@
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 <h5 class="indigo-text">Cargoes</h5>
-<table class="centered striped card-panel">
+<table  class="centered highlight card-panel">
     <thead>
     <tr>
         <th>Number</th>
@@ -33,7 +33,6 @@
             <td>${cargo.status}</td>
         </tr>
     </c:forEach>
-
     </tbody>
 </table>
 <a href="<c:url value="/manager_/orders"/>" class="btn waves-effect waves-light">Back

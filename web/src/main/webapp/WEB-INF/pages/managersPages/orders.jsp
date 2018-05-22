@@ -18,7 +18,7 @@
 </jsp:include>
 
 <h5 class="indigo-text" style="margin-left: 1%">Orders list</h5>
-<table class="centered striped card-panel">
+<table class="centered highlight card-panel">
     <thead>
     <tr>
         <th>Number</th>

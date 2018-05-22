@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.LinkedList;
 import java.util.List;
 
-
+//TODO move all css styles in styles.css
 @Controller
 public class DriverController {
 

@@ -18,7 +18,7 @@
 </jsp:include>
 
     <h5 class="indigo-text">Driver list</h5>
-    <table class="centered striped card-panel">
+    <table class="centered highlight card-panel">
         <thead>
         <tr>
             <th>Personal code</th>
