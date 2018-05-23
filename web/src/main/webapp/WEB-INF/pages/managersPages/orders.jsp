@@ -17,13 +17,13 @@
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text" style="margin-left: 1%">Orders list</h5>
-<table class="centered highlight card-panel">
+<h5 class="indigo-text" style="margin-left: 1%">ORDERS LIST</h5>
+<table class="centered bordered highlight card-panel">
     <thead>
     <tr>
-        <th>Number</th>
-        <th>Truck</th>
-        <th>Is complete</th>
+        <th>NUMBER</th>
+        <th>TRUCK</th>
+        <th>IS COMPLETE</th>
         <th width="50"></th>
     </tr>
     </thead>
@@ -35,12 +35,12 @@
             <td >${order.complete}</td>
 
             <td><a href="<c:url value='/manager_/orders/order_info_${order.order_id}'/>">
-                <i class="material-icons">info</i></a></td>
+                <i class="material-icons blue-grey-text">info</i></a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/orders/neworder' />">Add new order
+<div ><a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/orders/neworder' />">Add new order
     <i class="material-icons left">add_box</i></a></div>
 <c:if test="${param.created != null}">
     <div class="created"></div>

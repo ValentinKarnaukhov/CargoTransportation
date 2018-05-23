@@ -16,7 +16,7 @@
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text">Create new order</h5>
+<h5 class="indigo-text">CREATE NEW ORDER</h5>
 <div class="section"></div>
 <div  class="row" style="width: 90%; margin-right: 5%">
 
@@ -24,7 +24,7 @@
     <form:input path="truck.truck_id" type="hidden"/>
     <form:input path="truck.max_drivers" type="hidden" class="maxDrivers"/>
     <div class="input-field col s12">
-        <div >Drivers</div>
+        <div >DRIVERS</div>
         <form:select id ="driver" path="truck.drivers" multiple="true">
             <form:option value="" disabled="true" selected="true">Select ${amount} drivers</form:option>
             <c:forEach items="${driverList}" var="driver">
@@ -35,11 +35,11 @@
         <div class="errors" style="color: red"></div>
         <div class="section"></div>
     </div>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Finish
-        <i class="material-icons left">check</i>
+    <button class="btn waves-effect waves-light blue-grey" type="submit" name="action">Finish
+        <i class="material-icons left blue-grey">check</i>
     </button>
-    <a href="<c:url value="/manager_/orders/neworder"/>" class="btn waves-effect waves-light">Back
-        <i class="material-icons left">undo</i>
+    <a href="<c:url value="/manager_/orders/neworder"/>" class="btn blue-grey waves-effect waves-light blue-grey">Back
+        <i class="material-icons left blue-grey">undo</i>
     </a>
 </form:form>
 </div>

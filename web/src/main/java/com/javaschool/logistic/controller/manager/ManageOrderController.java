@@ -77,7 +77,7 @@ public class ManageOrderController {
     @RequestMapping(value = "/manager_/orders/neworder", method = RequestMethod.POST)
     public String addDriverInOrder(@ModelAttribute Order order, Model model, BindingResult bindingResult){
 
-        if(waypoints.isEmpty()){
+        if(waypoints.isEmpty()||order.getTruck()==null){
             bindingResult.addError(new FieldError("order","truck","Waypoints and truck can't be empty!"));
             return "managersPages/neworder";
         }

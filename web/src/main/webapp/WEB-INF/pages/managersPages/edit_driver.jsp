@@ -11,7 +11,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../header.jsp">
-    <jsp:param name="title" value="Edit driver"/>
+    <jsp:param name="title" value="Driver editing"/>
 </jsp:include>
 
 <jsp:include page="../leftMenu.jsp">
@@ -19,7 +19,7 @@
 </jsp:include>
 
 
-<h5 class="indigo-text" style="margin-left: 1%">Edit driver</h5>
+<h5 class="indigo-text" style="margin-left: 1%">DRIVER EDITING</h5>
 <div class="section"></div>
 <div  class="row card-panel" style="width: 60%; margin-right: 40%">
     <form:form modelAttribute="driver" class="col s12" method="post" >
@@ -92,10 +92,10 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Edit driver
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Edit driver
                     <i class="material-icons right">edit</i>
                 </button>
-                <a href="<c:url value="/manager_/drivers"/>" class="btn waves-effect waves-light">Cancel
+                <a href="<c:url value="/manager_/drivers"/>" class="btn waves-effect waves-light blue-grey">Cancel
                     <i class="material-icons right">undo</i>
                 </a>
             </div>

@@ -7,6 +7,7 @@
     <title>Login</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/css/materialize.css"/>"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/css/styles.css"/>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
@@ -15,7 +16,7 @@
     <div style="text-align: center;">
         <img class="responsive-img" style="height: 150px;" src="<c:url value="/static/img/logo.png"/>" />
         <div class="section"></div>
-        <h5 class="indigo-text">Please, login into your account</h5>
+        <h5 class="blue-grey-text">PLEASE, LOGIN IN YOUR ACCOUNT</h5>
         <div class="section"></div>
         <div class="container">
             <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 43px 0 43px; border: 1px solid #EEE;">
@@ -43,7 +44,7 @@
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <div style="text-align: center;">
                         <div class='row'>
-                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
+                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect blue-grey'>Login</button>
                         </div>
                     </div>
 

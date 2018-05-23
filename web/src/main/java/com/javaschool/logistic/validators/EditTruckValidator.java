@@ -26,7 +26,7 @@ public class EditTruckValidator  implements Validator {
 
         if(truck.getMax_drivers()==0)errors.rejectValue("max_drivers", "Zero.truckForm.max_driver");
 
-        if(!truck.getReg_number().matches("^([a-z]){2}(\\d){5}$")){
+        if(!truck.getReg_number().matches("^([A-Z]){2}(\\d){5}$")){
             errors.rejectValue("reg_number", "NonCorrect.truckForm.reg_number");
         }
     }

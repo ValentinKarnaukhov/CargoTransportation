@@ -14,14 +14,14 @@
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
-<h5 class="indigo-text">Cargoes</h5>
-<table  class="centered highlight card-panel">
+<h5 class="indigo-text">CARGOES</h5>
+<table  class="centered highlight bordered card-panel">
     <thead>
     <tr>
-        <th>Number</th>
-        <th>Name</th>
-        <th>Weight</th>
-        <th>Status</th>
+        <th>NUMBER</th>
+        <th>NAME</th>
+        <th>WEIGHT</th>
+        <th>STATUS</th>
     </tr>
     </thead>
     <tbody>
@@ -35,7 +35,7 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="<c:url value="/manager_/orders"/>" class="btn waves-effect waves-light">Back
+<a href="<c:url value="/manager_/orders"/>" class="btn blue-grey waves-effect waves-light">Back
     <i class="material-icons left">undo</i>
 </a>
 

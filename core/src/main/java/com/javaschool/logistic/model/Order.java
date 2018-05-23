@@ -22,7 +22,7 @@ public class Order {
     @Column(name = "order_id", nullable = false)
     private int order_id;
 
-
+    //TODO add history for order (truck and driver, date and time maybe???)
     @OneToOne(mappedBy = "order", cascade = CascadeType.REFRESH)
     private Truck truck;
 

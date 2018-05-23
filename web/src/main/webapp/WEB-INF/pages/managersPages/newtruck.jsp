@@ -16,7 +16,7 @@
     <jsp:param name="trucks" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text" style="margin-left: 1%">Create new truck</h5>
+<h5 class="indigo-text" style="margin-left: 1%">CREATE NEW TRUCK</h5>
 <div class="section"></div>
 <div  class="row card-panel" style="width: 60%; margin-right: 40%">
     <form:form id="formValidate" modelAttribute="truck" class="col s12" method="post" >
@@ -24,7 +24,7 @@
             <div class="input-field col s12">
                 <form:input path="reg_number" id="reg_number" type="text" class="validate" required="true"/>
                 <label for="reg_number">Registration number</label>
-                <span class="helper-text" data-error="wrong" data-success="right">Example: ab12345</span>
+                <span class="helper-text" data-error="wrong" data-success="right">Example: AB12345</span>
                 <form:errors path="reg_number"/>
             </div>
         </div>
@@ -57,10 +57,10 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Add truck
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Add truck
                     <i class="material-icons right">local_shipping</i>
                 </button>
-                <a href="<c:url value="/manager_/trucks"/>" class="btn waves-effect waves-light">Cancel
+                <a href="<c:url value="/manager_/trucks"/>" class="btn blue-grey waves-effect waves-light">Cancel
                     <i class="material-icons right">undo</i>
                 </a>
             </div>

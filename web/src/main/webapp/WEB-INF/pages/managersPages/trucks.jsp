@@ -16,16 +16,16 @@
     <jsp:param name="trucks" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text" style="margin-left: 1%">Truck list</h5>
-<table class="centered highlight card-panel">
+<h5 class="indigo-text" style="margin-left: 1%">TRUCKS LIST</h5>
+<table class="centered bordered highlight card-panel">
     <thead>
     <tr>
-        <th>Registration number</th>
-        <th>Max drivers</th>
-        <th>Capacity</th>
-        <th>Status</th>
-        <th>City</th>
-        <th>Order</th>
+        <th>REGISTRATION NUMBER</th>
+        <th>MAX DRIVERS</th>
+        <th>CAPACITY</th>
+        <th>STATUS</th>
+        <th>CITY</th>
+        <th>ORDER</th>
         <th width="100"></th>
         <th width="100"></th>
     </tr>
@@ -40,15 +40,15 @@
             <td>${truck.city.name}</td>
             <td>${truck.order.order_id}</td>
             <td><a href="<c:url value='/manager_/edit_truck_${truck.truck_id}'/>">
-                <i class="material-icons">edit</i></a></td>
+                <i class="material-icons blue-grey-text">edit</i></a></td>
             <td><a href="<c:url value='/manager_/delete_truck_${truck.truck_id}'/>">
-                <i class="material-icons">delete_forever</i></a></td>
+                <i class="material-icons blue-grey-text">delete_forever</i></a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 
-<div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/trucks/newtruck' />">Add new truck
-    <i class="material-icons left">local_shipping</i></a></div>
+<div ><a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/trucks/newtruck' />">Add new truck
+    <i class="material-icons left ">local_shipping</i></a></div>
 
 <jsp:include page="../footer.jsp"/>

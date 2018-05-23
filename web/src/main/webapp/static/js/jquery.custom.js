@@ -1,6 +1,10 @@
 $(document).ready(function(){
     $('select').material_select();
-    $('#changeStatus').on('click',function () {
+
+
+   $("#changeStatus").on('click',function () {
+
+
         $('#ok').show();
         $('#decline').show();
     });

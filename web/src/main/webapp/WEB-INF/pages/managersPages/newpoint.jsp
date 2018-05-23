@@ -9,14 +9,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../header.jsp">
-    <jsp:param name="title" value="New cargo page"/>
+    <jsp:param name="title" value="New cargo"/>
 </jsp:include>
 
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text" style="margin-left: 1%">Create new cargo</h5>
+<h5 class="indigo-text" style="margin-left: 1%">CREATE NEW CARGO</h5>
 <div class="section"></div>
 <div  class="row card-panel" style="width: 60%; margin-right: 40%">
     <form:form  modelAttribute="waypoint" class="col s12" method="post" >
@@ -48,10 +48,10 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Add cargo
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Add cargo
                     <i class="material-icons right">add_box</i>
                 </button>
-                <a href="<c:url value="/manager_/orders/neworder"/>" class="btn waves-effect waves-light">Cancel
+                <a href="<c:url value="/manager_/orders/neworder"/>" class="btn blue-grey waves-effect waves-light">Cancel
                     <i class="material-icons right">undo</i>
                 </a>
             </div>

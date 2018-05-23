@@ -17,18 +17,18 @@
         <jsp:param name="drivers" value="active"/>
 </jsp:include>
 
-    <h5 class="indigo-text">Driver list</h5>
-    <table class="centered highlight card-panel">
+    <h5 class="indigo-text">DRIVERS LIST</h5>
+    <table class="centered highlight bordered card-panel">
         <thead>
         <tr>
-            <th>Personal code</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>City</th>
-            <th>Status</th>
-            <th>Order</th>
-            <th>Worked time</th>
+            <th>PERSONAL CODE</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>EMAIL</th>
+            <th>CITY</th>
+            <th>STATUS</th>
+            <th>ORDER</th>
+            <th>WORKED TIME</th>
             <th width="50"></th>
             <th width="50"></th>
         </tr>
@@ -74,14 +74,14 @@
                     <%--</select>--%>
                 <%--</td>--%>
                 <td><a href="<c:url value='/manager_/edit_driver_${driver.driver_id}'/>">
-                    <i class="material-icons">edit</i></a></td>
+                    <i class="material-icons blue-grey-text">edit</i></a></td>
                 <td><a href="<c:url value='/manager_/delete_driver_${driver.driver_id}'/>">
-                    <i class="material-icons">delete_forever</i></a></td>
+                    <i class="material-icons blue-grey-text">delete_forever</i></a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-<div ><a class="waves-effect waves-light btn" href="<c:url value='/manager_/drivers/newdriver' />">Add new driver
+<div ><a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/newdriver' />">Add new driver
     <i class="material-icons left">person_add</i></a></div>
 
 <jsp:include page="../footer.jsp"/>

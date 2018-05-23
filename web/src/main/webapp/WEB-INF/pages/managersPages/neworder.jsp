@@ -9,25 +9,25 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../header.jsp">
-    <jsp:param name="title" value="New order page"/>
+    <jsp:param name="title" value="New order"/>
 </jsp:include>
 
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
-<h5 class="indigo-text">Create new order</h5>
+<h5 class="indigo-text">CREATE NEW ORDER</h5>
 <div class="section"></div>
 <div  class="row" style="width: 90%; margin-right: 5%">
 
-    <h5 class="indigo-text">Add a cargoes</h5>
+    <h5 class="indigo-text">ADD A CARGOES</h5>
 
-        <table class="centered highlight card-panel">
+        <table class="centered highlight bordered card-panel">
             <thead>
             <tr>
-                <th>Cargo</th>
-                <th>Weight</th>
-                <th>City of loading</th>
-                <th>City of unloading</th>
+                <th>CARGO</th>
+                <th>WEIGHT</th>
+                <th>CITY OF LOADING</th>
+                <th>CITY OF UNLOADING</th>
                 <th width="50"></th>
             </tr>
             </thead>
@@ -39,16 +39,16 @@
                     <td>${waypoint.loadingCity.name}</td>
                     <td>${waypoint.unloadingCity.name}</td>
                     <td><a href="<c:url value='/manager_/orders/delete_point_${waypoints.indexOf(waypoint)}'/>">
-                        <i class="material-icons">delete_forever</i></a></td>
+                        <i class="material-icons blue-grey-text">delete_forever</i></a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
 
-        <a class="waves-effect waves-light btn" href="<c:url value='/manager_/orders/newcargo' />">Add new cargo
+        <a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/orders/newcargo' />">Add new cargo
             <i class="material-icons left">add_box</i></a>
 
-    <h5 style="margin-top: 100px" class="indigo-text">Select a truck</h5>
+    <h5 style="margin-top: 100px" class="indigo-text">SELECT A TRUCK</h5>
     <form:form class="card-panel" modelAttribute="order"  method="post" >
         <div class="input-field col s12">
             <form:select id ="truck" path="truck">
@@ -59,10 +59,10 @@
             <div class="section"></div>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit" name="action">Select a drivers
+        <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Select a drivers
             <i class="material-icons left">person_add</i>
         </button>
-        <a href="<c:url value="/manager_/orders/cancel"/>" class="btn waves-effect waves-light">Cancel
+        <a href="<c:url value="/manager_/orders/cancel"/>" class="btn blue-grey waves-effect waves-light">Cancel
             <i class="material-icons left">undo</i>
         </a>
     </form:form>

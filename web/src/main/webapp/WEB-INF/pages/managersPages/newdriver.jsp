@@ -17,7 +17,7 @@
 </jsp:include>
 
 
-<h5 class="indigo-text" style="margin-left: 1%">Create new driver</h5>
+<h5 class="indigo-text" style="margin-left: 1%">CREATE NEW DRIVER</h5>
 <div class="section"></div>
 <div  class="row card-panel" style="width: 60%; margin-right: 40%">
     <form:form id="formValidate" modelAttribute="driver" class="col s12" method="post" >
@@ -49,10 +49,10 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Add driver
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Add driver
                     <i class="material-icons right">person_add</i>
                 </button>
-                <a href="<c:url value="/manager_/drivers"/>" class="btn waves-effect waves-light">Cancel
+                <a href="<c:url value="/manager_/drivers"/>" class="btn waves-effect waves-light blue-grey">Cancel
                     <i class="material-icons right">undo</i>
                 </a>
             </div>

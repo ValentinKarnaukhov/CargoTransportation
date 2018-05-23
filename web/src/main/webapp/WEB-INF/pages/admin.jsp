@@ -31,13 +31,13 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Add manager
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Add manager
                     <i class="material-icons right">person_add</i>
                 </button>
-                <a href="<c:url value="/admin"/>" class="btn waves-effect waves-light">Cancel
+                <a href="<c:url value="/admin"/>" class="btn waves-effect blue-grey waves-light">Cancel
                     <i class="material-icons right">undo</i>
                 </a>
-                <a href="<c:url value="/login?logout"/>" class="btn waves-effect waves-light">Cancel
+                <a href="<c:url value="/login?logout"/>" class="btn blue-grey waves-effect waves-light">Cancel
                     <i class="material-icons right">cancel</i>
                 </a>
             </div>

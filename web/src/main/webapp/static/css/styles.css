@@ -1,3 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Didact+Gothic|Comfortaa:400,700&subset=latin,cyrillic);
+*, *:before, *:after{box-sizing:border-box}
+
+
 .editHover {
     background: #E8F3FF;
 }
@@ -7,5 +11,60 @@ span[id$=".errors"]{
 }
 
 body{
+
+    font-family: 'Comfortaa', cursive;
     background: #f3f3f3;
+}
+
+.pageContainer{
+    display: flex;
+
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: baseline;
+
+
+    height: 100%;
+
+}
+
+.tableInContainer{
+
+    width: 300px;
+
+}
+
+.main-table{
+
+    height: 100%;
+    width: 1000px;
+
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.select-wrapper{
+    margin-top: -5px;
+    margin-bottom: -5px;
+}
+
+ .padding-table td, th  {
+
+    padding-left: 20px;
+
+}
+
+
+.logo{
+
+    font-weight: bold;
+    font-size: xx-large;
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 85px;
+
+
 }
