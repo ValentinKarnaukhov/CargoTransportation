@@ -8,14 +8,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <body>
-<div style="margin-left: 280px; margin-right: 100px; margin-top: 50px">
+<div class="in-left-menu">
 <div class="row light-blue-text text-accent-999">
     <div class="col s3">
-        <ul id="nav-mobile" class="side-nav fixed z-depth-2" style="width: 240px;">
+        <ul id="nav-mobile" class="side-nav fixed z-depth-2 left-menu">
             <div style= "height: 350px" class="blue-grey darken-2">
                 <p class="center white-text logo" >P E G A S U S</p>
-                <img src="<c:url value="/static/img/Fry_rev.jpg"/>" class="circle z-depth-2" style="width:130px; height:130px; margin-left: 55px;">
-                <p class="center" style="margin-top:10px; color:#FFFFFF">${pageContext.request.userPrincipal.name} </p>
+                <p class="center white-text">${pageContext.request.userPrincipal.name} </p>
                 <br>
                 <br>
             </div>

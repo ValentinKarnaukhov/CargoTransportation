@@ -17,9 +17,9 @@
 </jsp:include>
 
 
-<h5 class="indigo-text" style="margin-left: 1%">CREATE NEW DRIVER</h5>
+<h5 class="indigo-text">CREATE NEW DRIVER</h5>
 <div class="section"></div>
-<div  class="row card-panel" style="width: 60%; margin-right: 40%">
+<div  class="row card-panel driver-truck">
     <form:form id="formValidate" modelAttribute="driver" class="col s12" method="post" >
         <div class="row">
             <div class="input-field col s6">

@@ -25,20 +25,14 @@ body{
     flex-wrap: wrap;
     flex-direction: column;
     align-content: baseline;
-
-
     height: 100%;
-
 }
 
 .tableInContainer{
-
     width: 400px;
-
 }
 
 .main-table{
-
     height: 100%;
     width: 1000px;
 
@@ -52,19 +46,44 @@ body{
 }
 
  .padding-table td, th  {
-
-    padding-left: 20px;
-
-}
+     padding-left: 20px;
+ }
 
 
 .logo{
-
     font-weight: bold;
     font-size: xx-large;
     margin: 0;
     padding-top: 15px;
     padding-bottom: 85px;
+}
+
+.driver-logo{
+    margin-left: 20px;
+}
+
+.hide-button{
+    display: none;
+    margin-top: 10px;
+}
+
+.add-driver{
+    width: 90%;
+    margin-right: 5%;
+}
+
+.driver-truck{
+    width: 60%;
+    margin-right: 40%;
+}
 
 
+.left-menu{
+    width: 16%;
+}
+
+.in-left-menu{
+    margin-left: 18%;
+    margin-right: 3%;
+    margin-top: 2%;
 }

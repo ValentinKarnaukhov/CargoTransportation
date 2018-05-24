@@ -17,7 +17,7 @@
 </jsp:include>
 <h5 class="indigo-text">CREATE NEW ORDER</h5>
 <div class="section"></div>
-<div  class="row" style="width: 90%; margin-right: 5%">
+<div  class="row add-driver">
 
     <h5 class="indigo-text">ADD A CARGOES</h5>
 

@@ -50,10 +50,6 @@ public class UserController {
         return "redirect:/manager_/drivers";
     }
 
-    @RequestMapping(value = "/driver", method = RequestMethod.GET)
-    public String driver(){
-        return "redirect:/driver/"+userService.findByEmail(getPrincipal()).getDriver().getDriver_id();
-    }
 
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)

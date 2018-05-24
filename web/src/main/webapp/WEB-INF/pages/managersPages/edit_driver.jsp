@@ -19,9 +19,9 @@
 </jsp:include>
 
 
-<h5 class="indigo-text" style="margin-left: 1%">DRIVER EDITING</h5>
+<h5 class="indigo-text">DRIVER EDITING</h5>
 <div class="section"></div>
-<div  class="row card-panel" style="width: 60%; margin-right: 40%">
+<div  class="row card-panel driver-truck">
     <form:form modelAttribute="driver" class="col s12" method="post" >
         <form:input path="personal_code" type="hidden"/>
         <form:input path="user.email" type="hidden"/>

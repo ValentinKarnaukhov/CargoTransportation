@@ -16,7 +16,7 @@
     <div>
         <nav>
             <div class="nav-wrapper blue-grey darken-2">
-                <a href="#" class="brand-logo" style="margin-left: 20px">P E G A S U S</a>
+                <a href="#" class="brand-logo driver-logo">P E G A S U S</a>
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down ">
                     <li><a href="<c:url value="/logout"/>">LOG OUT</a></li>
@@ -62,8 +62,8 @@
                                 <option value="3" <c:if test="${driver.status.name().equals('DRIVE')}">selected</c:if>>DRIVE</option>
                             </select>
                             <div class="acceptStatus">
-                                <button  id="ok" style="display: none; margin-top: 10px"><i class="material-icons">save</i></button>
-                                <button id="decline" style="display: none; margin-top: 10px"><i class="material-icons">cancel</i></button>
+                                <button  id="ok" class="hide-button"><i class="material-icons">save</i></button>
+                                <button id="decline" class="hide-button"><i class="material-icons">cancel</i></button>
                             </div>
                         </td>
                     </tr>

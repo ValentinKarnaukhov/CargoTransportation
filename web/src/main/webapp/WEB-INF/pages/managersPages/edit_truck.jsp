@@ -17,9 +17,9 @@
     <jsp:param name="trucks" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text" style="margin-left: 1%">TRUCK EDITING</h5>
+<h5 class="indigo-text">TRUCK EDITING</h5>
 <div class="section"></div>
-<div  class="row card-panel" style="width: 60%; margin-right: 40%">
+<div  class="row card-panel driver-truck">
     <form:form id="formValidate" modelAttribute="truck" class="col s12" method="post" >
         <form:input path="order.order_id" type="hidden"/>
         <div class="row">

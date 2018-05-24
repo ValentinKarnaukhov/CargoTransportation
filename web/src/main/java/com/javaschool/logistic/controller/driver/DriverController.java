@@ -8,8 +8,11 @@ import com.javaschool.logistic.model.OrderWaypoint;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
 
+import com.javaschool.logistic.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +20,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.LinkedList;
 import java.util.List;
 
-//TODO move all css styles in styles.css
+
 @Controller
 public class DriverController {
 
-
-    //TODO change design on material 1.0 version
     @Autowired
     private DriverService driverService;
 
     @Autowired
     private OrderWaypointService orderWaypointService;
 
-    //TODO-login for security NOT id
-    @RequestMapping(value = "/driver/{driver_id}")
-    public String loadPageForDriver(Model model,@PathVariable int driver_id){
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(value = "/driver")
+    public String loadPageForDriver(Model model){
+        int driver_id = userService.findByEmail(getPrincipal()).getDriver().getDriver_id();
         Driver driver = driverService.findById(driver_id);
         List<OrderWaypoint> waypoints = new LinkedList<>();
         if(driver.getTruck()!=null) waypoints = orderWaypointService.findByOrderId(driver.getTruck().getOrder().getOrder_id());
@@ -55,6 +59,19 @@ public class DriverController {
         waypoint.setStatus(OrderWaypoint.Status.valueOf(status));
         orderWaypointService.updatePoint(waypoint);
         return "";
+    }
+
+
+    private String getPrincipal(){
+        String userName;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
     }
 
 }

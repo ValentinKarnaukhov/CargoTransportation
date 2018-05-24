@@ -18,9 +18,9 @@
 
 <h5 class="indigo-text">CREATE NEW ORDER</h5>
 <div class="section"></div>
-<div  class="row" style="width: 90%; margin-right: 5%">
+<div  class="row add-driver" >
 
-<form:form name="finish" modelAttribute="order" method="post" action="/manager_/orders/neworder/finish" >
+<form:form class="card-panel" name="finish" modelAttribute="order" method="post" action="/manager_/orders/neworder/finish" >
     <form:input path="truck.truck_id" type="hidden"/>
     <form:input path="truck.max_drivers" type="hidden" class="maxDrivers"/>
     <div class="input-field col s12">

@@ -17,7 +17,7 @@
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text" style="margin-left: 1%">ORDERS LIST</h5>
+<h5 class="indigo-text">ORDERS LIST</h5>
 <table class="centered bordered highlight card-panel">
     <thead>
     <tr>

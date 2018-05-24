@@ -6,6 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-Dear ${user}, You are not authorized to access this page.
+Dear ${SPRING_SECURITY_LAST_USERNAME}, You are not authorized to access this page.
 </body>
 </html>

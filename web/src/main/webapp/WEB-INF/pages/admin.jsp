@@ -10,7 +10,7 @@
     <link href="<c:url value='/static/css/styles.css' />" rel="stylesheet"/>
 </head>
 <body>
-<div  class="row card-panel" style="width: 60%; margin-right: 40%">
+<div  class="row card-panel driver-truck">
     <form:form id="formValidate" modelAttribute="user" class="col s12" method="post" >
 
         <div class="row">
