@@ -53,6 +53,20 @@
                         <td>HOURS WORKED:</td>
                         <td>${driver.worked_time}</td>
                     </tr>
+                    <tr>
+                        <td>CITY:</td>
+                        <td>
+                            <select id="changeCity" class="browser-default select-wrapper">
+                                <c:forEach items="${cities}" var="city">
+                                    <option value="${city.city_id}" <c:if test="${driver.city.city_id==city.city_id}">selected</c:if>>${city.name}</option>
+                                </c:forEach>
+                            </select>
+                            <div class="acceptCity">
+                                <button  id="city_ok" class="hide-button"><i class="material-icons">save</i></button>
+                                <button id="city_decline" class="hide-button"><i class="material-icons">cancel</i></button>
+                            </div>
+                        </td>
+                    </tr>
                     <tr  >
                         <td>STATUS:</td>
                         <td>
@@ -110,7 +124,7 @@
                 </table>
             </div>
             <div class="main-table">
-                <table class="card-panel highlight bordered responsive-table centered">
+                <table class="card-panel highlight bordered responsive-table centered table">
                     <thead>
                     <tr>
                         <th>CARGO NUMBER</th>
@@ -128,8 +142,8 @@
                             <td>${point.cargo.number}</td>
                             <td>${point.cargo.name}</td>
                             <td>${point.cargo.weight}</td>
-                            <td>${point.city.name}</td>
-                            <td>${point.operation}</td>
+                            <td class="city">${point.city.name}</td>
+                            <td class="operation">${point.operation}</td>
                             <td>
                                 <div class="row_data">
                                     <select class="cargoStatus browser-default select-wrapper" >

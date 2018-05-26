@@ -13,5 +13,8 @@
     <link href="<c:url value="/static/css/material-icons.css"/>" rel="stylesheet">
     <link href="<c:url value='/static/css/materialize.css' />" rel="stylesheet"/>
     <link href="<c:url value='/static/css/styles.css' />" rel="stylesheet"/>
+    <link href="<c:url value='/static/css/table.css' />" rel="stylesheet"/>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>
 

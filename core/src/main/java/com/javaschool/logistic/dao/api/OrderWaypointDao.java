@@ -10,4 +10,8 @@ public interface OrderWaypointDao extends GenericDao<OrderWaypoint> {
 
     OrderWaypoint findById(int point_id);
 
+    List<OrderWaypoint> findByOrderIdLoad(int order_id);
+
+    OrderWaypoint findUnloadByCargoId(int cargo_id);
+
 }

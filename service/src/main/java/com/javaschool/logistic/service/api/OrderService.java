@@ -13,7 +13,7 @@ public interface OrderService {
 
     void createOrder(List<Waypoint> waypointList, Order order) throws ServiceException;
 
-    void checkCompleted(int order_id);
+    boolean checkCompleted(int order_id);
 
     Order findById(int order_id);
 }

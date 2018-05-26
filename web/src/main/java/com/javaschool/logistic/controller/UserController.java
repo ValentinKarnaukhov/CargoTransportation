@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +48,7 @@ public class UserController {
     @RequestMapping(value = "/manager_", method = RequestMethod.GET)
     public String manager(ModelMap model){
         model.addAttribute("user", getPrincipal());
-        return "redirect:/manager_/drivers";
+        return "redirect:/manager_/orders";
     }
 
 
@@ -78,7 +79,10 @@ public class UserController {
         return userName;
     }
 
-
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test(){
+        return "test";
+    }
 
 
 }

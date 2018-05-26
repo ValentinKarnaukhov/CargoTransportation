@@ -14,8 +14,8 @@
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
-<h5 class="indigo-text">CARGOES</h5>
-<table  class="centered highlight bordered card-panel">
+<h5 class="indigo-text table-in">CARGOES</h5>
+<table  class="centered highlight bordered card-panel table">
     <thead>
     <tr>
         <th>NUMBER</th>

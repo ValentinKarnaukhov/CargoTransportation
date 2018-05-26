@@ -17,6 +17,10 @@ public interface OrderWaypointService {
 
     OrderWaypoint findById(int point_id);
 
-    void updatePoint(OrderWaypoint point);
+    boolean updatePoint(OrderWaypoint point);
+
+    List<OrderWaypoint> findByOrderIdLoad(int order_id);
+
+    OrderWaypoint findUnloadByCargoId(int cargo_id);
 
 }

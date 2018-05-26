@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void checkCompleted(int order_id){
+    public boolean checkCompleted(int order_id){
         Order order = orderDao.findById(order_id);
         int amountDone = 0;
         for(Cargo cargo:order.getCargoes()){
@@ -65,11 +65,11 @@ public class OrderServiceImpl implements OrderService {
             order.setComplete(true);
             orderDao.update(order);
             LOGGER.info("Order "+order+" has been completed");
+            return true;
         }
-
+        return false;
     }
 
-    //TODO-add to generic findById
     @Override
     public Order findById(int order_id) {
         return orderDao.findById(order_id);

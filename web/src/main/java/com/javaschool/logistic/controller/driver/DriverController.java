@@ -2,25 +2,30 @@ package com.javaschool.logistic.controller.driver;
 
 
 
+import com.javaschool.logistic.model.City;
 import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.OrderWaypoint;
 
+import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
 
 import com.javaschool.logistic.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
-
+//TODO add javadoc
 @Controller
 public class DriverController {
 
@@ -33,33 +38,21 @@ public class DriverController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CityService cityService;
+
     @RequestMapping(value = "/driver")
     public String loadPageForDriver(Model model){
         int driver_id = userService.findByEmail(getPrincipal()).getDriver().getDriver_id();
         Driver driver = driverService.findById(driver_id);
         List<OrderWaypoint> waypoints = new LinkedList<>();
-        if(driver.getTruck()!=null) waypoints = orderWaypointService.findByOrderId(driver.getTruck().getOrder().getOrder_id());
+        if(driver.getTruck()!=null) waypoints = orderWaypointService.findByOrderIdLoad(driver.getTruck().getOrder().getOrder_id());
         model.addAttribute("driver", driver);
         model.addAttribute("waypoints",waypoints );
         return "driversPages/driver";
     }
 
-    //TODO-change to method post
-    @RequestMapping(value = "/driver/{driver_id}/change", method = RequestMethod.GET)
-    public String changeStatus(@PathVariable int driver_id, @RequestParam String status){
-        Driver driver = driverService.findById(driver_id);
-        driver.setStatus(Driver.Status.valueOf(status));
-        driverService.updateDriver(driver);
-        return "";
-    }
 
-    @RequestMapping(value = "/driver/{point_id}/cargo_change")
-    public String changePoint(@PathVariable int point_id, @RequestParam String status){
-        OrderWaypoint waypoint= orderWaypointService.findById(point_id);
-        waypoint.setStatus(OrderWaypoint.Status.valueOf(status));
-        orderWaypointService.updatePoint(waypoint);
-        return "";
-    }
 
 
     private String getPrincipal(){
@@ -72,6 +65,11 @@ public class DriverController {
             userName = principal.toString();
         }
         return userName;
+    }
+
+    @ModelAttribute("cities")
+    public List<City> initializeCities() {
+        return cityService.findAllCities();
     }
 
 }

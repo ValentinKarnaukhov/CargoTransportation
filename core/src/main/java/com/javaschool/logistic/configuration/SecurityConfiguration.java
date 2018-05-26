@@ -60,8 +60,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/driver/**").access("hasRole('DRIVER') or hasRole('ADMIN')")
                 .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
                 .usernameParameter("email").passwordParameter("password")
-                .and().csrf()
-                .and().exceptionHandling().accessDeniedPage("/access_denied");
+                .and().exceptionHandling().accessDeniedPage("/access_denied")
+                .and().csrf();
+
 
     }
 

@@ -17,8 +17,8 @@
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text">ORDERS LIST</h5>
-<table class="centered bordered highlight card-panel">
+<h5 class="indigo-text table-in">ORDERS LIST</h5>
+<table class="centered bordered highlight card-panel table">
     <thead>
     <tr>
         <th>NUMBER</th>

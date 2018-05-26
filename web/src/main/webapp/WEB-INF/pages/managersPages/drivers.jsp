@@ -17,8 +17,8 @@
         <jsp:param name="drivers" value="active"/>
 </jsp:include>
 
-    <h5 class="indigo-text">DRIVERS LIST</h5>
-    <table class="centered highlight bordered card-panel">
+    <h5 class="indigo-text table-in">DRIVERS LIST</h5>
+    <table class="centered highlight bordered card-panel table">
         <thead>
         <tr>
             <th>PERSONAL CODE</th>

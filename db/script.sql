@@ -123,7 +123,7 @@ INSERT INTO CITY(name, latitude, longitude) value ('Vladimir',	56.129042,	40.407
 INSERT INTO CITY(name, latitude, longitude) value ('Vlogograd',	48.707103,	44.516939 );
 INSERT INTO CITY(name, latitude, longitude) value ('Ekatirinburg',	56.838002,	60.597295);
 INSERT INTO CITY(name, latitude, longitude) value ('Ivanovo',	57.000348,	40.973921);
-INSERT INTO CITY(name, latitude, longitude) value ('Uzhevsk',	56.852775,	53.211463 );
+INSERT INTO CITY(name, latitude, longitude) value ('Izhevsk',	56.852775,	53.211463 );
 INSERT INTO CITY(name, latitude, longitude) value ('Irkutsk',	52.286387,	104.280);
 INSERT INTO CITY(name, latitude, longitude) value ('Kazan\'',	55.795793,	49.106585 );
 INSERT INTO CITY(name, latitude, longitude) value ('Kaliningrad', 55.916229,	37.854467);

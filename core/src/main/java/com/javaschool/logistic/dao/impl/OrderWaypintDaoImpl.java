@@ -27,12 +27,31 @@ public class OrderWaypintDaoImpl extends GenericDaoImpl<OrderWaypoint> implement
     public OrderWaypoint findById(int point_id) {
         try {
             return (OrderWaypoint) getEntityManager()
-                    .createQuery("SELECT u FROM OrderWaypoint u WHERE u.order_waypoint_id=:point")
+                    .createQuery("SELECT u FROM OrderWaypoint u  JOIN FETCH u.order o JOIN FETCH o.truck t JOIN FETCH  t.drivers WHERE u.order_waypoint_id=:point")
                     .setParameter("point",point_id)
                     .getSingleResult();
         }catch (NoResultException e){
             LOGGER.error("OrderWaypoint doesn't exist", e);
             return null;
         }
+    }
+
+    @Override
+    public List<OrderWaypoint> findByOrderIdLoad(int order_id) {
+        return getEntityManager()
+                .createQuery("SELECT u FROM OrderWaypoint u WHERE u.order.order_id=:id " +
+                        "AND u.operation=:operation")
+                .setParameter("id",order_id)
+                .setParameter("operation",OrderWaypoint.Operation.LOADING)
+                .getResultList();
+    }
+
+    @Override
+    public OrderWaypoint findUnloadByCargoId(int cargo_id) {
+        return (OrderWaypoint) getEntityManager()
+                .createQuery("SELECT u FROM OrderWaypoint u WHERE u.cargo.cargo_id=:id" +
+                        " AND u.operation='UNLOADING'")
+                .setParameter("id", cargo_id)
+                .getSingleResult();
     }
 }

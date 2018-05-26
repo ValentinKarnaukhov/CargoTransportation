@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <form:input path="cargo.weight" id="weight" type="number" class="validate" required="true"/>
+                <form:input path="cargo.weight" id="weight" type="number" class="validate" required="true" placeholder="kg"/>
                 <label for="weight">Weight</label>
                 <form:errors path="cargo.weight"/>
             </div>

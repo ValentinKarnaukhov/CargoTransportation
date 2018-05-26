@@ -1,12 +1,36 @@
 $(document).ready(function(){
+    $('.table').DataTable( {
+        "pagingType": "simple_numbers"
+    } );
+
     $('select').material_select();
 
-   $("#changeStatus").on('click',function () {
-
-
-        $('#ok').show();
-        $('#decline').show();
+    $("#changeCity").on('click',function () {
+       $('#city_ok').show();
+       $('#city_decline').show();
     });
+
+    $('#city_ok').on('click',function () {
+       $.ajax({
+           type: 'get',
+           url: '/driver/'+$('#driver_id').val()+'/changeCity',
+           data: ({
+               city_id: $('#changeCity option:selected').val()
+           })
+       }) ;
+        $('#city_ok').hide();
+        $('#city_decline').hide();
+    });
+    $('#city_decline').on('click',function () {
+        $('#city_ok').hide();
+        $('#city_decline').hide();
+    });
+
+   $("#changeStatus").on('click',function () {
+       $('#ok').show();
+       $('#decline').show();
+    });
+
     $('#ok').on('click',function () {
         $.ajax({
             type: 'get',
@@ -37,37 +61,58 @@ $('[name = finish]').on('submit',function () {
     }
 });
 
-if($('.created').length==1)Materialize.toast("Order was created", 2000)
+if($('.created').length==1)Materialize.toast("Order was created", 2000);
 
 
 $(document).on('click','.row_data',function () {
     var tbl_row = $(this).closest('tr');
-    // var row_id = tbl_row.attr('row_id');
-    // alert(tbl_row.find('.cargoStatus option:selected').text());
     tbl_row.find('.btn_ok').show();
     tbl_row.find('.btn_decline').show();
 });
 
 $(document).on('click','.btn_ok',function () {
 
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
     var tbl_row = $(this).closest('tr');
     var row_id = tbl_row.attr('row_id');
+
     $.ajax({
-        type: 'get',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader(header, token);
+        },
+        type: 'post',
+        url: '/driver/cargo_change',
         contentType: 'application/json',
-        url: '/driver/'+row_id+'/cargo_change',
-        data: ({
+        dataType: 'json',
+        data: JSON.stringify({
+            point_id: row_id,
             status: tbl_row.find('.cargoStatus option:selected').text()
         })
+    }).done(function (result) {
+        if(result.point_id===0){
+            tbl_row.empty();
+            Materialize.toast("Order was completed", 2000);
+            return false;
+        }
+        if(result.status==='DONE')tbl_row.empty();
+        tbl_row.attr('row_id',result.point_id);
+        tbl_row.find('.city').text(result.city);
+        tbl_row.find('.operation').text('UNLOADING');
+        tbl_row.find('.cargoStatus option[value=1]').prop('selected',true)
+
     });
     tbl_row.find('.btn_ok').hide();
     tbl_row.find('.btn_decline').hide();
 
 });
+
 $(document).on('click', '.btn_decline',function () {
     var tbl_row = $(this).closest('tr');
     tbl_row.find('.btn_ok').hide();
     tbl_row.find('.btn_decline').hide();
+    tbl_row.find('.cargoStatus option[value=1]').prop('selected',true)
 });
 
 

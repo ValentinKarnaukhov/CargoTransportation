@@ -2,11 +2,10 @@ package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.CargoDao;
 import com.javaschool.logistic.dao.api.OrderWaypointDao;
+import com.javaschool.logistic.dao.api.TruckDao;
 import com.javaschool.logistic.exception.ServiceException;
 import com.javaschool.logistic.exceptions.DaoException;
-import com.javaschool.logistic.model.Cargo;
-import com.javaschool.logistic.model.Order;
-import com.javaschool.logistic.model.OrderWaypoint;
+import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -30,6 +30,9 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private TruckDao truckDao;
 
     @Override
     public void createWaypoints(List<Waypoint> waypointList, Order order)throws ServiceException {
@@ -71,14 +74,19 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
     }
 
 
-    //TODO-change status only when both equal DONE
     @Override
-    public void updatePoint(OrderWaypoint point) {
+    public boolean updatePoint(OrderWaypoint point) {
+        Truck truck = point.getOrder().getTruck();
         if(point.getOperation().equals(OrderWaypoint.Operation.LOADING)
                 &&point.getStatus().equals(OrderWaypoint.Status.DONE)){
             Cargo cargo = point.getCargo();
             cargo.setStatus(Cargo.Status.SHIPPED);
             cargoDao.update(cargo);
+            truck.setCity(point.getCity());
+            for(Driver driver:truck.getDrivers()){
+                driver.setCity(point.getCity());
+            }
+            truckDao.update(truck);
         }
 
         if(point.getOperation().equals(OrderWaypoint.Operation.UNLOADING)
@@ -86,9 +94,36 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
             Cargo cargo = point.getCargo();
             cargo.setStatus(Cargo.Status.DONE);
             cargoDao.update(cargo);
-            orderService.checkCompleted(cargo.getOrder().getOrder_id());
-        }
+            truck.setCity(point.getCity());
+            for(Driver driver:truck.getDrivers()){
+                driver.setCity(point.getCity());
+            }
+            truckDao.update(truck);
 
+        }
         orderWaypointDao.update(point);
+        return orderService.checkCompleted(point.getCargo().getOrder().getOrder_id());
+    }
+
+    @Override
+    public List<OrderWaypoint> findByOrderIdLoad(int order_id) {
+        List<OrderWaypoint> waypoints = new LinkedList<>();
+        for(OrderWaypoint p:orderWaypointDao.findByOrderId(order_id)){
+            if(p.getStatus().equals(OrderWaypoint.Status.PROGRESS)
+                    &&p.getOperation().equals(OrderWaypoint.Operation.LOADING)){
+                waypoints.add(p);
+            }
+            if(p.getStatus().equals(OrderWaypoint.Status.PROGRESS)
+                    &&p.getOperation().equals(OrderWaypoint.Operation.UNLOADING)
+                    &&p.getCargo().getOrderWaypoint().get(0).getStatus().equals(OrderWaypoint.Status.DONE)){
+                waypoints.add(p);
+            }
+        }
+        return waypoints;
+    }
+
+    @Override
+    public OrderWaypoint findUnloadByCargoId(int cargo_id) {
+        return orderWaypointDao.findUnloadByCargoId(cargo_id);
     }
 }

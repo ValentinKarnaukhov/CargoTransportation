@@ -16,8 +16,8 @@
     <jsp:param name="trucks" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text">TRUCKS LIST</h5>
-<table class="centered bordered highlight card-panel">
+<h5 class="indigo-text table-in">TRUCKS LIST</h5>
+<table class="centered bordered highlight card-panel table">
     <thead>
     <tr>
         <th>REGISTRATION NUMBER</th>
