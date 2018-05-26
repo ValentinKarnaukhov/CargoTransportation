@@ -31,7 +31,10 @@
     <c:forEach items="${orders}" var="order">
         <tr>
             <td >${order.order_id}</td>
-            <td >${order.truck.reg_number}</td>
+            <td >${order.orderHistory.truck.reg_number}
+                    <c:if test="${order.orderHistory.truck.status.name().equals('OK')}"><i class="material-icons green-text img">error</i></c:if>
+                    <c:if test="${order.orderHistory.truck.status.name().equals('BROKEN')}"><i class="material-icons red-text img">error</i></c:if>
+            </td>
             <td >${order.complete}</td>
 
             <td><a href="<c:url value='/manager_/orders/order_info_${order.order_id}'/>">

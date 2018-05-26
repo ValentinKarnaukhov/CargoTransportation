@@ -47,6 +47,32 @@ $(document).ready(function(){
         $('#ok').hide();
         $('#decline').hide();
     });
+    
+    
+    $('.truck-status').on('click',function () {
+
+        var img = $('.truck-status');
+        var status;
+
+       if(img.hasClass('green-text')){
+           img.removeClass('green-text');
+           img.addClass('red-text');
+           status = 'BROKEN';
+       }else {
+           img.removeClass('red-text');
+           img.addClass('green-text');
+           status = 'OK';
+       }
+        $.ajax({
+            type: 'get',
+            contentType: 'application/json',
+            url: '/truck/changeStatus',
+            data: ({
+                number: $.trim($('#reg-number').clone().children().remove().end().text()),
+                status: status
+            })
+        });
+    });
 
 });
 
@@ -114,7 +140,6 @@ $(document).on('click', '.btn_decline',function () {
     tbl_row.find('.btn_decline').hide();
     tbl_row.find('.cargoStatus option[value=1]').prop('selected',true)
 });
-
 
 
 

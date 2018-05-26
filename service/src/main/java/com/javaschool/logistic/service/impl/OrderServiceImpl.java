@@ -1,12 +1,10 @@
 package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.OrderDao;
+import com.javaschool.logistic.dao.api.OrderHistoryDao;
 import com.javaschool.logistic.dao.api.TruckDao;
 import com.javaschool.logistic.exception.ServiceException;
-import com.javaschool.logistic.model.Cargo;
-import com.javaschool.logistic.model.Driver;
-import com.javaschool.logistic.model.Order;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
@@ -31,6 +29,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderWaypointService orderWaypointService;
 
+    @Autowired
+    private OrderHistoryDao orderHistoryDao;
+
     @Override
     public List<Order> findAllOrders() {
         return orderDao.findAll();
@@ -41,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             orderDao.create(order);
             orderWaypointService.createWaypoints(waypointList,order);
+            orderHistoryDao.create(new OrderHistory(order,order.getTruck(),order.getTruck().getDrivers()));
             LOGGER.info("Order "+order+" has been created");
         }catch (ServiceException e){
             throw new ServiceException("Unexpected exception",e);

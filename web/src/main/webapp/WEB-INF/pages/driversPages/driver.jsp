@@ -97,8 +97,11 @@
                         <td>${driver.truck.order.order_id}</td>
                     </tr>
                     <tr>
-                        <td>NUMBER OF TRUCK:</td>
-                        <td>${driver.truck.reg_number}</td>
+                        <td>TRUCK NUMBER:</td>
+                        <td id="reg-number">${driver.truck.reg_number}
+                            <c:if test="${driver.truck.status.name().equals('OK')}"><i class="material-icons green-text truck-status img">error</i></c:if>
+                            <c:if test="${driver.truck.status.name().equals('BROKEN')}"><i class="material-icons red-text truck-status img">error</i></c:if>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

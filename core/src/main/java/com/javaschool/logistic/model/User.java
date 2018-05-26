@@ -39,7 +39,7 @@ public class User implements Serializable{
 	@Column(name="password", nullable=false)
 	private String password;
 
-	//TODO - make roles with manytomany chain
+
 	@Enumerated(EnumType.STRING)
 	@Column(name="role",nullable = false)
 	private Role role = Role.MANAGER;

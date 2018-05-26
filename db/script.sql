@@ -91,6 +91,25 @@ create table DRIVER(
   FOREIGN KEY (user_id) REFERENCES USER(user_id)
 );
 
+create table ORDER_HISTORY(
+  history_id BIGINT NOT NULL AUTO_INCREMENT,
+  order_id BIGINT NOT NULL ,
+  truck_id BIGINT NOT NULL,
+  PRIMARY KEY (history_id),
+  FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
+  FOREIGN KEY (truck_id) REFERENCES TRUCK(truck_id)
+);
+
+create table DRIVER_ORDER_HISTORY(
+  history_id BIGINT NOT NULL ,
+  driver_id BIGINT NOT NULL,
+  PRIMARY KEY (history_id, driver_id),
+  FOREIGN KEY (history_id) REFERENCES ORDER_HISTORY(history_id),
+  FOREIGN KEY (driver_id) REFERENCES DRIVER(driver_id)
+);
+
+
+
 
 INSERT INTO USER(username, email, password, role) VALUES ('admin',
                                                           'admin@admin.com',

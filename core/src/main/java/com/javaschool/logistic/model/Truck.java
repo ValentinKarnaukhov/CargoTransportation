@@ -49,6 +49,16 @@ public class Truck implements Serializable {
     @OneToMany(mappedBy = "truck", cascade = CascadeType.ALL)
     private List<Driver> drivers;
 
+    @OneToMany(mappedBy = "truck")
+    private List<OrderHistory> orderHistory;
+
+    public List<OrderHistory> getOrderHistory() {
+        return orderHistory;
+    }
+
+    public void setOrderHistory(List<OrderHistory> orderHistory) {
+        this.orderHistory = orderHistory;
+    }
 
     public int getTruck_id() {
         return truck_id;

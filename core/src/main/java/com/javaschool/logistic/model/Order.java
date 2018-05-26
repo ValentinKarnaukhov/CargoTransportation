@@ -22,7 +22,7 @@ public class Order {
     @Column(name = "order_id", nullable = false)
     private int order_id;
 
-    //TODO add history for order (truck and driver, date and time maybe???)
+
     @OneToOne(mappedBy = "order", cascade = CascadeType.REFRESH)
     private Truck truck;
 
@@ -34,9 +34,11 @@ public class Order {
     private List<Cargo> cargoes;
 
 
-
     @OneToMany(mappedBy = "order", cascade = CascadeType.REFRESH)
     private List<OrderWaypoint> orderWaypoints;
+
+    @OneToOne(mappedBy = "order")
+    private OrderHistory orderHistory;
 
     public int getOrder_id() {
         return order_id;
@@ -77,6 +79,14 @@ public class Order {
 
     public void setOrderWaypoints(List<OrderWaypoint> orderWaypoints) {
         this.orderWaypoints = orderWaypoints;
+    }
+
+    public OrderHistory getOrderHistory() {
+        return orderHistory;
+    }
+
+    public void setOrderHistory(OrderHistory orderHistory) {
+        this.orderHistory = orderHistory;
     }
 
     @Override

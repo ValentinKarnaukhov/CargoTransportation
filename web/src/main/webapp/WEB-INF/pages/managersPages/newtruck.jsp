@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <form:input path="capacity" id="capacity" type="number" class="validate" required="true"/>
+                <form:input path="capacity" id="capacity" type="number" class="validate" required="true" placeholder="kg"/>
                 <label for="capacity">Capacity</label>
                 <form:errors path="capacity"/>
             </div>

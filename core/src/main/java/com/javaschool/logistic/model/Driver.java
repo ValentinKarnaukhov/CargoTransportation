@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Valentin
@@ -59,6 +60,10 @@ public class Driver {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start")
     private Date start;
+
+    @ManyToMany(mappedBy = "drivers")
+    private List<OrderHistory> historyList;
+
 
     public Driver() {
     }
@@ -141,6 +146,14 @@ public class Driver {
 
     public void setStart(Date start) {
         this.start = start;
+    }
+
+    public List<OrderHistory> getHistoryList() {
+        return historyList;
+    }
+
+    public void setHistoryList(List<OrderHistory> historyList) {
+        this.historyList = historyList;
     }
 
     @Override

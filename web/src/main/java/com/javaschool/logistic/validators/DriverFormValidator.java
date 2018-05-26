@@ -14,7 +14,6 @@ import org.springframework.validation.Validator;
 @PropertySource(value = { "classpath:validation.properties" })
 public class DriverFormValidator implements Validator {
 
-
     @Override
     public boolean supports(Class<?> aClass) {
         return Driver.class.equals(aClass);
@@ -35,6 +34,10 @@ public class DriverFormValidator implements Validator {
 
         if (!driver.getLast_name().matches("^\\D*$")) {
             errors.rejectValue("last_name", "Digit.driverForm.firstAndLastName");
+        }
+        //TODO add validation on frontend
+        if(driver.getWorked_time()<0){
+            errors.rejectValue("worked_time","Negative.DriverForm.worked_time");
         }
 
     }

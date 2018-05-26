@@ -52,7 +52,11 @@ public class ManageOrderController {
     }
 
     @RequestMapping(value = "/manager_/orders/newcargo", method = RequestMethod.POST)
-    public String createNewCargo(@ModelAttribute Waypoint waypoint){
+    public String createNewCargo(@ModelAttribute Waypoint waypoint, BindingResult bindingResult){
+        if(waypoint.getCargo().getWeight()<0){
+            bindingResult.addError(new FieldError("waypoint","cargo.weight","Weight can't be negative!"));
+            return "managersPages/newpoint";
+        }
         waypoints.add(waypoint);
         return "redirect:/manager_/orders/neworder";
     }

@@ -4,8 +4,10 @@ package com.javaschool.logistic.controller;
 import com.javaschool.logistic.dto.WaypointDto;
 import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.OrderWaypoint;
+import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
+import com.javaschool.logistic.service.api.TruckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,9 @@ public class RestController {
 
     @Autowired
     private OrderWaypointService orderWaypointService;
+
+    @Autowired
+    private TruckService truckService;
 
     @RequestMapping(value = "/driver/{driver_id}/change", method = RequestMethod.GET)
     public void changeStatus(@PathVariable int driver_id, @RequestParam String status){
@@ -49,4 +54,11 @@ public class RestController {
                 orderWaypoint.getStatus().name());
     }
 
+    //TODO change all requestMapping to GetMapping and PostMapping
+    @RequestMapping(value = "/truck/changeStatus", method = RequestMethod.GET)
+    public void changeTruckStatus(@RequestParam String number, @RequestParam String status){
+        Truck truck = truckService.findByNumber(number).get(0);
+        truck.setStatus(Truck.Status.valueOf(status));
+        truckService.updateTruck(truck);
+    }
 }

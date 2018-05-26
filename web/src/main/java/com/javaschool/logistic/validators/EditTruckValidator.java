@@ -24,7 +24,7 @@ public class EditTruckValidator  implements Validator {
 
         if(truck.getCapacity()<99)errors.rejectValue("capacity","Zero.truckForm.capacity");
 
-        if(truck.getMax_drivers()==0)errors.rejectValue("max_drivers", "Zero.truckForm.max_driver");
+        if(truck.getMax_drivers()<=0)errors.rejectValue("max_drivers", "Zero.truckForm.max_driver");
 
         if(!truck.getReg_number().matches("^([A-Z]){2}(\\d){5}$")){
             errors.rejectValue("reg_number", "NonCorrect.truckForm.reg_number");
