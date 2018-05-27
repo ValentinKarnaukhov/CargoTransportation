@@ -33,13 +33,13 @@ public class ManageTruckController {
     private EditTruckValidator editTruckValidator;
 
 
-    @RequestMapping(value = "/manager_/trucks/newtruck", method = RequestMethod.GET)
+    @GetMapping(value = "/manager_/trucks/newtruck")
     public String newTruckPage(Model model){
         model.addAttribute("truck", new Truck());
         return "managersPages/newtruck";
     }
 
-    @RequestMapping(value = "/manager_/trucks/newtruck", method = RequestMethod.POST)
+    @PostMapping(value = "/manager_/trucks/newtruck")
     public String createNewTruck(@ModelAttribute Truck truck,
                                  BindingResult bindingResult, Model model){
         truckFormValidator.validate(truck,bindingResult);
@@ -53,20 +53,20 @@ public class ManageTruckController {
 
     }
 
-    @RequestMapping(value = "/manager_/delete_truck_{truck_id}")
+    @GetMapping(value = "/manager_/delete_truck_{truck_id}")
     public String deleteDriver(@PathVariable int truck_id){
         truckService.deleteById(truck_id);
         return "redirect:/manager_/trucks";
     }
 
 
-    @RequestMapping(value = "/manager_/edit_truck_{truck_id}")
+    @GetMapping(value = "/manager_/edit_truck_{truck_id}")
     public String editDriver(@PathVariable int truck_id, Model model){
         model.addAttribute("truck", truckService.findById(truck_id));
         return "managersPages/edit_truck";
     }
 
-    @RequestMapping(value = "/manager_/edit_truck_{truck_id}", method = RequestMethod.POST)
+    @PostMapping(value = "/manager_/edit_truck_{truck_id}")
     public String updateDriver(Truck truck, @PathVariable int truck_id,
                                BindingResult bindingResult, Model model){
         editTruckValidator.validate(truck,bindingResult);

@@ -13,7 +13,7 @@
     <div class="col s3">
         <ul id="nav-mobile" class="side-nav fixed z-depth-2 left-menu">
             <div style= "height: 350px" class="blue-grey darken-2">
-                <p class="center white-text logo" >P E G A S U S</p>
+                <p class="center white-text logo" >L O G I W E B</p>
                 <p class="center white-text">${pageContext.request.userPrincipal.name} </p>
                 <br>
                 <br>

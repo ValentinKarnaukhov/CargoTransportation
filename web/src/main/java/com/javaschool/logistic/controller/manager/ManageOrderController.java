@@ -45,13 +45,13 @@ public class ManageOrderController {
 
     private List<Waypoint> waypoints = new LinkedList<>();
 
-    @RequestMapping(value = "/manager_/orders/newcargo", method = RequestMethod.GET)
+    @GetMapping(value = "/manager_/orders/newcargo")
     public String newCargo(Model model){
         model.addAttribute("waypoint", new Waypoint());
         return "managersPages/newpoint";
     }
 
-    @RequestMapping(value = "/manager_/orders/newcargo", method = RequestMethod.POST)
+    @PostMapping(value = "/manager_/orders/newcargo")
     public String createNewCargo(@ModelAttribute Waypoint waypoint, BindingResult bindingResult){
         if(waypoint.getCargo().getWeight()<0){
             bindingResult.addError(new FieldError("waypoint","cargo.weight","Weight can't be negative!"));
@@ -61,7 +61,7 @@ public class ManageOrderController {
         return "redirect:/manager_/orders/neworder";
     }
 
-    @RequestMapping(value = "/manager_/orders/neworder", method = RequestMethod.GET)
+    @GetMapping(value = "/manager_/orders/neworder")
     public String newOrder(Model model){
         model.addAttribute("waypoints",waypoints);
         model.addAttribute("order", new Order());
@@ -71,14 +71,14 @@ public class ManageOrderController {
 
 
 
-    @RequestMapping(value = "/manager_/orders/delete_point_{id}")
+    @GetMapping(value = "/manager_/orders/delete_point_{id}")
     public String deletePoint(@PathVariable int id){
         waypoints.remove(id);
         return "redirect:/manager_/orders/neworder";
     }
 
 
-    @RequestMapping(value = "/manager_/orders/neworder", method = RequestMethod.POST)
+    @PostMapping(value = "/manager_/orders/neworder")
     public String addDriverInOrder(@ModelAttribute Order order, Model model, BindingResult bindingResult){
 
         if(waypoints.isEmpty()||order.getTruck()==null){
@@ -94,9 +94,7 @@ public class ManageOrderController {
         return "managersPages/add_drivers";
     }
 
-
-    //TODO - move business logic to service
-    @RequestMapping(value = "/manager_/orders/neworder/finish", method = RequestMethod.POST)
+    @PostMapping(value = "/manager_/orders/neworder/finish")
     public String createOrder(@ModelAttribute Order order){
         Truck truck;
         try {
@@ -116,7 +114,7 @@ public class ManageOrderController {
         return "redirect:/manager_/orders?created";
     }
 
-    @RequestMapping(value = "/manager_/orders/order_info_{order_id}")
+    @GetMapping(value = "/manager_/orders/order_info_{order_id}")
     public String getOrderInfo(@PathVariable int order_id, Model model){
         try {
             model.addAttribute("cargoes",cargoService.findByOrderId(order_id) );
@@ -129,7 +127,7 @@ public class ManageOrderController {
         return "managersPages/orderInfo";
     }
 
-    @RequestMapping(value = "/manager_/orders/cancel")
+    @GetMapping(value = "/manager_/orders/cancel")
     public String cancelCreate(){
         waypoints.clear();
         return "redirect:/manager_/orders";

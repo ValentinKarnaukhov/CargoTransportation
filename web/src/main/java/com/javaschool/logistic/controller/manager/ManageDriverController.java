@@ -37,13 +37,13 @@ public class ManageDriverController {
     @Autowired
     private UserValidator userValidator;
 
-    @RequestMapping(value = "/manager_/drivers/newdriver", method = RequestMethod.GET)
+    @GetMapping(value = "/manager_/drivers/newdriver")
     public String newDriverPage(Model model){
         model.addAttribute("driver", new Driver());
         return "managersPages/newdriver";
     }
 
-    @RequestMapping(value = "/manager_/drivers/newdriver", method = RequestMethod.POST)
+    @PostMapping(value = "/manager_/drivers/newdriver")
     public String createNewDriver(@ModelAttribute Driver driver,
                                   BindingResult driverResult, Model model){
         driverFormValidator.validate(driver, driverResult);
@@ -61,19 +61,19 @@ public class ManageDriverController {
 
     }
 
-    @RequestMapping(value = "/manager_/delete_driver_{driver_id}")
+    @GetMapping(value = "/manager_/delete_driver_{driver_id}")
     public String deleteDriver(@PathVariable int driver_id){
         driverService.deleteById(driver_id);
         return "redirect:/manager_/drivers";
     }
 
-    @RequestMapping(value = "/manager_/edit_driver_{driver_id}")
+    @GetMapping(value = "/manager_/edit_driver_{driver_id}")
     public String editDriver(@PathVariable int driver_id, Model model){
         model.addAttribute("driver", driverService.findById(driver_id));
         return "managersPages/edit_driver";
     }
 
-    @RequestMapping(value = "/manager_/edit_driver_{driver_id}", method = RequestMethod.POST)
+    @PostMapping(value = "/manager_/edit_driver_{driver_id}")
     public String updateDriver(@ModelAttribute  Driver driver, @PathVariable int driver_id,
                                BindingResult bindingResult, Model model){
         driverFormValidator.validate(driver,bindingResult);

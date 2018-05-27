@@ -26,21 +26,21 @@ public class RestController {
     @Autowired
     private TruckService truckService;
 
-    @RequestMapping(value = "/driver/{driver_id}/change", method = RequestMethod.GET)
+    @GetMapping(value = "/driver/{driver_id}/change")
     public void changeStatus(@PathVariable int driver_id, @RequestParam String status){
         Driver driver = driverService.findById(driver_id);
         driver.setStatus(Driver.Status.valueOf(status));
         driverService.updateDriver(driver);
     }
 
-    @RequestMapping(value = "/driver/{driver_id}/changeCity", method = RequestMethod.GET)
+    @GetMapping(value = "/driver/{driver_id}/changeCity")
     public void changeCity(@PathVariable int driver_id, @RequestParam Integer city_id){
         Driver driver = driverService.findById(driver_id);
         driver.getCity().setCity_id(city_id);
         driverService.updateDriver(driver);
     }
 
-    @RequestMapping(value = "/driver/cargo_change", method = RequestMethod.POST)
+    @PostMapping(value = "/driver/cargo_change")
     public @ResponseBody WaypointDto changePoint(@RequestBody Map<String,Object> point){
         OrderWaypoint waypoint= orderWaypointService.findById(Integer.parseInt(point.get("point_id").toString()));
         waypoint.setStatus(OrderWaypoint.Status.valueOf(point.get("status").toString()));
@@ -54,8 +54,7 @@ public class RestController {
                 orderWaypoint.getStatus().name());
     }
 
-    //TODO change all requestMapping to GetMapping and PostMapping
-    @RequestMapping(value = "/truck/changeStatus", method = RequestMethod.GET)
+    @GetMapping(value = "/truck/changeStatus")
     public void changeTruckStatus(@RequestParam String number, @RequestParam String status){
         Truck truck = truckService.findByNumber(number).get(0);
         truck.setStatus(Truck.Status.valueOf(status));

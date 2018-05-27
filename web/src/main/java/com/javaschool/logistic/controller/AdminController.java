@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,7 +20,7 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    @PostMapping(value = "/admin")
     public String createManager(@ModelAttribute User user, BindingResult bindingResult, Model model){
         if(userService.findByEmail(user.getEmail())!=null){
             bindingResult.addError(new FieldError("manager","email","Email already exist!"));

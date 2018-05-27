@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,23 +30,19 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
 
 
-    @Autowired
-    private UserService userService;
-
-
-    @RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
+    @GetMapping(value = { "/", "/login"})
     public String loginPage() {
         return "login";
     }
 
-    @Transactional
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+
+    @GetMapping(value = "/admin")
     public String admin(ModelMap model){
         model.addAttribute("user", new User());
         return "admin";
     }
 
-    @RequestMapping(value = "/manager_", method = RequestMethod.GET)
+    @GetMapping(value = "/manager_")
     public String manager(ModelMap model){
         model.addAttribute("user", getPrincipal());
         return "redirect:/manager_/orders";
@@ -53,7 +50,7 @@ public class UserController {
 
 
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    @GetMapping(value="/logout")
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
@@ -62,7 +59,7 @@ public class UserController {
         return "redirect:/login?logout";
     }
 
-    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
+    @GetMapping(value = "/access_denied")
     public String access(){
         return "accessDenied";
     }
@@ -79,10 +76,7 @@ public class UserController {
         return userName;
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test(){
-        return "test";
-    }
+
 
 
 }

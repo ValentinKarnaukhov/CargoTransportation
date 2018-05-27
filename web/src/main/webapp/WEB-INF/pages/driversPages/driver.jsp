@@ -16,7 +16,7 @@
     <div>
         <nav>
             <div class="nav-wrapper blue-grey darken-2">
-                <a href="#" class="brand-logo driver-logo">P E G A S U S</a>
+                <a href="#" class="brand-logo driver-logo">L O G I W E B</a>
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down ">
                     <li><a href="<c:url value="/logout"/>">LOG OUT</a></li>
