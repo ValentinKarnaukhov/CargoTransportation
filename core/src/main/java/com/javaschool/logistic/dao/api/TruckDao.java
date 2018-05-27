@@ -14,6 +14,8 @@ public interface TruckDao extends GenericDao<Truck> {
 
     List<Truck> findByNumber(String number) ;
 
+    List<Truck> findAllForAdmin();
+
 
 
 }

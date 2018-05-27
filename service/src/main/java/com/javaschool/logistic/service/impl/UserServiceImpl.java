@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sun.plugin2.message.Message;
 
+import java.util.List;
+
 
 @Service("userService")
 @Transactional
@@ -61,6 +63,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public void updateUser(User user) {
         userDao.update(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
 

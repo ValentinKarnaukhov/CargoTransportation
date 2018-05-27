@@ -53,11 +53,20 @@ public class TruckDaoImpl extends GenericDaoImpl<Truck> implements TruckDao {
     }
 
     @Override
+    public List<Truck> findAllForAdmin() {
+        return getEntityManager()
+                .createQuery("SELECT u FROM Truck u")
+                .getResultList();
+    }
+
+    @Override
     public List<Truck> findAll() {
         return getEntityManager()
                 .createQuery("SELECT u FROM Truck u WHERE u.enabled = true ")
                 .getResultList();
     }
+
+
 
 
 

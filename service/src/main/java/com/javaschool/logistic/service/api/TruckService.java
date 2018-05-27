@@ -23,6 +23,8 @@ public interface TruckService {
 
     List<Truck> findByNumber(String number);
 
+    List<Truck> findAllForAdmin();
+
 
 
 }

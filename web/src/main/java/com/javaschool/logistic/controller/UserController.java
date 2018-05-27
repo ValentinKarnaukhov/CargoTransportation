@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,12 +37,6 @@ public class UserController {
     }
 
 
-    @GetMapping(value = "/admin")
-    public String admin(ModelMap model){
-        model.addAttribute("user", new User());
-        return "admin";
-    }
-
     @GetMapping(value = "/manager_")
     public String manager(ModelMap model){
         model.addAttribute("user", getPrincipal());
@@ -60,7 +55,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/access_denied")
-    public String access(){
+    public String access(Model model){
+        model.addAttribute("user", getPrincipal());
         return "accessDenied";
     }
 

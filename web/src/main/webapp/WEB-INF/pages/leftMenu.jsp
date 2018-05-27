@@ -12,7 +12,7 @@
 <div class="row light-blue-text text-accent-999">
     <div class="col s3">
         <ul id="nav-mobile" class="side-nav fixed z-depth-2 left-menu">
-            <div style= "height: 350px" class="blue-grey darken-2">
+            <div style= "height: 350px" class="blue-grey">
                 <p class="center white-text logo" >L O G I W E B</p>
                 <p class="center white-text">${pageContext.request.userPrincipal.name} </p>
                 <br>

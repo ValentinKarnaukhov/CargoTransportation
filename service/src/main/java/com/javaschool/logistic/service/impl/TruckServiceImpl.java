@@ -69,6 +69,11 @@ public class TruckServiceImpl implements TruckService {
         return truckDao.findByNumber(number);
     }
 
+    @Override
+    public List<Truck> findAllForAdmin() {
+        return truckDao.findAllForAdmin();
+    }
+
 
     private int getMaxWeight(List<Waypoint> waypoints){
         int max=0;

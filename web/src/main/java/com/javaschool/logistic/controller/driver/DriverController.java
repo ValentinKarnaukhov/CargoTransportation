@@ -42,7 +42,6 @@ public class DriverController {
     private CityService cityService;
 
 
-    //TODO add email notification
     @GetMapping(value = "/driver")
     public String loadPageForDriver(Model model){
         int driver_id = userService.findByEmail(getPrincipal()).getDriver().getDriver_id();
