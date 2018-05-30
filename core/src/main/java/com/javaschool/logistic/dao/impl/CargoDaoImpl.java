@@ -18,7 +18,7 @@ public class CargoDaoImpl extends GenericDaoImpl<Cargo> implements CargoDao {
             id=(int) getEntityManager()
                     .createQuery("SELECT MAX(u.cargo_id) FROM Cargo u")
                     .getSingleResult();
-        }catch (NoResultException e){
+        }catch (NullPointerException e){
             return 0;
         }
         return id;

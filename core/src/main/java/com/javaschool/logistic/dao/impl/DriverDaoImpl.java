@@ -58,7 +58,8 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
                         "AND (:distance/(:avgSpeed*:shift)>=(:mounth-u.worked_time)/:shift)) " +
                         "AND (u.city.city_id =:city_id)" +
                         "AND (u.user.enabled=true)" +
-                        "AND (u.truck is null)")
+                        "AND (u.truck is null)"+
+                        "AND (u.status='REST')")
                 .setParameter("distance",(double) distance)
                 .setParameter("avgSpeed",(double) avgSpeed)
                 .setParameter("shift", shift)
