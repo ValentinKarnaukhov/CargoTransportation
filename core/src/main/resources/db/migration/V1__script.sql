@@ -1,12 +1,6 @@
-DROP TABLE IF EXISTS DRIVER;
-DROP TABLE IF EXISTS ORDER_WAYPOINT;
-DROP TABLE IF EXISTS CARGO;
-DROP TABLE IF EXISTS TRUCK;
-DROP TABLE IF EXISTS ORDERS;
-DROP TABLE IF EXISTS CITY;
-DROP TABLE IF EXISTS USER;
 
-create table USER (
+
+create table if not exists USER (
   user_id BIGINT NOT NULL AUTO_INCREMENT,
   username VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
@@ -17,7 +11,7 @@ create table USER (
   UNIQUE (email)
 );
 
-create table CITY(
+create table if not exists CITY(
   city_id BIGINT NOT NULL AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
   latitude double,
@@ -26,13 +20,13 @@ create table CITY(
   UNIQUE (name)
 );
 
-create table ORDERS(
+create table if not exists ORDERS(
   order_id BIGINT NOT NULL AUTO_INCREMENT,
   is_complete BOOLEAN NOT NULL,
   PRIMARY KEY (order_id)
 );
 
-create table TRUCK(
+create table if not exists TRUCK(
   truck_id BIGINT NOT NULL AUTO_INCREMENT,
   reg_number VARCHAR(30) NOT NULL,
   max_drivers INT(30) NOT NULL,
@@ -49,7 +43,7 @@ create table TRUCK(
 
 
 
-create table CARGO(
+create table if not exists CARGO(
   cargo_id BIGINT NOT NULL AUTO_INCREMENT,
   number VARCHAR(30) NOT NULL ,
   name VARCHAR(30) NOT NULL ,
@@ -60,7 +54,7 @@ create table CARGO(
   FOREIGN KEY (order_id) REFERENCES ORDERS(order_id)
 );
 
-create table ORDER_WAYPOINT(
+create table if not exists ORDER_WAYPOINT(
   order_waypoint_id BIGINT NOT NULL AUTO_INCREMENT,
   order_id BIGINT NOT NULL,
   city_id BIGINT NOT NULL,
@@ -73,7 +67,7 @@ create table ORDER_WAYPOINT(
   FOREIGN KEY (cargo_id) REFERENCES CARGO(cargo_id)
 );
 
-create table DRIVER(
+create table if not exists DRIVER(
   driver_id BIGINT NOT NULL AUTO_INCREMENT,
   personal_code VARCHAR(30) NOT NULL ,
   first_name VARCHAR(30) NOT NULL ,
@@ -91,7 +85,7 @@ create table DRIVER(
   FOREIGN KEY (user_id) REFERENCES USER(user_id)
 );
 
-create table ORDER_HISTORY(
+create table if not exists ORDER_HISTORY(
   history_id BIGINT NOT NULL AUTO_INCREMENT,
   order_id BIGINT NOT NULL ,
   truck_id BIGINT NOT NULL,
@@ -100,7 +94,7 @@ create table ORDER_HISTORY(
   FOREIGN KEY (truck_id) REFERENCES TRUCK(truck_id)
 );
 
-create table DRIVER_ORDER_HISTORY(
+create table if not exists DRIVER_ORDER_HISTORY(
   history_id BIGINT NOT NULL ,
   driver_id BIGINT NOT NULL,
   PRIMARY KEY (history_id, driver_id),
@@ -116,15 +110,6 @@ INSERT INTO USER(username, email, password, role) VALUES ('admin',
                                                           '$2a$10$/YL1sca6O7ZFhtrAwUKULOv8FVYz96VXCl896CMbyCWikzrRCvs6q',
                                                           'ADMIN');
 
-
-
-ALTER TABLE logistic.cargo CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE logistic.city CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE logistic.driver CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE logistic.order_waypoint CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE logistic.orders CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE logistic.truck CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE logistic.user CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 INSERT INTO CITY(name, latitude, longitude) value ('Abacan',	53.720976,	91.44242300000001);
 INSERT INTO CITY(name, latitude, longitude) value ('Arhangel\'sk',	64.539304,	40.518735);

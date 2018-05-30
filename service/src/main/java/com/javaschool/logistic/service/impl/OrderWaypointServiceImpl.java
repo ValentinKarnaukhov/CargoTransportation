@@ -3,8 +3,7 @@ package com.javaschool.logistic.service.impl;
 import com.javaschool.logistic.dao.api.CargoDao;
 import com.javaschool.logistic.dao.api.OrderWaypointDao;
 import com.javaschool.logistic.dao.api.TruckDao;
-import com.javaschool.logistic.exception.ServiceException;
-import com.javaschool.logistic.exceptions.DaoException;
+
 import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
@@ -35,16 +34,12 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
     private TruckDao truckDao;
 
     @Override
-    public void createWaypoints(List<Waypoint> waypointList, Order order)throws ServiceException {
+    public void createWaypoints(List<Waypoint> waypointList, Order order) {
         OrderWaypoint orderWaypoint;
         for(Waypoint waypoint:waypointList){
             Cargo cargo = waypoint.getCargo();
             cargo.setOrder(order);
-            try {
-                cargo.setNumber("c"+(cargoDao.getLastId()+1));
-            }catch (DaoException e){
-                throw  new ServiceException("Unexpected exception",e);
-            }
+            cargo.setNumber("c"+(cargoDao.getLastId()+1));
             orderWaypoint = new OrderWaypoint();
             orderWaypoint.setCity(waypoint.getLoadingCity());
             orderWaypoint.setOrder(order);

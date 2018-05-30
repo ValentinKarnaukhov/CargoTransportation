@@ -1,6 +1,5 @@
 package com.javaschool.logistic.model;
 
-import com.sun.org.apache.regexp.internal.RE;
 
 import javax.persistence.*;
 import java.util.Date;

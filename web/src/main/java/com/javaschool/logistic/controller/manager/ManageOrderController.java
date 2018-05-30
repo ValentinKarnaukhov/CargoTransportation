@@ -1,7 +1,5 @@
 package com.javaschool.logistic.controller.manager;
 
-import com.javaschool.logistic.exception.ServiceEmptyResultException;
-import com.javaschool.logistic.exception.ServiceException;
 import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.*;
@@ -97,12 +95,9 @@ public class ManageOrderController {
     @PostMapping(value = "/manager_/orders/neworder/finish")
     public String createOrder(@ModelAttribute Order order){
         Truck truck;
-        try {
             truck = truckService.findById(order.getTruck().getTruck_id());
             orderService.createOrder(waypoints,order);
-        }catch (ServiceException e){
-            throw new RuntimeException("Unexpected exception",e);
-        }
+
 
         truck.setOrder(order);
         truck.setDrivers(order.getTruck().getDrivers());
@@ -116,13 +111,9 @@ public class ManageOrderController {
 
     @GetMapping(value = "/manager_/orders/order_info_{order_id}")
     public String getOrderInfo(@PathVariable int order_id, Model model){
-        try {
+
             model.addAttribute("cargoes",cargoService.findByOrderId(order_id) );
-        }catch (ServiceEmptyResultException e){
-            throw new NoSuchElementException("Cargoes not found");
-        }catch (ServiceException e){
-            throw new RuntimeException("Unexpected exception",e);
-        }
+
 
         return "managersPages/orderInfo";
     }
