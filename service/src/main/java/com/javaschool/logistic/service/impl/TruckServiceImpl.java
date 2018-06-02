@@ -6,6 +6,7 @@ import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.TruckService;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,9 @@ public class TruckServiceImpl implements TruckService {
     @Autowired
     private TruckDao truckDao;
 
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+
     @Override
     public List<Truck> findAllTrucks() {
         return truckDao.findAll();
@@ -31,6 +35,7 @@ public class TruckServiceImpl implements TruckService {
     @Override
     public void createTruck(Truck truck) {
         truckDao.create(truck);
+        amqpTemplate.convertAndSend("infoQueue", "update");
         LOGGER.info("Truck "+truck+" has been created");
     }
 
@@ -41,6 +46,7 @@ public class TruckServiceImpl implements TruckService {
         Truck truck = findById(truck_id);
         truck.setEnabled(false);
         truckDao.update(truck);
+        amqpTemplate.convertAndSend("infoQueue", "update");
         LOGGER.info("Truck "+truck+" has been removed");
     }
 
@@ -52,6 +58,7 @@ public class TruckServiceImpl implements TruckService {
     @Override
     public void updateTruck(Truck truck) {
         truckDao.update(truck);
+        amqpTemplate.convertAndSend("infoQueue", "update");
         LOGGER.info("Truck "+truck+" has been updated");
     }
 

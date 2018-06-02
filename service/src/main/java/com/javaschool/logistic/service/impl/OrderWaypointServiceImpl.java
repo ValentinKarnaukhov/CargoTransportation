@@ -23,7 +23,6 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
     @Autowired
     private CargoDao cargoDao;
 
-
     @Autowired
     private OrderWaypointDao orderWaypointDao;
 

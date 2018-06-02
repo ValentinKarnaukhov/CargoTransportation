@@ -38,8 +38,6 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
 
 
-
-
 	@Bean
 	public InternalResourceViewResolver resolver(){
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();

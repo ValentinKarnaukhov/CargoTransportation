@@ -5,6 +5,7 @@ import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.UserService;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +30,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class UserController {
-
 
     @GetMapping(value = { "/", "/login"})
     public String loginPage() {

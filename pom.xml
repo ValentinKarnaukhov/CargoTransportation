@@ -78,6 +78,12 @@
 			<version>4.2.5.RELEASE</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+			<version>1.4.5.RELEASE</version>
+		</dependency>
+
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>

@@ -4,8 +4,8 @@ import com.javaschool.logistic.dao.api.DriverDao;
 import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.DriverService;
-import com.javaschool.logistic.utils.DistanceCalculator;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -34,6 +34,8 @@ public class DriverServiceImpl implements DriverService {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     @Override
     public List<Driver> findAllDrivers() {
@@ -44,6 +46,7 @@ public class DriverServiceImpl implements DriverService {
     public void createDriver(Driver driver) {
         driver.setPersonal_code("d"+(driverDao.getLastId()+1));
         driverDao.create(driver);
+        amqpTemplate.convertAndSend("infoQueue", "update");
         LOGGER.info("Driver "+driver+"has been created");
     }
 
@@ -56,6 +59,7 @@ public class DriverServiceImpl implements DriverService {
         Driver driver = driverDao.findById(driver_id);
         driver.getUser().setEnabled(false);
         driverDao.update(driver);
+        amqpTemplate.convertAndSend("infoQueue", "update");
         LOGGER.info("Driver "+driver+"has been removed");
     }
 
