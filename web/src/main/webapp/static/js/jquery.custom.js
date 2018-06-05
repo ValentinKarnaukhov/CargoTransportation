@@ -108,7 +108,7 @@ $(document).on('click','.btn_ok',function () {
         beforeSend: function (xhr) {
             xhr.setRequestHeader(header, token);
         },
-        type: 'post',
+        type: 'put',
         url: '/driver/cargo_change',
         contentType: 'application/json',
         dataType: 'json',

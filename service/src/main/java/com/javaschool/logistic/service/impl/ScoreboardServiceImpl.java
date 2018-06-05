@@ -106,7 +106,7 @@ public class ScoreboardServiceImpl implements ScoreboardService {
 
         for(Driver driver:order.getOrderHistory().getDrivers()){
             res.add(driver.getPersonal_code()
-            +"-"+driver.getFirst_name()+" "+driver.getLast_name());
+            +" - "+driver.getFirst_name()+" "+driver.getLast_name());
         }
         return res;
 

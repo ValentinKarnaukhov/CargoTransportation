@@ -40,7 +40,7 @@ public class RestController {
         driverService.updateDriver(driver);
     }
 
-    @PostMapping(value = "/driver/cargo_change")
+    @PutMapping(value = "/driver/cargo_change")
     public @ResponseBody WaypointDto changePoint(@RequestBody Map<String,Object> point){
         OrderWaypoint waypoint= orderWaypointService.findById(Integer.parseInt(point.get("point_id").toString()));
         waypoint.setStatus(OrderWaypoint.Status.valueOf(point.get("status").toString()));

@@ -15,9 +15,8 @@
 <div>
     <div>
         <nav>
-            <div class="nav-wrapper blue-grey darken-2">
+            <div class="nav-wrapper blue-grey">
                 <a href="#" class="brand-logo driver-logo">L O G I W E B</a>
-
                 <ul id="nav-mobile" class="right hide-on-med-and-down ">
                     <li><a href="<c:url value="/logout"/>">LOG OUT</a></li>
                 </ul>
