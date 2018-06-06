@@ -7,6 +7,29 @@ $(document).ready(function(){
     $('.tabs').tabs();
     $('.sidenav').sidenav();
 
+
+
+
+
+
+
+
+
+
+
+    $('#reg_number').on('change',function () {
+        var object = $(this);
+       alert(object.val());
+    });
+
+
+
+
+
+
+
+
+
     $("#changeCity").on('click',function () {
        $('#city_ok').show();
        $('#city_decline').show();
@@ -142,8 +165,6 @@ $(document).on('click', '.btn_decline',function () {
     tbl_row.find('.btn_decline').hide();
     tbl_row.find('.cargoStatus option[value=1]').prop('selected',true)
 });
-
-
 
 
 

@@ -6,6 +6,7 @@ import com.javaschool.logistic.model.Truck;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,6 +68,19 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
                 .setParameter("utoday", utoday)
                 .setParameter("city_id", truck.getCity().getCity_id())
                 .getResultList();
+
+    }
+
+    @Override
+    public void setWorktimeForAll(int time, Date date) {
+        getEntityManager()
+                .createQuery("UPDATE Driver d SET d.worked_time=:time, d.start=:date" +
+                        " WHERE d.start IS NOT NULL")
+                .setParameter("time", time)
+                .setParameter("date", date).executeUpdate();
+        getEntityManager()
+                .createQuery("UPDATE Driver SET worked_time=:time")
+                .setParameter("time",time).executeUpdate();
 
     }
 

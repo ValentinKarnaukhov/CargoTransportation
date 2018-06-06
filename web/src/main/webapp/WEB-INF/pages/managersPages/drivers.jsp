@@ -81,7 +81,8 @@
         </c:forEach>
         </tbody>
     </table>
-<div ><a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/newdriver' />">Add new driver
-    <i class="material-icons left">person_add</i></a></div>
-
+<a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/newdriver' />">Add new driver
+    <i class="material-icons left">person_add</i></a>
+<a style="margin-left: 30px" class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/updateTime' />">Salary
+    <i class="material-icons left">attach_money</i></a>
 <jsp:include page="../footer.jsp"/>

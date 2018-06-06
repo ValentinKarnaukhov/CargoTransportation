@@ -4,6 +4,7 @@ package com.javaschool.logistic.service.api;
 import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.Truck;
 
+import java.util.Date;
 import java.util.List;
 
 public interface DriverService {
@@ -21,5 +22,7 @@ public interface DriverService {
     int getLastId();
 
     List<Driver> findSuitableDrivers(int distance, Truck truck);
+
+    void setWorktimeForAll(int time,Date date);
 
 }

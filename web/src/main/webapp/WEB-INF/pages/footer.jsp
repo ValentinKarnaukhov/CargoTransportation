@@ -12,7 +12,7 @@
 
 <script type="text/javascript" src="<c:url value="/static/js/jquery-2.1.1.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.autocomplete.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/js/materialize.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/materialize.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.custom.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/table.js"/>"></script>
 

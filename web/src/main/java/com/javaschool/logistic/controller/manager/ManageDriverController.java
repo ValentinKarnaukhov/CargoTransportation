@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -88,6 +89,12 @@ public class ManageDriverController {
 
     }
 
+    @GetMapping(value = "/manager_/drivers/updateTime")
+    public String updateTime(){
+        driverService.setWorktimeForAll(0,new Date());
+        return "redirect:/manager_/drivers";
+    }
+
     @ModelAttribute("cities")
     public List<City> initializeCities() {
         return cityService.findAllCities();
@@ -97,5 +104,6 @@ public class ManageDriverController {
     public Driver.Status[] initializeStatuses(){
         return Driver.Status.values();
     }
+
 
 }

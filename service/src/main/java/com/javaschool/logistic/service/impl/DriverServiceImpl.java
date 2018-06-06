@@ -108,5 +108,10 @@ public class DriverServiceImpl implements DriverService {
                 30-new GregorianCalendar().get(Calendar.DAY_OF_MONTH),truck);
     }
 
+    @Override
+    public void setWorktimeForAll(int time, Date date) {
+        driverDao.setWorktimeForAll(time,date);
+    }
+
 
 }
