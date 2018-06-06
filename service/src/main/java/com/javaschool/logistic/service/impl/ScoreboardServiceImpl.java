@@ -60,6 +60,7 @@ public class ScoreboardServiceImpl implements ScoreboardService {
         jsonResponse.setTrucksBroken(getBrokenTrucks(trucks));
         jsonResponse.setTrucksTotal(trucks.size());
         jsonResponse.setTrucksOrder(getOrderTrucks(trucks));
+        jsonResponse.setTruckAvailable(getAvailableTrucks(trucks));
         return jsonResponse;
 
     }
@@ -108,6 +109,20 @@ public class ScoreboardServiceImpl implements ScoreboardService {
             res.add(driver.getPersonal_code()
             +" - "+driver.getFirst_name()+" "+driver.getLast_name());
         }
+        return res;
+
+    }
+
+    private int getAvailableTrucks(List<Truck> trucks){
+
+        int res=0;
+
+        for(Truck truck:trucks){
+            if(truck.getOrder()!=null&&truck.getStatus().equals(Truck.Status.BROKEN)){
+                res++;
+            }
+        }
+
         return res;
 
     }

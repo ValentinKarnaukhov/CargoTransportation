@@ -17,7 +17,7 @@
         <nav>
             <div class="nav-wrapper blue-grey">
                 <a href="#" class="brand-logo driver-logo">L O G I W E B</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down ">
+                <ul id="nav-mobile" class="right">
                     <li><a href="<c:url value="/logout"/>">LOG OUT</a></li>
                 </ul>
             </div>
@@ -25,7 +25,7 @@
         <div class="pageContainer">
             <input id="driver_id" value="${driver.driver_id}" type="hidden"/>
             <div class="tableInContainer">
-                <table class="card-panel bordered highlight responsive-table padding-table">
+                <table class="card-panel bordered highlight padding-table">
                     <thead>
                     <tr>
                         <th colspan="2">PERSONAL INFORMATION</th>
@@ -84,7 +84,7 @@
                 </table>
             </div>
             <div class="tableInContainer">
-                <table class="card-panel bordered highlight responsive-table padding-table">
+                <table class="card-panel bordered highlight padding-table">
                     <thead>
                     <tr>
                         <th colspan="2">ADDITIONAL INFORMATION</th>
@@ -106,7 +106,7 @@
                 </table>
             </div>
             <div class="tableInContainer">
-                <table class="card-panel bordered highlight responsive-table padding-table">
+                <table class="card-panel bordered highlight padding-table">
                     <thead>
                     <tr>
                         <th>CO-DRIVERS</th>
@@ -126,7 +126,7 @@
                 </table>
             </div>
             <div class="main-table">
-                <table class="card-panel highlight bordered responsive-table centered table">
+                <table class="card-panel highlight bordered centered table">
                     <thead>
                     <tr>
                         <th>CARGO NUMBER</th>

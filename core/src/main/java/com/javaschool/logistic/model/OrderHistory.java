@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "order_history")
+@Table(name = "ORDER_HISTORY")
 public class OrderHistory {
 
     @Id
@@ -22,7 +22,7 @@ public class OrderHistory {
     private Truck truck;
 
     @ManyToMany
-    @JoinTable(name = "driver_order_history",
+    @JoinTable(name = "DRIVER_ORDER_HISTORY",
     joinColumns = { @JoinColumn(name = "history_id")},
     inverseJoinColumns = {@JoinColumn(name = "driver_id")})
     private List<Driver> drivers;

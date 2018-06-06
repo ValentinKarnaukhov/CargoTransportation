@@ -11,25 +11,25 @@
     <link href="<c:url value='/static/css/table.css' />" rel="stylesheet"/>
 </head>
 <body>
-<nav>
+<nav class="nav-extended">
     <div class="nav-wrapper blue-grey">
-        <a href="#" class="brand-logo left">L O G I W E B</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a href="#" class="brand-logo">L O G I W E B</a>
+        <ul id="nav-mobile" class="right">
             <li><a href="<c:url value="/manager_"/>">MANAGER</a></li>
             <li><a href="<c:url value="/logout"/>">LOGOUT</a></li>
 
         </ul>
     </div>
-    <div class="nav-content">
+    <div class="nav-content  blue-grey lighten-1">
         <ul class="tabs tabs-transparent">
-            <li class="tab"><a href="#1">USERS</a></li>
+            <li class="tab"><a class="active"  href="#1">USERS</a></li>
             <li class="tab"><a href="#2">TRUCKS</a></li>
-            <li class="tab"><a class="active" href="#3">ADD MANAGER</a></li>
+            <li class="tab"><a href="#3">ADD MANAGER</a></li>
         </ul>
     </div>
 </nav>
 <%--FIRST--%>
-<div id="1" class="col s12" style="margin-top: 4%; margin-left: 2%; margin-right: 2%">
+<div id="1" class="col s12" style="margin-left: 2%; margin-right: 2%; margin-top: 1%">
     <table class="centered bordered highlight card-panel table">
         <thead>
         <tr>
@@ -52,11 +52,10 @@
         </c:forEach>
         </tbody>
     </table>
-    <div ><a class="waves-effect waves-light btn blue-grey" href="#">Add manager</a></div>
 </div>
 
 <%--SECOND--%>
-<div id="2" class="col s12" style="margin-top: 4%; margin-left: 2%; margin-right: 2%">
+<div id="2" class="col s12" style="margin-left: 2%; margin-right: 2%; margin-top: 1%">
 
     <table class="centered bordered highlight card-panel table">
         <thead>
@@ -90,7 +89,7 @@
 </div>
 
 <div id="3" class="col s12">
-    <div  class="row card-panel driver-truck" style="margin-left: 20%; margin-top: 4%">
+    <div  class="row card-panel driver-truck" style="margin-left: 20%; margin-top: 1%">
         <form:form id="formValidate" modelAttribute="user" class="col s12" method="post" >
 
             <div class="row">

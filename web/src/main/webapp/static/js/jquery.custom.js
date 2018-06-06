@@ -3,7 +3,9 @@ $(document).ready(function(){
         "pagingType": "simple_numbers"
     } );
 
-    $('select').material_select();
+    $('select').formSelect();
+    $('.tabs').tabs();
+    $('.sidenav').sidenav();
 
     $("#changeCity").on('click',function () {
        $('#city_ok').show();

@@ -12,6 +12,15 @@ public class JsonResponse implements Serializable {
     private int trucksTotal;
     private int trucksOrder;
     private int trucksBroken;
+    private int truckAvailable;
+
+    public int getTruckAvailable() {
+        return truckAvailable;
+    }
+
+    public void setTruckAvailable(int truckAvailable) {
+        this.truckAvailable = truckAvailable;
+    }
 
     public List<ScoreboardRow> getRows() {
         return rows;

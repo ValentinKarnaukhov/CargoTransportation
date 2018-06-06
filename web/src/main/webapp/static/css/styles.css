@@ -30,6 +30,7 @@ body{
 
 .tableInContainer{
     width: 400px;
+    display: table;
 }
 
 .main-table{
@@ -95,4 +96,27 @@ body{
 .img{
     margin-left: 10px;
     margin-bottom: -5px;
+}
+
+.sidenav-trigger{
+    display: none;
+}
+
+@media only screen and (max-width : 992px) {
+    .in-left-menu{
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 2%;
+    }
+
+    .sidenav-trigger{
+        display: block;
+    }
+    .main-table{
+        width: 65%;
+    }
+    .tableInContainer{
+        width: 28%;
+    }
+
 }
