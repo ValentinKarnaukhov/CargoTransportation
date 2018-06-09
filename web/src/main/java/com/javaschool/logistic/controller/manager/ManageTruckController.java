@@ -6,7 +6,6 @@ import com.javaschool.logistic.model.City;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.TruckService;
-import com.javaschool.logistic.validators.EditTruckValidator;
 import com.javaschool.logistic.validators.TruckFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +28,6 @@ public class ManageTruckController {
     @Autowired
     private TruckFormValidator truckFormValidator;
 
-    @Autowired
-    private EditTruckValidator editTruckValidator;
 
 
     @GetMapping(value = "/manager_/trucks/newtruck")
@@ -42,7 +39,7 @@ public class ManageTruckController {
     @PostMapping(value = "/manager_/trucks/newtruck")
     public String createNewTruck(@ModelAttribute Truck truck,
                                  BindingResult bindingResult, Model model){
-        truckFormValidator.validate(truck,bindingResult);
+        truckFormValidator.customValidate(truck,bindingResult,false);
         if(bindingResult.hasErrors()){
             model.addAttribute("truck", truck);
             return "managersPages/newtruck";
@@ -69,7 +66,7 @@ public class ManageTruckController {
     @PostMapping(value = "/manager_/edit_truck_{truck_id}")
     public String updateDriver(Truck truck, @PathVariable int truck_id,
                                BindingResult bindingResult, Model model){
-        editTruckValidator.validate(truck,bindingResult);
+        truckFormValidator.customValidate(truck,bindingResult,true);
         if(bindingResult.hasErrors()){
             model.addAttribute("truck", truck);
             return "managersPages/edit_truck";

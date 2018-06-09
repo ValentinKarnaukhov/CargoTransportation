@@ -34,6 +34,7 @@ public class TruckServiceImpl implements TruckService {
 
     @Override
     public void createTruck(Truck truck) {
+        truck.setReg_number(truck.getReg_number().toUpperCase());
         truckDao.create(truck);
         amqpTemplate.convertAndSend("infoQueue", "update");
         LOGGER.info("Truck "+truck+" has been created");
@@ -57,6 +58,7 @@ public class TruckServiceImpl implements TruckService {
 
     @Override
     public void updateTruck(Truck truck) {
+        truck.setReg_number(truck.getReg_number().toUpperCase());
         truckDao.update(truck);
         amqpTemplate.convertAndSend("infoQueue", "update");
         LOGGER.info("Truck "+truck+" has been updated");

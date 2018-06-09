@@ -34,5 +34,9 @@ public class UserValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "NotEmpty.userForm.email");
 
+        if(!user.getEmail().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")) {
+            errors.rejectValue("user.email", "Incorrect.user.email");
+        }
     }
+
 }

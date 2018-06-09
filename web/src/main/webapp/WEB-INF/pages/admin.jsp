@@ -90,7 +90,7 @@
 
 <div id="3" class="col s12">
     <div  class="row card-panel driver-truck" style="margin-left: 20%; margin-top: 1%">
-        <form:form id="formValidate" modelAttribute="user" class="col s12" method="post" >
+        <form:form id="user" modelAttribute="user" class="col s12" method="post" >
 
             <div class="row">
                 <div class="input-field col s12">
@@ -104,7 +104,7 @@
                 <div class="input-field col s12">
                     <form:input path="email" id="email" type="email" class="validate" required="true"/>
                     <label for="email">Email</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">example@example.com</span>
+                    <span class="helper-text">example@example.com</span>
                     <form:errors path="email"/>
                 </div>
             </div>

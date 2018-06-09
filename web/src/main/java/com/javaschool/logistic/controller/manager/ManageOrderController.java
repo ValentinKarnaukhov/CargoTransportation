@@ -49,8 +49,8 @@ public class ManageOrderController {
 
     @PostMapping(value = "/manager_/orders/newcargo")
     public String createNewCargo(@ModelAttribute Waypoint waypoint, BindingResult bindingResult){
-        if(waypoint.getCargo().getWeight()<0){
-            bindingResult.addError(new FieldError("waypoint","cargo.weight","Weight can't be negative!"));
+        if(waypoint.getCargo().getWeight()<0||waypoint.getCargo().getWeight()>10000){
+            bindingResult.addError(new FieldError("waypoint","cargo.weight","Weight can't be negative or too much!"));
             return "managersPages/newpoint";
         }
         waypoints.add(waypoint);

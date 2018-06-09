@@ -35,10 +35,12 @@ public class DriverFormValidator implements Validator {
         if (!driver.getLast_name().matches("^\\D*$")) {
             errors.rejectValue("last_name", "Digit.driverForm.firstAndLastName");
         }
-        //TODO add validation on frontend
-        if(driver.getWorked_time()<0){
+
+        if(driver.getWorked_time()<0||driver.getWorked_time()>=300){
             errors.rejectValue("worked_time","Negative.DriverForm.worked_time");
         }
+
+
 
     }
 }

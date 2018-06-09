@@ -5,7 +5,7 @@ $(document).ready(function () {
     }, "Incorrect format, example: example@example.com");
 
     $.validator.addMethod("truckNumber", function(value, element) {
-        return this.optional(element) || /^([A-Z]){2}(\d){5}$/.test(value);
+        return this.optional(element) || /^(\D*){2}(\d){5}$/.test(value);
     }, "Incorrect format, example: AB12345");
 
     $.validator.addMethod("letters", function(value, element) {
@@ -52,6 +52,31 @@ $(document).ready(function () {
                min:0
            }
        },
+        errorElement : 'span',
+        errorPlacement: function(error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error)
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+
+    $('#truck').validate({
+        rules:{
+            'reg_number':{
+                truckNumber:true
+            },
+            'max_drivers':{
+                max:4,
+                min:1
+            },
+            'capacity':{
+                max:100000,
+                min:100
+            }
+        },
         errorElement : 'span',
         errorPlacement: function(error, element) {
             var placement = $(element).data('error');

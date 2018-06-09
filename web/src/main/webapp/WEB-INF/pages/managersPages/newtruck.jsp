@@ -19,12 +19,12 @@
 <h5 class="indigo-text">CREATE NEW TRUCK</h5>
 <div class="section"></div>
 <div  class="row card-panel driver-truck">
-    <form:form id="formValidate" modelAttribute="truck" class="col s12" method="post" >
+    <form:form id="truck" modelAttribute="truck" class="col s12" method="post" >
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="reg_number" id="reg_number" type="text" class="validate" required="true"/>
                 <label for="reg_number">Registration number</label>
-                <span class="helper-text" data-error="Incorrect format, Example: AB12345.">Example: AB12345</span>
+                <span class="helper-text" >Example: AB12345</span>
                 <form:errors path="reg_number"/>
             </div>
         </div>
