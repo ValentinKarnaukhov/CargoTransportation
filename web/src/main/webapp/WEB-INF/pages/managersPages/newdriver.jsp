@@ -37,7 +37,7 @@
             <div class="input-field col s12">
                 <form:input path="user.email" id="email" type="email" class="validate" required="true"/>
                 <label for="email">Email</label>
-                <span class="helper-text" data-error="wrong" data-success="right">example@example.com</span>
+                <span class="helper-text" data-error="Incorrect format, example example@example.com.">example@example.com</span>
                 <form:errors path="user.email"/>
             </div>
         </div>

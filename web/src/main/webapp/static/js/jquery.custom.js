@@ -8,28 +8,6 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
 
 
-
-
-
-
-
-
-
-
-
-    $('#reg_number').on('change',function () {
-        var object = $(this);
-       alert(object.val());
-    });
-
-
-
-
-
-
-
-
-
     $("#changeCity").on('click',function () {
        $('#city_ok').show();
        $('#city_decline').show();
@@ -107,6 +85,8 @@ $('[name = finish]').on('submit',function () {
     var errors = $('.errors');
     errors.empty();
     if(choose!=max){
+        alert(max);
+        alert(choose);
         errors.append("You should choose ", max, " drivers");
         return false;
     }

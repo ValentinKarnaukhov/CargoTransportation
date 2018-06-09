@@ -2,6 +2,7 @@ package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.DriverDao;
 import com.javaschool.logistic.model.Driver;
+import com.javaschool.logistic.model.Order;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.DriverService;
 import org.apache.log4j.Logger;

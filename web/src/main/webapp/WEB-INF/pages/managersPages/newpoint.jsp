@@ -21,9 +21,10 @@
 <div  class="row card-panel driver-truck">
     <form:form  modelAttribute="waypoint" class="col s12" method="post" >
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <form:input path="cargo.name" id="name" type="text" class="validate" required="true"/>
                 <label for="name">Name</label>
+
                 <form:errors path="cargo.name"/>
             </div>
         </div>

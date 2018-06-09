@@ -15,6 +15,8 @@
 <script type="text/javascript" src="<c:url value="/static/js/materialize.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.custom.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/table.js"/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<c:url value="/static/js/validate.js"/>"></script>
 
 </body>
 </html>

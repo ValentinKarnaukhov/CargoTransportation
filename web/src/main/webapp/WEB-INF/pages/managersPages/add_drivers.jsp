@@ -26,7 +26,7 @@
     <div class="input-field col s12">
         <div >DRIVERS</div>
         <form:select id ="driver" path="truck.drivers" multiple="true">
-            <form:option value="" disabled="true" selected="true">Select ${amount} drivers</form:option>
+            <form:option value="" disabled="true">Select ${amount} drivers</form:option>
             <c:forEach items="${driverList}" var="driver">
                 <form:option value="${driver.driver_id}">${driver.last_name} ${driver.first_name}</form:option>
             </c:forEach>

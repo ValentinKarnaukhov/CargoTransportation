@@ -26,7 +26,7 @@
             <div class="input-field col s12">
                 <form:input path="reg_number" id="reg_number" type="text" class="validate" required="true"/>
                 <label for="reg_number">Registration number</label>
-                <span class="helper-text" data-error="wrong" data-success="right">Example: AB12345</span>
+                <span class="helper-text" data-error="Incorrect format, example: AB12345." >Example: AB12345</span>
                 <form:errors path="reg_number"/>
             </div>
         </div>

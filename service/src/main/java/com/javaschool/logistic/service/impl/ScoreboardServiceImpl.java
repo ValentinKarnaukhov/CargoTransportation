@@ -118,7 +118,7 @@ public class ScoreboardServiceImpl implements ScoreboardService {
         int res=0;
 
         for(Truck truck:trucks){
-            if(truck.getOrder()!=null&&truck.getStatus().equals(Truck.Status.BROKEN)){
+            if(truck.getOrder()==null&&truck.getStatus().equals(Truck.Status.OK)){
                 res++;
             }
         }

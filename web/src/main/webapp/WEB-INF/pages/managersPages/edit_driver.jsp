@@ -36,7 +36,6 @@
                 <form:input path="last_name" id="last_name" type="text" class="validate" required="true"/>
                 <label for="last_name">Last Name</label>
                 <form:errors path="last_name"/>
-
             </div>
         </div>
         <%--<div class="row">--%>
