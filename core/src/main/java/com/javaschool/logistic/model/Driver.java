@@ -1,8 +1,8 @@
 package com.javaschool.logistic.model;
 
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "DRIVER")
-public class Driver {
+public class Driver implements Serializable {
 
     public enum Status{
         REST,
@@ -64,9 +64,6 @@ public class Driver {
     @ManyToMany(mappedBy = "drivers")
     private List<OrderHistory> historyList;
 
-
-    public Driver() {
-    }
 
     public int getDriver_id() {
         return driver_id;

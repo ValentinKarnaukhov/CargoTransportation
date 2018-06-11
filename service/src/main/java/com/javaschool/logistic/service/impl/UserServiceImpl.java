@@ -18,7 +18,6 @@ import java.util.List;
 
 
 @Service("userService")
-@Transactional
 public class UserServiceImpl implements UserService{
 
     private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
@@ -40,6 +39,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private MessageWrapper wrapper;
 
+    @Transactional
     @Override
     public void createUser(User user) {
         String password = passwordGenerator.getGeneratedPassword();
@@ -49,21 +49,25 @@ public class UserServiceImpl implements UserService{
         LOGGER.info("User "+user+" has been created" );
     }
 
+    @Transactional
     @Override
     public User findByEmail(String email) {
         return userDao.findByEmail(email);
     }
 
+    @Transactional
     @Override
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
+    @Transactional
     @Override
     public void updateUser(User user) {
         userDao.update(user);
     }
 
+    @Transactional
     @Override
     public List<User> findAll() {
         return userDao.findAll();

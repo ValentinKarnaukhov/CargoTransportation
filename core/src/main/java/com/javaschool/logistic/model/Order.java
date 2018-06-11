@@ -2,9 +2,8 @@ package com.javaschool.logistic.model;
 
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Valentin
@@ -13,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ORDERS")
-public class Order {
+public class Order implements Serializable {
 
 
     @Id

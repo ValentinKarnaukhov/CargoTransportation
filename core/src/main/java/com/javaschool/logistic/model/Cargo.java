@@ -1,7 +1,11 @@
 package com.javaschool.logistic.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +14,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "CARGO")
-public class Cargo {
+@Getter
+@Setter
+public class Cargo implements Serializable {
 
     public enum Status{
         PREPARE,
@@ -44,62 +50,6 @@ public class Cargo {
 
     @OneToMany(mappedBy = "cargo")
     private List<OrderWaypoint> orderWaypoint;
-
-    public int getCargo_id() {
-        return cargo_id;
-    }
-
-    public void setCargo_id(int cargo_id) {
-        this.cargo_id = cargo_id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public List<OrderWaypoint> getOrderWaypoint() {
-        return orderWaypoint;
-    }
-
-    public void setOrderWaypoint(List<OrderWaypoint> orderWaypoint) {
-        this.orderWaypoint = orderWaypoint;
-    }
 
     @Override
     public String toString() {

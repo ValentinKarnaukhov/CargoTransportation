@@ -69,4 +69,17 @@ public class JsonResponse implements Serializable {
     public void setTrucksBroken(int trucksBroken) {
         this.trucksBroken = trucksBroken;
     }
+
+    @Override
+    public String toString() {
+        return "JsonResponse{" +
+                "rows=" + rows +
+                ", driversTotal=" + driversTotal +
+                ", driversBusy=" + driversBusy +
+                ", trucksTotal=" + trucksTotal +
+                ", trucksOrder=" + trucksOrder +
+                ", trucksBroken=" + trucksBroken +
+                ", truckAvailable=" + truckAvailable +
+                '}';
+    }
 }

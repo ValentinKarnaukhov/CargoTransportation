@@ -1,7 +1,6 @@
 package com.javaschool.logistic.dao.impl;
 
 
-import java.util.List;
 import com.javaschool.logistic.dao.api.UserDao;
 import com.javaschool.logistic.model.User;
 import org.apache.log4j.Logger;

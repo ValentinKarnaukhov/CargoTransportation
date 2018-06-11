@@ -1,6 +1,5 @@
 package com.javaschool.logistic.service.api;
 
-import com.javaschool.logistic.model.OrderWaypoint;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.models.Waypoint;
 

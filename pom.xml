@@ -22,7 +22,9 @@
 		<log4j.version>1.2.17</log4j.version>
 		<sonar.exclusions>
 			src/main/webapp/static/js/table.js,
-			src/main/webapp/static/js/jquery.autocomplete.js
+			src/main/webapp/static/js/jquery.autocomplete.js,
+			src/main/webapp/static/js/materialize.js,
+			src/main/webapp/static/js/jquery.custom.js
 		</sonar.exclusions>
 	</properties>
 
@@ -167,6 +169,28 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!--Tests-->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.0</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -198,7 +222,27 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-        <plugins>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.1</version>
+				<executions>
+					<execution>
+						<id>jacoco-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -234,4 +278,5 @@
         </plugins>
 		<finalName>logistic</finalName>
 	</build>
+
 </project>

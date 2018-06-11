@@ -6,7 +6,6 @@ import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
-import com.javaschool.logistic.service.api.TruckService;
 import com.javaschool.logistic.service.api.UserService;
 import com.javaschool.logistic.validators.DriverFormValidator;
 import com.javaschool.logistic.validators.UserValidator;
@@ -38,9 +37,12 @@ public class ManageDriverController {
     @Autowired
     private UserValidator userValidator;
 
+    private String driverAttribute = "driver";
+    private String redirectToDriverPage = "redirect:/manager_/drivers";
+
     @GetMapping(value = "/manager_/drivers/newdriver")
     public String newDriverPage(Model model){
-        model.addAttribute("driver", new Driver());
+        model.addAttribute(driverAttribute, new Driver());
         return "managersPages/newdriver";
     }
 
@@ -50,14 +52,14 @@ public class ManageDriverController {
         driverFormValidator.validate(driver, driverResult);
         userValidator.validate(driver.getUser(),driverResult);
         if(driverResult.hasErrors()){
-            model.addAttribute("driver", driver);
+            model.addAttribute(driverAttribute, driver);
             return "managersPages/newdriver";
         }else {
             driver.getUser().setRole(User.Role.DRIVER);
             driver.getUser().setUsername(driver.getFirst_name());
             userService.createUser(driver.getUser());
             driverService.createDriver(driver);
-            return "redirect:/manager_/drivers";
+            return redirectToDriverPage;
         }
 
     }
@@ -65,12 +67,12 @@ public class ManageDriverController {
     @GetMapping(value = "/manager_/delete_driver_{driver_id}")
     public String deleteDriver(@PathVariable int driver_id){
         driverService.deleteById(driver_id);
-        return "redirect:/manager_/drivers";
+        return redirectToDriverPage;
     }
 
     @GetMapping(value = "/manager_/edit_driver_{driver_id}")
     public String editDriver(@PathVariable int driver_id, Model model){
-        model.addAttribute("driver", driverService.findById(driver_id));
+        model.addAttribute(driverAttribute, driverService.findById(driver_id));
         return "managersPages/edit_driver";
     }
 
@@ -79,20 +81,22 @@ public class ManageDriverController {
                                BindingResult bindingResult, Model model){
         driverFormValidator.validate(driver,bindingResult);
         if(bindingResult.hasErrors()){
-            model.addAttribute("driver", driver);
+            model.addAttribute(driverAttribute, driver);
             return "managersPages/edit_driver";
         }else {
             if(driver.getTruck().getTruck_id()==0)driver.setTruck(null);
             driverService.updateDriver(driver);
-            return "redirect:/manager_/drivers";
+            return redirectToDriverPage;
         }
 
     }
 
+    //TODO autowired to constructor
+
     @GetMapping(value = "/manager_/drivers/updateTime")
     public String updateTime(){
         driverService.setWorktimeForAll(0,new Date());
-        return "redirect:/manager_/drivers";
+        return redirectToDriverPage;
     }
 
     @ModelAttribute("cities")

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DriverDao extends GenericDao<Driver> {
 
-    void deleteById(int id);
+    void deleteById(int driver_id);
 
     Driver findById(int id);
 

@@ -40,6 +40,7 @@ public class ManageOrderController {
     private CargoService cargoService;
 
     private List<Waypoint> waypoints = new LinkedList<>();
+    private String orderAttribute = "order";
 
     @GetMapping(value = "/manager_/orders/newcargo")
     public String newCargo(Model model){
@@ -60,7 +61,7 @@ public class ManageOrderController {
     @GetMapping(value = "/manager_/orders/neworder")
     public String newOrder(Model model){
         model.addAttribute("waypoints",waypoints);
-        model.addAttribute("order", new Order());
+        model.addAttribute(orderAttribute, new Order());
         model.addAttribute("trucks",truckService.findSuitableTrucks(waypoints));
         return "managersPages/neworder";
     }
@@ -84,7 +85,7 @@ public class ManageOrderController {
 
         int distance = distanceCalculator.calculate(order.getTruck(),waypoints);
         model.addAttribute("driverList", driverService.findSuitableDrivers(distance,order.getTruck()));
-        model.addAttribute("order", order);
+        model.addAttribute(orderAttribute, order);
         model.addAttribute("amount",order.getTruck().getMax_drivers());
         model.addAttribute("truck",order.getTruck());
         return "managersPages/add_drivers";
@@ -93,10 +94,8 @@ public class ManageOrderController {
     @PostMapping(value = "/manager_/orders/neworder/finish")
     public String createOrder(@ModelAttribute Order order){
         Truck truck;
-            truck = truckService.findById(order.getTruck().getTruck_id());
-            orderService.createOrder(waypoints,order);
-
-
+        truck = truckService.findById(order.getTruck().getTruck_id());
+        orderService.createOrder(waypoints,order);
         truck.setOrder(order);
         truck.setDrivers(order.getTruck().getDrivers());
         for(Driver driver:order.getTruck().getDrivers()){

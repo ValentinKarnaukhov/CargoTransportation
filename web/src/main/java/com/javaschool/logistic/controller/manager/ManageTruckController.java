@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+
 @Controller
 public class ManageTruckController {
+
 
     @Autowired
     private CityService cityService;
@@ -28,11 +30,12 @@ public class ManageTruckController {
     @Autowired
     private TruckFormValidator truckFormValidator;
 
-
+    private String truckAttribute = "truck";
+    private String redirectToTrucksPage = "redirect:/manager_/trucks";
 
     @GetMapping(value = "/manager_/trucks/newtruck")
     public String newTruckPage(Model model){
-        model.addAttribute("truck", new Truck());
+        model.addAttribute(truckAttribute, new Truck());
         return "managersPages/newtruck";
     }
 
@@ -41,11 +44,11 @@ public class ManageTruckController {
                                  BindingResult bindingResult, Model model){
         truckFormValidator.customValidate(truck,bindingResult,false);
         if(bindingResult.hasErrors()){
-            model.addAttribute("truck", truck);
+            model.addAttribute(truckAttribute, truck);
             return "managersPages/newtruck";
         }else {
             truckService.createTruck(truck);
-            return "redirect:/manager_/trucks";
+            return redirectToTrucksPage;
         }
 
     }
@@ -53,13 +56,13 @@ public class ManageTruckController {
     @GetMapping(value = "/manager_/delete_truck_{truck_id}")
     public String deleteDriver(@PathVariable int truck_id){
         truckService.deleteById(truck_id);
-        return "redirect:/manager_/trucks";
+        return redirectToTrucksPage;
     }
 
 
     @GetMapping(value = "/manager_/edit_truck_{truck_id}")
     public String editDriver(@PathVariable int truck_id, Model model){
-        model.addAttribute("truck", truckService.findById(truck_id));
+        model.addAttribute(truckAttribute, truckService.findById(truck_id));
         return "managersPages/edit_truck";
     }
 
@@ -68,12 +71,12 @@ public class ManageTruckController {
                                BindingResult bindingResult, Model model){
         truckFormValidator.customValidate(truck,bindingResult,true);
         if(bindingResult.hasErrors()){
-            model.addAttribute("truck", truck);
+            model.addAttribute(truckAttribute, truck);
             return "managersPages/edit_truck";
         }else {
             if(truck.getOrder().getOrder_id()==0)truck.setOrder(null);
             truckService.updateTruck(truck);
-            return "redirect:/manager_/trucks";
+            return redirectToTrucksPage;
         }
 
     }

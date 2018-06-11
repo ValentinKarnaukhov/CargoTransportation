@@ -16,7 +16,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class ScoreboardServiceImpl implements ScoreboardService {
 
 
@@ -29,7 +28,9 @@ public class ScoreboardServiceImpl implements ScoreboardService {
     @Autowired
     private DriverDao driverDao;
 
+
     @Override
+    @Transactional
     public JsonResponse getResponse() {
         return createResponse();
     }

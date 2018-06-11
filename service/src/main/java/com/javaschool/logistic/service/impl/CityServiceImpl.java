@@ -15,24 +15,29 @@ import java.util.List;
  * @author Valentin
  */
 @Service
-@Transactional
 public class CityServiceImpl implements CityService {
 
     @Autowired
     private CityDao cityDao;
 
+
     @Override
+    @Transactional
     public void createCity(City city) {
         cityDao.create(city);
 
     }
 
+
     @Override
+    @Transactional
     public List<Truck> findAllTrucks(String cityName) {
         return cityDao.findAllTrucks(cityName);
     }
 
+
     @Override
+    @Transactional
     public List<City> findAllCities() {
         return cityDao.findAll();
     }

@@ -39,15 +39,9 @@ public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
 
     @Override
     public int getLastId() {
-        int id;
-        try {
-            id=(int) getEntityManager()
-                    .createQuery("SELECT MAX(u.driver_id) FROM Driver u")
-                    .getSingleResult();
-        }catch (NullPointerException e){
-            return 0;
-        }
-        return id;
+        return (int) getEntityManager()
+                .createQuery("SELECT MAX(driver_id) FROM Driver")
+                .getSingleResult();
     }
 
     @Override

@@ -16,7 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-@Transactional
 public class TruckServiceImpl implements TruckService {
 
     private static final Logger LOGGER = Logger.getLogger(TruckServiceImpl.class);
@@ -27,11 +26,13 @@ public class TruckServiceImpl implements TruckService {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @Transactional
     @Override
     public List<Truck> findAllTrucks() {
         return truckDao.findAll();
     }
 
+    @Transactional
     @Override
     public void createTruck(Truck truck) {
         truck.setReg_number(truck.getReg_number().toUpperCase());
@@ -41,7 +42,7 @@ public class TruckServiceImpl implements TruckService {
     }
 
 
-
+    @Transactional
     @Override
     public void deleteById(int truck_id) {
         Truck truck = findById(truck_id);
@@ -51,11 +52,13 @@ public class TruckServiceImpl implements TruckService {
         LOGGER.info("Truck "+truck+" has been removed");
     }
 
+    @Transactional
     @Override
     public Truck findById(int truck_id) {
         return truckDao.findById(truck_id);
     }
 
+    @Transactional
     @Override
     public void updateTruck(Truck truck) {
         truck.setReg_number(truck.getReg_number().toUpperCase());
@@ -64,6 +67,7 @@ public class TruckServiceImpl implements TruckService {
         LOGGER.info("Truck "+truck+" has been updated");
     }
 
+    @Transactional
     @Override
     public List<Truck> findSuitableTrucks(List<Waypoint> waypoints) {
         if(waypoints.isEmpty()){
@@ -73,11 +77,13 @@ public class TruckServiceImpl implements TruckService {
         }
     }
 
+    @Transactional
     @Override
     public List<Truck> findByNumber(String number) {
         return truckDao.findByNumber(number);
     }
 
+    @Transactional
     @Override
     public List<Truck> findAllForAdmin() {
         return truckDao.findAllForAdmin();

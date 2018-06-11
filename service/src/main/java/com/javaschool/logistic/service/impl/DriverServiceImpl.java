@@ -2,7 +2,6 @@ package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.DriverDao;
 import com.javaschool.logistic.model.Driver;
-import com.javaschool.logistic.model.Order;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.DriverService;
 import org.apache.log4j.Logger;
@@ -23,7 +22,7 @@ import java.util.List;
  */
 
 @Service
-@Transactional
+
 @PropertySource(value = { "classpath:appConfig.properties" })
 public class DriverServiceImpl implements DriverService {
 
@@ -38,38 +37,48 @@ public class DriverServiceImpl implements DriverService {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+
     @Override
+    @Transactional
     public List<Driver> findAllDrivers() {
         return driverDao.findAll();
     }
 
+
     @Override
+    @Transactional
     public void createDriver(Driver driver) {
         driver.setPersonal_code("d"+(driverDao.getLastId()+1));
         driverDao.create(driver);
         amqpTemplate.convertAndSend("infoQueue", "update");
-        LOGGER.info("Driver "+driver+"has been created");
+        LOGGER.info(driver+"has been created");
     }
 
     public int getLastId(){
         return driverDao.getLastId();
     }
 
+
     @Override
+    @Transactional
     public void deleteById(int driver_id) {
         Driver driver = driverDao.findById(driver_id);
         driver.getUser().setEnabled(false);
         driverDao.update(driver);
         amqpTemplate.convertAndSend("infoQueue", "update");
-        LOGGER.info("Driver "+driver+"has been removed");
+        LOGGER.info(driver+"has been removed");
     }
 
+
     @Override
+    @Transactional
     public Driver findById(int driver_id) {
         return driverDao.findById(driver_id);
     }
 
+
     @Override
+    @Transactional
     public void updateDriver(Driver driver) {
 
         Driver currentDriver = driverDao.findById(driver.getDriver_id());
@@ -85,7 +94,6 @@ public class DriverServiceImpl implements DriverService {
                 currentDriver.getStatus().equals(Driver.Status.REST)){
 
             driver.setStart(date);
-
         }
 
         if(driver.getStatus().equals(Driver.Status.REST)&&
@@ -96,11 +104,13 @@ public class DriverServiceImpl implements DriverService {
         }
 
         driver.setUser(currentDriver.getUser());
-        LOGGER.info("Driver "+driver+"has been updated");
+        LOGGER.info(driver+"has been updated");
         driverDao.update(driver);
     }
 
+
     @Override
+    @Transactional
     public List<Driver> findSuitableDrivers(int distance, Truck truck){
         return driverDao.findSuitableDrivers(distance,
                 Integer.parseInt(environment.getProperty("avgSpeed")),
@@ -109,7 +119,9 @@ public class DriverServiceImpl implements DriverService {
                 30-new GregorianCalendar().get(Calendar.DAY_OF_MONTH),truck);
     }
 
+
     @Override
+    @Transactional
     public void setWorktimeForAll(int time, Date date) {
         driverDao.setWorktimeForAll(time,date);
     }

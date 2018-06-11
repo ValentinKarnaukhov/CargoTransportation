@@ -17,7 +17,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class OrderWaypointServiceImpl implements OrderWaypointService {
 
     @Autowired
@@ -32,7 +31,9 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
     @Autowired
     private TruckDao truckDao;
 
+
     @Override
+    @Transactional
     public void createWaypoints(List<Waypoint> waypointList, Order order) {
         OrderWaypoint orderWaypoint;
         for(Waypoint waypoint:waypointList){
@@ -57,18 +58,23 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
 
     }
 
+
     @Override
+    @Transactional
     public List<OrderWaypoint> findByOrderId(int order_id) {
         return orderWaypointDao.findByOrderId(order_id);
     }
 
+
     @Override
+    @Transactional
     public OrderWaypoint findById(int point_id) {
         return orderWaypointDao.findById(point_id);
     }
 
 
     @Override
+    @Transactional
     public boolean updatePoint(OrderWaypoint point) {
         Truck truck = point.getOrder().getTruck();
         if(point.getOperation().equals(OrderWaypoint.Operation.LOADING)
@@ -99,7 +105,9 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
         return orderService.checkCompleted(point.getCargo().getOrder().getOrder_id());
     }
 
+
     @Override
+    @Transactional
     public List<OrderWaypoint> findByOrderIdLoad(int order_id) {
         List<OrderWaypoint> waypoints = new LinkedList<>();
         for(OrderWaypoint p:orderWaypointDao.findByOrderId(order_id)){
@@ -116,7 +124,9 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
         return waypoints;
     }
 
+
     @Override
+    @Transactional
     public OrderWaypoint findUnloadByCargoId(int cargo_id) {
         return orderWaypointDao.findUnloadByCargoId(cargo_id);
     }

@@ -85,14 +85,12 @@ $('[name = finish]').on('submit',function () {
     var errors = $('.errors');
     errors.empty();
     if(choose!=max){
-        alert(max);
-        alert(choose);
         errors.append("You should choose ", max, " drivers");
         return false;
     }
 });
 
-if($('.created').length==1)Materialize.toast("Order was created", 2000);
+if($('.created').length==1)M.toast({html: "Order was created"}, 2000);
 
 
 $(document).on('click','.row_data',function () {
@@ -124,7 +122,7 @@ $(document).on('click','.btn_ok',function () {
     }).done(function (result) {
         if(result.point_id===0){
             tbl_row.empty();
-            Materialize.toast("Order was completed", 2000);
+            M.toast({html:"Order was completed"}, 2000);
             return false;
         }
         if(result.status==='DONE')tbl_row.empty();

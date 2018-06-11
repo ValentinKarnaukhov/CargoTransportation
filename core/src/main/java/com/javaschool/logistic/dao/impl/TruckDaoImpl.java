@@ -3,7 +3,6 @@ package com.javaschool.logistic.dao.impl;
 import com.javaschool.logistic.dao.api.TruckDao;
 import com.javaschool.logistic.model.Truck;
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;

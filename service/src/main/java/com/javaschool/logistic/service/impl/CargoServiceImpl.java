@@ -5,6 +5,7 @@ import com.javaschool.logistic.model.Cargo;
 import com.javaschool.logistic.service.api.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class CargoServiceImpl implements CargoService {
 
 
     @Override
+    @Transactional
     public List<Cargo> findByOrderId(int order_id){
             return cargoDao.findByOrderId(order_id);
     }

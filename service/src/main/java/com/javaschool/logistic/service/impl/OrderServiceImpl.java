@@ -2,7 +2,6 @@ package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.OrderDao;
 import com.javaschool.logistic.dao.api.OrderHistoryDao;
-import com.javaschool.logistic.dao.api.TruckDao;
 
 import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
@@ -18,7 +17,6 @@ import java.util.List;
 
 
 @Service
-@Transactional
 public class OrderServiceImpl implements OrderService {
 
     private static final Logger LOGGER = Logger.getLogger(OrderServiceImpl.class);
@@ -35,11 +33,13 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @Transactional
     @Override
     public List<Order> findAllOrders() {
         return orderDao.findAll();
     }
 
+    @Transactional
     @Override
     public void createOrder(List<Waypoint> waypointList, Order order){
 
@@ -52,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    @Transactional
     @Override
     public boolean checkCompleted(int order_id){
         Order order = orderDao.findById(order_id);
@@ -75,6 +76,7 @@ public class OrderServiceImpl implements OrderService {
         return false;
     }
 
+    @Transactional
     @Override
     public Order findById(int order_id) {
         return orderDao.findById(order_id);

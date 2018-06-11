@@ -1,6 +1,7 @@
 package com.javaschool.logistic.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 /**
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ORDER_WAYPOINT")
-public class OrderWaypoint {
+public class OrderWaypoint implements Serializable {
 
     public enum Operation{
         LOADING,

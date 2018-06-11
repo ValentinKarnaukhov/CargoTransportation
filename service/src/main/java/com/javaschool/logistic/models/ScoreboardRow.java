@@ -1,8 +1,9 @@
 package com.javaschool.logistic.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ScoreboardRow {
+public class ScoreboardRow implements Serializable {
 
     private int number;
     private String cityFrom;
@@ -76,4 +77,18 @@ public class ScoreboardRow {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "ScoreboardRow{" +
+                "number=" + number +
+                ", cityFrom='" + cityFrom + '\'' +
+                ", cityTo='" + cityTo + '\'' +
+                ", truck='" + truck + '\'' +
+                ", cargoes=" + cargoes +
+                ", drivers=" + drivers +
+                ", status=" + status +
+                '}';
+    }
 }
+
