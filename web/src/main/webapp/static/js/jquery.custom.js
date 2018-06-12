@@ -3,6 +3,19 @@ $(document).ready(function(){
         "pagingType": "simple_numbers"
     } );
 
+
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+
+    if(getUrlVars()['error']==1)M.toast({html:"Server error"});
+
+
     $('select').formSelect();
     $('.tabs').tabs();
     $('.sidenav').sidenav();
@@ -143,6 +156,8 @@ $(document).on('click', '.btn_decline',function () {
     tbl_row.find('.btn_decline').hide();
     tbl_row.find('.cargoStatus option[value=1]').prop('selected',true)
 });
+
+
 
 
 

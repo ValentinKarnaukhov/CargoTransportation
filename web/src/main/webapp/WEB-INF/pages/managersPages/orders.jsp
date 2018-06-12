@@ -23,7 +23,7 @@
     <tr>
         <th>NUMBER</th>
         <th>TRUCK</th>
-        <th>IS COMPLETE</th>
+        <th>STATUS</th>
         <th width="50"></th>
     </tr>
     </thead>
@@ -35,7 +35,7 @@
                     <c:if test="${order.orderHistory.truck.status.name().equals('OK')}"><i class="material-icons green-text img">error</i></c:if>
                     <c:if test="${order.orderHistory.truck.status.name().equals('BROKEN')}"><i class="material-icons red-text img">error</i></c:if>
             </td>
-            <td >${order.complete}</td>
+            <td >${order.complete?"DONE":"IN PROGRESS"}</td>
 
             <td><a href="<c:url value='/manager_/orders/order_info_${order.order_id}'/>">
                 <i class="material-icons blue-grey-text">info</i></a></td>

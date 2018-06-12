@@ -5,6 +5,7 @@ import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.DriverService;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.AmqpConnectException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -50,7 +51,11 @@ public class DriverServiceImpl implements DriverService {
     public void createDriver(Driver driver) {
         driver.setPersonal_code("d"+(driverDao.getLastId()+1));
         driverDao.create(driver);
-        amqpTemplate.convertAndSend("infoQueue", "update");
+        try {
+            amqpTemplate.convertAndSend("infoQueue", "update");
+        }catch (AmqpConnectException e){
+            LOGGER.warn("Queue server not available", e);
+        }
         LOGGER.info(driver+"has been created");
     }
 
@@ -65,7 +70,11 @@ public class DriverServiceImpl implements DriverService {
         Driver driver = driverDao.findById(driver_id);
         driver.getUser().setEnabled(false);
         driverDao.update(driver);
-        amqpTemplate.convertAndSend("infoQueue", "update");
+        try {
+            amqpTemplate.convertAndSend("infoQueue", "update");
+        }catch (AmqpConnectException e){
+            LOGGER.warn("Queue server not available", e);
+        }
         LOGGER.info(driver+"has been removed");
     }
 

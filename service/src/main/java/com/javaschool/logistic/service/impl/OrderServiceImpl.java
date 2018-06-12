@@ -8,6 +8,7 @@ import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.AmqpConnectException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,11 @@ public class OrderServiceImpl implements OrderService {
             orderDao.create(order);
             orderWaypointService.createWaypoints(waypointList,order);
             orderHistoryDao.create(new OrderHistory(order,order.getTruck(),order.getTruck().getDrivers()));
-            amqpTemplate.convertAndSend("infoQueue", "update");
+            try {
+                amqpTemplate.convertAndSend("infoQueue", "update");
+            }catch (AmqpConnectException e){
+                LOGGER.warn("Queue server not available", e);
+            }
             LOGGER.info("Order "+order+" has been created");
 
 
@@ -69,7 +74,11 @@ public class OrderServiceImpl implements OrderService {
             }
             order.setComplete(true);
             orderDao.update(order);
-            amqpTemplate.convertAndSend("infoQueue", "update");
+            try {
+                amqpTemplate.convertAndSend("infoQueue", "update");
+            }catch (AmqpConnectException e){
+                LOGGER.warn("Queue server not available", e);
+            }
             LOGGER.info("Order "+order+" has been completed");
             return true;
         }

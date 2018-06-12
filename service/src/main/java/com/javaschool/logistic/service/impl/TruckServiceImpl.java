@@ -6,6 +6,7 @@ import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.TruckService;
 import org.apache.log4j.Logger;
+import org.springframework.amqp.AmqpConnectException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,11 @@ public class TruckServiceImpl implements TruckService {
     public void createTruck(Truck truck) {
         truck.setReg_number(truck.getReg_number().toUpperCase());
         truckDao.create(truck);
-        amqpTemplate.convertAndSend("infoQueue", "update");
+        try {
+            amqpTemplate.convertAndSend("infoQueue", "update");
+        }catch (AmqpConnectException e){
+            LOGGER.warn("Queue server not available", e);
+        }
         LOGGER.info("Truck "+truck+" has been created");
     }
 
@@ -48,7 +53,11 @@ public class TruckServiceImpl implements TruckService {
         Truck truck = findById(truck_id);
         truck.setEnabled(false);
         truckDao.update(truck);
-        amqpTemplate.convertAndSend("infoQueue", "update");
+        try {
+            amqpTemplate.convertAndSend("infoQueue", "update");
+        }catch (AmqpConnectException e){
+            LOGGER.warn("Queue server not available", e);
+        }
         LOGGER.info("Truck "+truck+" has been removed");
     }
 
@@ -63,7 +72,11 @@ public class TruckServiceImpl implements TruckService {
     public void updateTruck(Truck truck) {
         truck.setReg_number(truck.getReg_number().toUpperCase());
         truckDao.update(truck);
-        amqpTemplate.convertAndSend("infoQueue", "update");
+        try {
+            amqpTemplate.convertAndSend("infoQueue", "update");
+        }catch (AmqpConnectException e){
+            LOGGER.warn("Queue server not available", e);
+        }
         LOGGER.info("Truck "+truck+" has been updated");
     }
 

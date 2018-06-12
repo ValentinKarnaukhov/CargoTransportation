@@ -7,7 +7,9 @@ import com.javaschool.logistic.model.Truck;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.TruckService;
 import com.javaschool.logistic.validators.TruckFormValidator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +35,8 @@ public class ManageTruckController {
     private String truckAttribute = "truck";
     private String redirectToTrucksPage = "redirect:/manager_/trucks";
 
+    private static final Logger LOGGER = Logger.getLogger(ManageTruckController.class);
+
     @GetMapping(value = "/manager_/trucks/newtruck")
     public String newTruckPage(Model model){
         model.addAttribute(truckAttribute, new Truck());
@@ -54,20 +58,20 @@ public class ManageTruckController {
     }
 
     @GetMapping(value = "/manager_/delete_truck_{truck_id}")
-    public String deleteDriver(@PathVariable int truck_id){
+    public String deleteTruck(@PathVariable int truck_id){
         truckService.deleteById(truck_id);
         return redirectToTrucksPage;
     }
 
 
     @GetMapping(value = "/manager_/edit_truck_{truck_id}")
-    public String editDriver(@PathVariable int truck_id, Model model){
+    public String editTruck(@PathVariable int truck_id, Model model){
         model.addAttribute(truckAttribute, truckService.findById(truck_id));
         return "managersPages/edit_truck";
     }
 
     @PostMapping(value = "/manager_/edit_truck_{truck_id}")
-    public String updateDriver(Truck truck, @PathVariable int truck_id,
+    public String updateTruck(Truck truck, @PathVariable int truck_id,
                                BindingResult bindingResult, Model model){
         truckFormValidator.customValidate(truck,bindingResult,true);
         if(bindingResult.hasErrors()){
@@ -75,7 +79,12 @@ public class ManageTruckController {
             return "managersPages/edit_truck";
         }else {
             if(truck.getOrder().getOrder_id()==0)truck.setOrder(null);
-            truckService.updateTruck(truck);
+            try{
+                truckService.updateTruck(truck);
+            }catch (DataIntegrityViolationException e){
+                LOGGER.warn(e);
+                return redirectToTrucksPage+"?error=1";
+            }
             return redirectToTrucksPage;
         }
 

@@ -1,6 +1,7 @@
 package com.javaschool.logistic.utils;
 
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -18,6 +19,8 @@ public class EmailService  {
     @Autowired
     private Environment environment;
 
+    private static final Logger LOGGER = Logger.getLogger(EmailService.class);
+
     public void send(String text, String toEmail){
         Session session = Session.getInstance(getProperties(), new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -33,7 +36,7 @@ public class EmailService  {
             message.setContent(text,"text/html");
             Transport.send(message);
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            LOGGER.warn(e);
         }
     }
 
