@@ -3,6 +3,9 @@ package com.javaschool.logistic.controller;
 
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 
 /**
@@ -22,10 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class UserController {
 
-    Logger logger=Logger.getLogger(UserController.class);
 
     @GetMapping(value = { "/", "/login"})
-    public String loginPage() {
+    public String loginPage(Locale locale) {
+        System.out.println(locale.getDisplayLanguage());
         return "login";
     }
 
