@@ -85,7 +85,7 @@ public class ManageOrderController {
 
         int distance = distanceCalculator.calculate(order.getTruck(),waypoints);
         model.addAttribute("driverList", driverService.findSuitableDrivers(distance,order.getTruck()));
-        model.addAttribute(orderAttribute, order);
+        model.addAttribute("order", order);
         model.addAttribute("amount",order.getTruck().getMax_drivers());
         model.addAttribute("truck",order.getTruck());
         return "managersPages/add_drivers";

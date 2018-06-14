@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: acer
@@ -16,43 +17,42 @@
     <jsp:param name="orders" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text">CREATE NEW CARGO</h5>
+<h5 class="indigo-text"><s:message code="manager.newcargo.label"/></h5>
 <div class="section"></div>
 <div  class="row card-panel driver-truck">
     <form:form  modelAttribute="waypoint" class="col s12" method="post" >
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="cargo.name" id="name" type="text" class="validate" required="true"/>
-                <label for="name">Name</label>
-
+                <label for="name"><s:message code="manager.newcargo.label.name"/></label>
                 <form:errors path="cargo.name"/>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="cargo.weight" id="weight" type="number" class="validate" required="true" placeholder="kg"/>
-                <label for="weight">Weight</label>
+                <label for="weight"><s:message code="manager.newcargo.label.weight"/></label>
                 <form:errors path="cargo.weight"/>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <form:select id ="load_city" path="loadingCity" items="${cities}" itemLabel="name" itemValue="city_id"/>
-                <label for="load_city">City of loading</label>
+                <label for="load_city"><s:message code="manager.newcargo.label.loading"/></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <form:select id ="unload_city" path="unloadingCity" items="${cities}" itemLabel="name" itemValue="city_id"/>
-                <label for="unload_city">City of unloading</label>
+                <label for="unload_city"><s:message code="manager.newcargo.label.unloading"/></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Add cargo
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action"><s:message code="manager.newcargo.button.add"/>
                     <i class="material-icons right">add_box</i>
                 </button>
-                <a href="<c:url value="/manager_/orders/neworder"/>" class="btn blue-grey waves-effect waves-light">Cancel
+                <a href="<c:url value="/manager_/orders/neworder"/>" class="btn blue-grey waves-effect waves-light"><s:message code="manager.newcargo.button.cancel"/>
                     <i class="material-icons right">undo</i>
                 </a>
             </div>

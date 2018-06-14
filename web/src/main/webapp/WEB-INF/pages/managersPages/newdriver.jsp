@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Valentin
@@ -17,26 +18,26 @@
 </jsp:include>
 
 
-<h5 class="indigo-text">CREATE NEW DRIVER</h5>
+<h5 class="indigo-text"><s:message code="manager.newdriver.label"/></h5>
 <div class="section"></div>
 <div  class="row card-panel driver-truck">
     <form:form id="driver" modelAttribute="driver" class="col s12" method="post" >
         <div class="row">
             <div class="input-field col s6">
                 <form:input path="first_name" id="first_name" type="text" class="validate" required="true"/>
-                <label for="first_name">First Name</label>
+                <label for="first_name"><s:message code="manager.newdriver.label.firstname"/> </label>
                 <form:errors path="first_name"/>
             </div>
             <div class="input-field col s6">
                 <form:input path="last_name" id="last_name" type="text" class="validate" required="true"/>
-                <label for="last_name">Last Name</label>
+                <label for="last_name"><s:message code="manager.newdriver.label.secondname"/></label>
                 <form:errors path="last_name"/>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="user.email" id="email" type="email" class="validate" required="true"/>
-                <label for="email">Email</label>
+                <label for="email"><s:message code="manager.newdriver.label.email"/></label>
                 <span class="helper-text" >example@example.com</span>
                 <form:errors path="user.email"/>
             </div>
@@ -44,15 +45,15 @@
         <div class="row">
             <div class="input-field col s12">
                 <form:select id ="city" path="city" items="${cities}" itemLabel="name" itemValue="city_id"/>
-                <label for="city">City</label>
+                <label for="city"><s:message code="manager.newdriver.label.city"/></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Add driver
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action"><s:message code="manager.newdriver.button.add"/>
                     <i class="material-icons right">person_add</i>
                 </button>
-                <a href="<c:url value="/manager_/drivers"/>" class="btn waves-effect waves-light blue-grey">Cancel
+                <a href="<c:url value="/manager_/drivers"/>" class="btn waves-effect waves-light blue-grey"><s:message code="manager.newdriver.button.cancel"/>
                     <i class="material-icons right">undo</i>
                 </a>
             </div>

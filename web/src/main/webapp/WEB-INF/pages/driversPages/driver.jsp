@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Valentin
@@ -18,7 +19,9 @@
             <div class="nav-wrapper blue-grey">
                 <a href="#" class="brand-logo driver-logo">L O G I W E B</a>
                 <ul id="nav-mobile" class="right">
-                    <li><a href="<c:url value="/logout"/>">LOG OUT</a></li>
+                    <li><a href="?lang=en">ENG</a></li>
+                    <li><a href="?lang=ru">RU</a></li>
+                    <li><a href="<c:url value="/logout"/>"><s:message code="driver.button.logout"/></a></li>
                 </ul>
             </div>
         </nav>
@@ -28,32 +31,32 @@
                 <table class="card-panel bordered highlight padding-table">
                     <thead>
                     <tr>
-                        <th colspan="2">PERSONAL INFORMATION</th>
+                        <th colspan="2"><s:message code="driver.table.personal.label"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>FIRST NAME:</td>
+                        <td><s:message code="driver.table.personal.firstname"/>:</td>
                         <td>${driver.first_name}</td>
                     </tr>
                     <tr>
-                        <td>LAST NAME:</td>
+                        <td><s:message code="driver.table.personal.lastname"/>:</td>
                         <td>${driver.last_name}</td>
                     </tr>
                     <tr>
-                        <td>EMAIL:</td>
+                        <td><s:message code="driver.table.personal.email"/>:</td>
                         <td>${driver.user.email}</td>
                     </tr>
                     <tr>
-                        <td>PERSONAL CODE:</td>
+                        <td><s:message code="driver.table.personal.code"/>:</td>
                         <td>${driver.personal_code}</td>
                     </tr>
                     <tr>
-                        <td>HOURS WORKED:</td>
+                        <td><s:message code="driver.table.personal.time"/>:</td>
                         <td>${driver.worked_time}</td>
                     </tr>
                     <tr>
-                        <td>CITY:</td>
+                        <td><s:message code="driver.table.personal.city"/>:</td>
                         <td>
                             <select id="changeCity" class="browser-default select-wrapper">
                                 <c:forEach items="${cities}" var="city">
@@ -67,7 +70,7 @@
                         </td>
                     </tr>
                     <tr  >
-                        <td>STATUS:</td>
+                        <td><s:message code="driver.table.personal.status"/>:</td>
                         <td>
                             <select  id="changeStatus" class="browser-default select-wrapper">
                                 <option value="1" <c:if test="${driver.status.name().equals('REST')}">selected</c:if>>REST</option>
@@ -87,16 +90,16 @@
                 <table class="card-panel bordered highlight padding-table">
                     <thead>
                     <tr>
-                        <th colspan="2">ADDITIONAL INFORMATION</th>
+                        <th colspan="2"><s:message code="driver.table.additional.label"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>ORDER NUMBER:</td>
+                        <td><s:message code="driver.table.additional.order"/>:</td>
                         <td>${driver.truck.order.order_id}</td>
                     </tr>
                     <tr>
-                        <td>TRUCK NUMBER:</td>
+                        <td><s:message code="driver.table.additional.truck"/>:</td>
                         <td id="reg-number">${driver.truck.reg_number}
                             <c:if test="${driver.truck.status.name().equals('OK')}"><i class="material-icons green-text truck-status img">error</i></c:if>
                             <c:if test="${driver.truck.status.name().equals('BROKEN')}"><i class="material-icons red-text truck-status img">error</i></c:if>
@@ -109,14 +112,14 @@
                 <table class="card-panel bordered highlight padding-table">
                     <thead>
                     <tr>
-                        <th>CO-DRIVERS</th>
+                        <th><s:message code="driver.table.codrivers.label"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="co_driver" items="${driver.truck.drivers}">
                         <c:if test="${co_driver.driver_id!=driver.driver_id}">
                             <tr>
-                                <td>CODE: ${co_driver.personal_code}</td>
+                                <td><s:message code="driver.table.codrivers.code"/>: ${co_driver.personal_code}</td>
                                 <td>${driver.last_name} ${driver.first_name}</td>
                             </tr>
                         </c:if>
@@ -129,12 +132,12 @@
                 <table class="card-panel highlight bordered centered table">
                     <thead>
                     <tr>
-                        <th>CARGO NUMBER</th>
-                        <th>NAME</th>
-                        <th>WEIGHT</th>
-                        <th>CITY</th>
-                        <th>OPERATION</th>
-                        <th>STATUS</th>
+                        <th><s:message code="driver.table.number"/></th>
+                        <th><s:message code="driver.table.name"/></th>
+                        <th><s:message code="driver.table.weight"/></th>
+                        <th><s:message code="driver.table.city"/></th>
+                        <th><s:message code="driver.table.operation"/></th>
+                        <th><s:message code="driver.table.status"/></th>
                         <th width="100"></th>
                     </tr>
                     </thead>

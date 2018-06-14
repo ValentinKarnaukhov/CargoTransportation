@@ -1,8 +1,8 @@
 package com.javaschool.logistic.configuration;
 
 
-import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@EnableRabbit
 public class RabbitMQConfig {
 
 
@@ -26,7 +27,9 @@ public class RabbitMQConfig {
 
     @Bean
     public RabbitTemplate rabbitTemplate() {
-        return new RabbitTemplate(connectionFactory());
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
+        rabbitTemplate.setExchange("exchange");
+        return rabbitTemplate;
     }
 
     @Bean
@@ -34,4 +37,13 @@ public class RabbitMQConfig {
         return new Queue("infoQueue");
     }
 
+    @Bean
+    public FanoutExchange fanoutExchange(){
+        return new FanoutExchange("exchange");
+    }
+
+    @Bean
+    public Binding binding(){
+        return BindingBuilder.bind(infoQueue()).to(fanoutExchange());
+    }
 }

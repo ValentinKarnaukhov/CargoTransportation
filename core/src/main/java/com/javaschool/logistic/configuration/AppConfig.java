@@ -62,6 +62,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasenames("validation","interface");
 		messageSource.setDefaultEncoding("UTF-8");
+		messageSource.setFallbackToSystemLocale(false);
 		return messageSource;
 	}
 
@@ -69,7 +70,7 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	@Bean
 	public LocaleResolver localeResolver() {
 		CookieLocaleResolver resolver = new CookieLocaleResolver();
-		resolver.setDefaultLocale(new Locale("en"));
+		resolver.setDefaultLocale(new Locale("en","US"));
 		return resolver;
 	}
 

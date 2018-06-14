@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: acer
@@ -17,7 +18,7 @@
     <jsp:param name="trucks" value="active"/>
 </jsp:include>
 
-<h5 class="indigo-text">TRUCK EDITING</h5>
+<h5 class="indigo-text"><s:message code="manager.trucks.edit.label"/></h5>
 <div class="section"></div>
 <div  class="row card-panel driver-truck">
     <form:form id="truck" modelAttribute="truck" class="col s12" method="post" >
@@ -25,22 +26,22 @@
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="reg_number" id="reg_number" type="text" class="validate" required="true"/>
-                <label for="reg_number">Registration number</label>
-                <span class="helper-text" >Example: AB12345</span>
+                <label for="reg_number"><s:message code="manager.newtruck.form.regnumber"/></label>
+                <span class="helper-text" ><s:message code="manager.trucks.example"/></span>
                 <form:errors path="reg_number"/>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="max_drivers" id="max_drivers" type="number" class="validate" required="true"/>
-                <label for="max_drivers">Max drivers</label>
+                <label for="max_drivers"><s:message code="manager.newtruck.form.maxdrivers"/></label>
                 <form:errors path="max_drivers"/>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <form:input path="capacity" id="capacity" type="number" class="validate" required="true"/>
-                <label for="capacity">Capacity</label>
+                <label for="capacity"><s:message code="manager.newtruck.form.capacity"/></label>
                 <form:errors path="capacity"/>
             </div>
         </div>
@@ -58,7 +59,7 @@
                         </c:choose>
                     </c:forEach>
                 </form:select>
-                <label for="status">Status</label>
+                <label for="status"><s:message code="manager.newtruck.form.status"/></label>
             </div>
         </div>
 
@@ -76,15 +77,15 @@
                         </c:choose>
                     </c:forEach>
                 </form:select>
-                <label for="city">City</label>
+                <label for="city"><s:message code="manager.newtruck.form.city"/></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Edit truck
+                <button class="btn blue-grey waves-effect waves-light" type="submit" name="action"><s:message code="manager.trucks.edit.button.edit"/>
                     <i class="material-icons right">edit</i>
                 </button>
-                <a href="<c:url value="/manager_/trucks"/>" class="btn waves-effect waves-light blue-grey">Cancel
+                <a href="<c:url value="/manager_/trucks"/>" class="btn waves-effect waves-light blue-grey"><s:message code="manager.drivers.edit.button.cancel"/>
                     <i class="material-icons right">undo</i>
                 </a>
             </div>

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Valentin
@@ -17,18 +18,18 @@
         <jsp:param name="drivers" value="active"/>
 </jsp:include>
 
-    <h5 class="indigo-text table-in">DRIVERS LIST</h5>
+    <h5 class="indigo-text table-in"><s:message code="manager.drivers.label"/></h5>
     <table class="centered highlight bordered card-panel table">
         <thead>
         <tr>
-            <th>PERSONAL CODE</th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>EMAIL</th>
-            <th>CITY</th>
-            <th>STATUS</th>
-            <th>ORDER</th>
-            <th>WORKED TIME</th>
+            <th><s:message code="manager.drivers.table.personalcode"/></th>
+            <th><s:message code="manager.drivers.table.firstname"/></th>
+            <th><s:message code="manager.drivers.table.secondname"/></th>
+            <th><s:message code="manager.drivers.table.email"/></th>
+            <th><s:message code="manager.drivers.table.city"/></th>
+            <th><s:message code="manager.drivers.table.status"/></th>
+            <th><s:message code="manager.drivers.table.order"/></th>
+            <th><s:message code="manager.drivers.table.time"/></th>
             <th width="50"></th>
             <th width="50"></th>
         </tr>
@@ -81,8 +82,8 @@
         </c:forEach>
         </tbody>
     </table>
-<a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/newdriver' />">Add new driver
+<a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/newdriver' />"><s:message code="manager.drivers.button.add"/>
     <i class="material-icons left">person_add</i></a>
-<a style="margin-left: 30px" class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/updateTime' />">Salary
+<a style="margin-left: 30px" class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/drivers/updateTime' />"><s:message code="manager.drivers.button.salary"/>
     <i class="material-icons left">attach_money</i></a>
 <jsp:include page="../footer.jsp"/>

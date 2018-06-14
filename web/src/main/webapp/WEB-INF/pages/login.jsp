@@ -13,15 +13,14 @@
 </head>
 <body>
 <span style="float: right">
-    <a href="?lang=en">en</a>
-    <a href="?lang=ru">ru</a>
+        <a href="?lang=en"><img src="<c:url value="/static/img/icons/eng.png"/>"></a>
+        <a href="?lang=ru"><img src="<c:url value="/static/img/icons/rus.png"/>"></a>
     </span>
 <main>
     <div style="text-align: center;">
         <img class="responsive-img" style="height: 150px;" src="<c:url value="/static/img/logo.png"/>" />
         <div class="section"></div>
-        <h5 class="blue-grey-text">PLEASE, LOGIN TO YOUR ACCOUNT</h5>
-        <h5><spring:message code="name"/></h5>
+        <h5 class="blue-grey-text"><spring:message code="login.please"/></h5>
         <div class="section"></div>
         <div class="container">
             <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 43px 0 43px; border: 1px solid #EEE;">
@@ -34,22 +33,21 @@
                     <div class='row'>
                         <div class='input-field col s12'>
                             <input class='validate' type='email' name='email' id='email' required="true"/>
-                            <label for='email'>Enter your email</label>
+                            <label for='email'><spring:message code="login.email"/></label>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
                             <input class='validate' type='password' name='password' id='password'required="true"/>
-                            <label for='password'>Enter your password</label>
+                            <label for='password'><spring:message code="login.password"/></label>
                         </div>
                     </div>
 
-                    <br />
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <div style="text-align: center;">
                         <div class='row'>
-                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect blue-grey'>Login</button>
+                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect blue-grey'><spring:message code="login.button"/></button>
                         </div>
                     </div>
 

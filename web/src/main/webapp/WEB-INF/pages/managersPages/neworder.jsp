@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: acer
@@ -15,19 +16,19 @@
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
 </jsp:include>
-<h5 class="indigo-text">CREATE NEW ORDER</h5>
+<h5 class="indigo-text"><s:message code="manager.neworder.mainlabel"/></h5>
 <div class="section"></div>
 <div  class="row add-driver">
 
-    <h5 class="indigo-text">ADD A CARGOES</h5>
+    <h5 class="indigo-text"><s:message code="manager.neworder.cargoes.label"/></h5>
 
         <table class="centered highlight bordered card-panel">
             <thead>
             <tr>
-                <th>CARGO</th>
-                <th>WEIGHT</th>
-                <th>CITY OF LOADING</th>
-                <th>CITY OF UNLOADING</th>
+                <th><s:message code="manager.neworder.table.cargo"/></th>
+                <th><s:message code="manager.neworder.table.weight"/></th>
+                <th><s:message code="manager.neworder.table.city.loading"/></th>
+                <th><s:message code="manager.neworder.table.city.unloading"/></th>
                 <th width="50"></th>
             </tr>
             </thead>
@@ -45,24 +46,24 @@
             </tbody>
         </table>
 
-        <a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/orders/newcargo' />">Add new cargo
+        <a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/orders/newcargo' />"><s:message code="manager.neworder.cargoes.button"/>
             <i class="material-icons left">add_box</i></a>
 
-    <h5 style="margin-top: 100px" class="indigo-text">SELECT A TRUCK</h5>
+    <h5 style="margin-top: 100px" class="indigo-text"><s:message code="manager.neworder.truck.form.label"/></h5>
     <form:form class="card-panel" modelAttribute="order"  method="post" >
         <div class="input-field col s12">
             <form:select id ="truck" path="truck">
                 <form:options items="${trucks}" itemLabel="reg_number" itemValue="truck_id"/>
             </form:select>
-            <label for="truck">Truck</label>
+            <label for="truck"><s:message code="manager.neworder.truck.label"/></label>
             <form:errors path="truck"/>
             <div class="section"></div>
         </div>
 
-        <button class="btn blue-grey waves-effect waves-light" type="submit" name="action">Select a drivers
+        <button class="btn blue-grey waves-effect waves-light" type="submit" name="action"><s:message code="manager.neworder.button.select"/>
             <i class="material-icons left">person_add</i>
         </button>
-        <a href="<c:url value="/manager_/orders/cancel"/>" class="btn blue-grey waves-effect waves-light">Cancel
+        <a href="<c:url value="/manager_/orders/cancel"/>" class="btn blue-grey waves-effect waves-light"><s:message code="manager.neworder.button.cancel"/>
             <i class="material-icons left">undo</i>
         </a>
     </form:form>
