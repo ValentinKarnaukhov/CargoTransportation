@@ -11,7 +11,7 @@ import org.springframework.validation.Validator;
 
 
 @Component
-@PropertySource(value = { "classpath:validation.properties" })
+@PropertySource(value = { "classpath:validation.properties"})
 public class TruckFormValidator implements Validator {
 
     @Autowired

@@ -2,15 +2,15 @@ $(document).ready(function () {
 
     $.validator.addMethod("email", function(value, element) {
         return this.optional(element) || /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(value);
-    }, "Incorrect format, example: example@example.com");
+    }, email_incorrect);
 
     $.validator.addMethod("truckNumber", function(value, element) {
         return this.optional(element) || /^(\D*){2}(\d){5}$/.test(value);
-    }, "Incorrect format, example: AB12345");
+    }, number_incorrect);
 
     $.validator.addMethod("letters", function(value, element) {
         return this.optional(element) || /^\D*$/.test(value);
-    }, "Must not contain digits.");
+    }, contains_digit);
 
 
     $('#waypoint').validate({

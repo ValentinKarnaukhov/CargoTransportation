@@ -25,10 +25,6 @@
         <div class="container">
             <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 43px 0 43px; border: 1px solid #EEE;">
                 <form class="col s12" method="post" action="<c:url value="/login"/>">
-                    <div class='row'>
-                        <div class='col s12'>
-                        </div>
-                    </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
@@ -58,7 +54,6 @@
 </main>
 <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery-2.1.1.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/js/jquery.autocomplete.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/materialize.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.custom.js"/>"></script>
 </body>

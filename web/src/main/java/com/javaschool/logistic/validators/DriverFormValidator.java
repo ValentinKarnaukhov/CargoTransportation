@@ -10,7 +10,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 @Component
-@PropertySource(value = { "classpath:validation.properties" })
+@PropertySource(value = { "classpath:validation.properties"})
 public class DriverFormValidator implements Validator {
 
     @Override

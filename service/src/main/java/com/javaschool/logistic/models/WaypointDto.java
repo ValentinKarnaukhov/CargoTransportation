@@ -1,4 +1,4 @@
-package com.javaschool.logistic.dto;
+package com.javaschool.logistic.models;
 
 import java.io.Serializable;
 

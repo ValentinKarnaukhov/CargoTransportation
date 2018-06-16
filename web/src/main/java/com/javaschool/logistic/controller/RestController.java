@@ -1,7 +1,7 @@
 package com.javaschool.logistic.controller;
 
 
-import com.javaschool.logistic.dto.WaypointDto;
+import com.javaschool.logistic.models.WaypointDto;
 import com.javaschool.logistic.model.Driver;
 import com.javaschool.logistic.model.OrderWaypoint;
 import com.javaschool.logistic.model.Truck;

@@ -25,7 +25,7 @@
             <div class="input-field col s12">
                 <form:input path="reg_number" id="reg_number" type="text" class="validate" required="true"/>
                 <label for="reg_number"><s:message code="manager.newtruck.form.regnumber"/></label>
-                <span class="helper-text" ><s:message code="manager.trucks.example"/></span>
+                <span class="helper-text"><s:message code="manager.trucks.example"/></span>
                 <form:errors path="reg_number"/>
             </div>
         </div>

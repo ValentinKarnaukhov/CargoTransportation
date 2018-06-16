@@ -92,7 +92,7 @@ public class ManageDriverController {
     }
 
     //TODO autowired to constructor
-
+    //TODO add javadocs
     @GetMapping(value = "/manager_/drivers/updateTime")
     public String updateTime(){
         driverService.setWorktimeForAll(0,new Date());

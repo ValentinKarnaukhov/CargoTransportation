@@ -3,6 +3,8 @@ package com.javaschool.logistic.controller;
 
 
 import org.apache.log4j.Logger;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
@@ -26,10 +28,11 @@ import java.util.Locale;
 @Controller
 public class UserController {
 
+    @Autowired
+    private AmqpTemplate template;
 
     @GetMapping(value = { "/", "/login"})
-    public String loginPage(Locale locale) {
-        System.out.println(locale.getDisplayLanguage());
+    public String loginPage() {
         return "login";
     }
 

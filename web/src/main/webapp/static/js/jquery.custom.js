@@ -13,6 +13,7 @@ $(document).ready(function(){
     }
 
 
+
     if(getUrlVars()['error']==1)M.toast({html:"Server error"});
 
 

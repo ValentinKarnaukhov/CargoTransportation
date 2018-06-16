@@ -11335,7 +11335,7 @@
 				 *      } );
 				 *    } );
                  */
-                "sNext": "Next",
+                "sNext": next_page,
 
 
                 /**
@@ -11358,7 +11358,7 @@
 				 *      } );
 				 *    } );
                  */
-                "sPrevious": "Previous"
+                "sPrevious": previous_page
             },
 
             /**
@@ -11413,7 +11413,7 @@
 			 *      } );
 			 *    } );
              */
-            "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+            "sInfo": showing_page+" _START_ "+to_page+" _END_ "+of_page+" _TOTAL_ "+entries_page,
 
 
             /**
@@ -11434,7 +11434,7 @@
 			 *      } );
 			 *    } );
              */
-            "sInfoEmpty": "Showing 0 to 0 of 0 entries",
+            "sInfoEmpty": showing_page+" 0 "+to_page+" 0 "+of_page+" 0 "+entries_page,
 
 
             /**
@@ -11574,7 +11574,7 @@
 			 *      } );
 			 *    } );
              */
-            "sLengthMenu": "Show _MENU_ ",
+            "sLengthMenu": show_page+" _MENU_ ",
 
 
             /**
@@ -11654,7 +11654,7 @@
 			 *      } );
 			 *    } );
              */
-            "sSearch": "Search:",
+            "sSearch": search_page,
 
 
             /**
