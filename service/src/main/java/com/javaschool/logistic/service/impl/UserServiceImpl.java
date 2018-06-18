@@ -1,7 +1,5 @@
 package com.javaschool.logistic.service.impl;
 
-
-
 import com.javaschool.logistic.dao.api.UserDao;
 import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.UserService;
@@ -22,22 +20,26 @@ public class UserServiceImpl implements UserService{
 
     private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 
-
-    @Autowired
     private UserDao userDao;
 
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
     private PasswordGenerator passwordGenerator;
 
-    @Autowired
     private EmailService emailService;
 
-    @Autowired
     private MessageWrapper wrapper;
+
+    @Autowired
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder,
+                           PasswordGenerator passwordGenerator, EmailService emailService,
+                           MessageWrapper wrapper) {
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
+        this.passwordGenerator = passwordGenerator;
+        this.emailService = emailService;
+        this.wrapper = wrapper;
+    }
 
     @Transactional
     @Override
@@ -49,26 +51,30 @@ public class UserServiceImpl implements UserService{
         LOGGER.info("User "+user+" has been created" );
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public User findByEmail(String email) {
         return userDao.findByEmail(email);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public void updateUser(User user) {
         userDao.update(user);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public List<User> findAll() {
         return userDao.findAll();
     }

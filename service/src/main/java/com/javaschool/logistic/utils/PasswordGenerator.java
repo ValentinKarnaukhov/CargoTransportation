@@ -8,8 +8,7 @@ import java.util.Random;
 @Service
 public class PasswordGenerator {
 
-
-    public static String getGeneratedPassword(){
+    public String getGeneratedPassword(){
         Random random=new Random();
         String LOWER = "abcdefghijklmnopqrstuvwxyz";
         String DIGIT = "0123456789";

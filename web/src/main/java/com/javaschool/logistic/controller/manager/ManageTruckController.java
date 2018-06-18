@@ -22,20 +22,24 @@ import java.util.List;
 @Controller
 public class ManageTruckController {
 
+    private static final Logger LOGGER = Logger.getLogger(ManageTruckController.class);
 
-    @Autowired
     private CityService cityService;
 
-    @Autowired
     private TruckService truckService;
 
-    @Autowired
     private TruckFormValidator truckFormValidator;
 
     private String truckAttribute = "truck";
     private String redirectToTrucksPage = "redirect:/manager_/trucks";
 
-    private static final Logger LOGGER = Logger.getLogger(ManageTruckController.class);
+    @Autowired
+    public ManageTruckController(CityService cityService, TruckService truckService,
+                                 TruckFormValidator truckFormValidator) {
+        this.cityService = cityService;
+        this.truckService = truckService;
+        this.truckFormValidator = truckFormValidator;
+    }
 
     @GetMapping(value = "/manager_/trucks/newtruck")
     public String newTruckPage(Model model){

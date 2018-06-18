@@ -8,45 +8,52 @@ import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
-import com.javaschool.logistic.utils.Mapper;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.AmqpConnectException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
     private static final Logger LOGGER = Logger.getLogger(OrderServiceImpl.class);
 
-    @Autowired
     private OrderDao orderDao;
 
-    @Autowired
     private OrderWaypointService orderWaypointService;
 
-    @Autowired
     private OrderHistoryDao orderHistoryDao;
 
-    @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @Autowired
     private ExternalDao externalDao;
 
-    @Transactional
+    @Autowired
+    public OrderServiceImpl(OrderDao orderDao, @Lazy OrderWaypointService orderWaypointService,
+                            OrderHistoryDao orderHistoryDao, AmqpTemplate amqpTemplate,
+                            ExternalDao externalDao) {
+        this.orderDao = orderDao;
+        this.orderWaypointService = orderWaypointService;
+        this.orderHistoryDao = orderHistoryDao;
+        this.amqpTemplate = amqpTemplate;
+        this.externalDao = externalDao;
+    }
+
+
     @Override
+    @Transactional
     public List<Order> findAllOrders() {
         return orderDao.findAll();
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public void createOrder(List<Waypoint> waypointList, Order order){
 
         for(Waypoint waypoint:waypointList){
@@ -68,8 +75,9 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public boolean checkCompleted(int order_id){
         Order order = orderDao.findById(order_id);
         int amountDone = 0;
@@ -96,8 +104,9 @@ public class OrderServiceImpl implements OrderService {
         return false;
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public Order findById(int order_id) {
         return orderDao.findById(order_id);
     }

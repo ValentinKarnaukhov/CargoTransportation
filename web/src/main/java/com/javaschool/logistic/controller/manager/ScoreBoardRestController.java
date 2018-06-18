@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ScoreBoardRestController {
 
+    private ScoreboardService scoreboardService;
 
     @Autowired
-    private ScoreboardService scoreboardService;
+    public ScoreBoardRestController(ScoreboardService scoreboardService) {
+        this.scoreboardService = scoreboardService;
+    }
 
     @GetMapping(value = "/test")
     public @ResponseBody

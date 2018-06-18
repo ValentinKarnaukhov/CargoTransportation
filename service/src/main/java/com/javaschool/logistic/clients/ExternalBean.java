@@ -18,14 +18,17 @@ import java.util.List;
 @Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ExternalBean {
 
-    @Autowired
     private  ExternalDao externalDao;
 
-    @Autowired
     private Mapper mapper;
 
     private List<External> externals;
 
+    @Autowired
+    public ExternalBean(ExternalDao externalDao, Mapper mapper) {
+        this.externalDao = externalDao;
+        this.mapper = mapper;
+    }
 
     @PostConstruct
     public void init(){

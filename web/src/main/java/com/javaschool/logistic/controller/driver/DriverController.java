@@ -26,18 +26,22 @@ import java.util.List;
 @Controller
 public class DriverController {
 
-    @Autowired
     private DriverService driverService;
 
-    @Autowired
     private OrderWaypointService orderWaypointService;
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private CityService cityService;
 
+    @Autowired
+    public DriverController(DriverService driverService, OrderWaypointService orderWaypointService,
+                            UserService userService, CityService cityService) {
+        this.driverService = driverService;
+        this.orderWaypointService = orderWaypointService;
+        this.userService = userService;
+        this.cityService = cityService;
+    }
 
     @GetMapping(value = "/driver")
     public String loadPageForDriver(Model model){
@@ -49,8 +53,6 @@ public class DriverController {
         model.addAttribute("waypoints",waypoints );
         return "driversPages/driver";
     }
-
-
 
 
     private String getPrincipal(){

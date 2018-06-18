@@ -16,10 +16,14 @@ import java.util.Properties;
 @PropertySource(value = { "classpath:email.properties" })
 public class EmailService  {
 
-    @Autowired
+    private static final Logger LOGGER = Logger.getLogger(EmailService.class);
+
     private Environment environment;
 
-    private static final Logger LOGGER = Logger.getLogger(EmailService.class);
+    @Autowired
+    public EmailService(Environment environment) {
+        this.environment = environment;
+    }
 
     public void send(String text, String toEmail){
         Session session = Session.getInstance(getProperties(), new Authenticator() {

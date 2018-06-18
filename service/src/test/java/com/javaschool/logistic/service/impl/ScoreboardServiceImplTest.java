@@ -34,7 +34,7 @@ public class ScoreboardServiceImplTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 

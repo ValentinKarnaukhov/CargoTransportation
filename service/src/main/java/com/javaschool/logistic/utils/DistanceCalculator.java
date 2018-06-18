@@ -10,7 +10,6 @@ import java.util.List;
 @Component
 public class DistanceCalculator{
 
-
     public int calculate(Truck truck, List<Waypoint> waypoints){
 
         int res=0;

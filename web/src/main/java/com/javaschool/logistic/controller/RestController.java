@@ -16,15 +16,19 @@ import java.util.Map;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-
-    @Autowired
     private DriverService driverService;
 
-    @Autowired
     private OrderWaypointService orderWaypointService;
 
-    @Autowired
     private TruckService truckService;
+
+    @Autowired
+    public RestController(DriverService driverService, OrderWaypointService orderWaypointService,
+                          TruckService truckService) {
+        this.driverService = driverService;
+        this.orderWaypointService = orderWaypointService;
+        this.truckService = truckService;
+    }
 
     @GetMapping(value = "/driver/{driver_id}/change")
     public void changeStatus(@PathVariable int driver_id, @RequestParam String status){

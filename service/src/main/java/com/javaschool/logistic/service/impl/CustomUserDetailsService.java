@@ -4,6 +4,7 @@ import com.javaschool.logistic.model.User;
 import com.javaschool.logistic.service.api.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,9 +25,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private static final Logger log = Logger.getLogger(CustomUserDetailsService.class);
 
-    @Autowired
     private UserService userService;
 
+    @Autowired
+    public CustomUserDetailsService(@Lazy UserService userService) {
+        this.userService = userService;
+    }
 
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String email){

@@ -18,16 +18,21 @@ import java.util.List;
 @Service
 public class ScoreboardServiceImpl implements ScoreboardService {
 
-
-    @Autowired
     private OrderDao orderDao;
 
-    @Autowired
     private TruckDao truckDao;
 
-    @Autowired
     private DriverDao driverDao;
 
+    @Autowired
+    public ScoreboardServiceImpl(OrderDao orderDao, TruckDao truckDao, DriverDao driverDao) {
+        this.orderDao = orderDao;
+        this.truckDao = truckDao;
+        this.driverDao = driverDao;
+    }
+
+    public ScoreboardServiceImpl() {
+    }
 
     @Override
     @Transactional

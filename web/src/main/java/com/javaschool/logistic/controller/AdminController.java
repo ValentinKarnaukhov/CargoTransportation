@@ -18,17 +18,22 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class AdminController {
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private TruckService truckService;
 
-    @Autowired
     private OrderService orderService;
 
-    @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    public AdminController(UserService userService, TruckService truckService,
+                           OrderService orderService, RabbitTemplate rabbitTemplate) {
+        this.userService = userService;
+        this.truckService = truckService;
+        this.orderService = orderService;
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @PostMapping(value = "/admin")
     public String createManager(@ModelAttribute User user, BindingResult bindingResult, Model model){

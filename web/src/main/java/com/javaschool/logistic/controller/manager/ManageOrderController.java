@@ -23,32 +23,38 @@ import java.util.List;
 @Scope("session")
 public class ManageOrderController {
 
-    @Autowired
     private CityService cityService;
 
-    @Autowired
     private DriverService driverService;
 
-    @Autowired
     private TruckService truckService;
 
-    @Autowired
     private DistanceCalculator distanceCalculator;
 
-    @Autowired
     private OrderService orderService;
 
-    @Autowired
     private CargoService cargoService;
 
-    @Autowired
     private Mapper mapper;
 
-    @Autowired
     private ExternalBean externals;
 
     private List<Waypoint> waypoints = new LinkedList<>();
-    private String orderAttribute = "order";
+
+    @Autowired
+    public ManageOrderController(CityService cityService, DriverService driverService,
+                                 TruckService truckService, DistanceCalculator distanceCalculator,
+                                 OrderService orderService, CargoService cargoService,
+                                 Mapper mapper, ExternalBean externals) {
+        this.cityService = cityService;
+        this.driverService = driverService;
+        this.truckService = truckService;
+        this.distanceCalculator = distanceCalculator;
+        this.orderService = orderService;
+        this.cargoService = cargoService;
+        this.mapper = mapper;
+        this.externals = externals;
+    }
 
     @GetMapping(value = "/manager_/orders/newcargo")
     public String newCargo(Model model){
@@ -69,7 +75,7 @@ public class ManageOrderController {
     @GetMapping(value = "/manager_/orders/neworder")
     public String newOrder(Model model){
         model.addAttribute("waypoints",waypoints);
-        model.addAttribute(orderAttribute, new Order());
+        model.addAttribute("order", new Order());
         model.addAttribute("trucks",truckService.findSuitableTrucks(waypoints));
         return "managersPages/neworder";
     }

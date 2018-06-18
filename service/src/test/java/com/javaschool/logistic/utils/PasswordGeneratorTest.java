@@ -6,10 +6,12 @@ import static org.junit.Assert.*;
 
 public class PasswordGeneratorTest {
 
+    private PasswordGenerator passwordGenerator = new PasswordGenerator();
+
     @Test
     public void getGeneratedPassword() {
 
-        assertTrue(PasswordGenerator.getGeneratedPassword().matches("^(\\D*){3}(\\d){3}$"));
+        assertTrue(passwordGenerator.getGeneratedPassword().matches("^(\\D*){3}(\\d){3}$"));
 
     }
 }

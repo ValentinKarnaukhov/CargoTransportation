@@ -21,21 +21,26 @@ import java.util.List;
 @Controller
 public class ManageDriverController {
 
-
-    @Autowired
     private DriverService driverService;
 
-    @Autowired
     private CityService cityService;
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private DriverFormValidator driverFormValidator;
 
-    @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    public ManageDriverController(DriverService driverService, CityService cityService,
+                                  UserService userService, DriverFormValidator driverFormValidator,
+                                  UserValidator userValidator) {
+        this.driverService = driverService;
+        this.cityService = cityService;
+        this.userService = userService;
+        this.driverFormValidator = driverFormValidator;
+        this.userValidator = userValidator;
+    }
 
     private String driverAttribute = "driver";
     private String redirectToDriverPage = "redirect:/manager_/drivers";
@@ -91,7 +96,6 @@ public class ManageDriverController {
 
     }
 
-    //TODO autowired to constructor
     //TODO add javadocs
     @GetMapping(value = "/manager_/drivers/updateTime")
     public String updateTime(){

@@ -22,13 +22,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
 
     private CustomSuccessHandler customSuccessHandler;
 
     @Autowired
-    public SecurityConfiguration(UserDetailsService userDetailsService, CustomSuccessHandler customSuccessHandler) {
+    public SecurityConfiguration(@Qualifier("customUserDetailsService") UserDetailsService userDetailsService, CustomSuccessHandler customSuccessHandler) {
         this.userDetailsService = userDetailsService;
         this.customSuccessHandler = customSuccessHandler;
     }

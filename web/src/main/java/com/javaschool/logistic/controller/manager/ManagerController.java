@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ManagerController {
 
-
-    @Autowired
     private DriverService driverService;
 
-    @Autowired
     private OrderService orderService;
 
-    @Autowired
     private TruckService truckService;
 
+    @Autowired
+    public ManagerController(DriverService driverService, OrderService orderService,
+                             TruckService truckService) {
+        this.driverService = driverService;
+        this.orderService = orderService;
+        this.truckService = truckService;
+    }
 
     @GetMapping(value = "/manager_/drivers")
     public String managerToDrivers(Model model){

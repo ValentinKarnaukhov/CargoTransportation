@@ -21,17 +21,22 @@ import java.util.List;
 @Component
 public class ReceiverBean {
 
-    @Autowired
     private CityDao cityDao;
 
-    @Autowired
     private ExternalDao externalDao;
 
-    @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Autowired
     private ExternalBean externalBean;
+
+    @Autowired
+    public ReceiverBean(CityDao cityDao, ExternalDao externalDao,
+                        RabbitTemplate rabbitTemplate, ExternalBean externalBean) {
+        this.cityDao = cityDao;
+        this.externalDao = externalDao;
+        this.rabbitTemplate = rabbitTemplate;
+        this.externalBean = externalBean;
+    }
 
     @Transactional
     @RabbitListener(queues = "cargoes")
@@ -97,7 +102,5 @@ public class ReceiverBean {
     public void listen(OutgoingMessage outgoingMessage){
         System.out.println(outgoingMessage);
     }
-
-
 
 }

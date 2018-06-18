@@ -21,20 +21,26 @@ public class TruckServiceImpl implements TruckService {
 
     private static final Logger LOGGER = Logger.getLogger(TruckServiceImpl.class);
 
-    @Autowired
     private TruckDao truckDao;
 
-    @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @Transactional
+    @Autowired
+    public TruckServiceImpl(TruckDao truckDao, AmqpTemplate amqpTemplate) {
+        this.truckDao = truckDao;
+        this.amqpTemplate = amqpTemplate;
+    }
+
+
     @Override
+    @Transactional
     public List<Truck> findAllTrucks() {
         return truckDao.findAll();
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public void createTruck(Truck truck) {
         truck.setReg_number(truck.getReg_number().toUpperCase());
         truckDao.create(truck);
@@ -47,8 +53,8 @@ public class TruckServiceImpl implements TruckService {
     }
 
 
-    @Transactional
     @Override
+    @Transactional
     public void deleteById(int truck_id) {
         Truck truck = findById(truck_id);
         truck.setEnabled(false);
@@ -61,14 +67,16 @@ public class TruckServiceImpl implements TruckService {
         LOGGER.info("Truck "+truck+" has been removed");
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public Truck findById(int truck_id) {
         return truckDao.findById(truck_id);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public void updateTruck(Truck truck) {
         truck.setReg_number(truck.getReg_number().toUpperCase());
         truckDao.update(truck);
@@ -80,8 +88,9 @@ public class TruckServiceImpl implements TruckService {
         LOGGER.info("Truck "+truck+" has been updated");
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public List<Truck> findSuitableTrucks(List<Waypoint> waypoints) {
         if(waypoints.isEmpty()){
             return new LinkedList<>();
@@ -90,14 +99,16 @@ public class TruckServiceImpl implements TruckService {
         }
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public List<Truck> findByNumber(String number) {
         return truckDao.findByNumber(number);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public List<Truck> findAllForAdmin() {
         return truckDao.findAllForAdmin();
     }

@@ -11,11 +11,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class TruckConverter implements Converter<Object, Truck> {
 
-
-    @Autowired
     private TruckDao truckDao;
 
-
+    @Autowired
+    public TruckConverter(TruckDao truckDao) {
+        this.truckDao = truckDao;
+    }
 
     @Override
     public Truck convert(Object o) {

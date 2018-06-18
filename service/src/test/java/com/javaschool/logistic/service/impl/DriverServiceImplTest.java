@@ -35,12 +35,10 @@ public class DriverServiceImplTest {
     @InjectMocks
     private DriverService driverService = new DriverServiceImpl();
 
-
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
     }
-
 
     private Driver getDriver(){
         Driver driver = new Driver();

@@ -13,9 +13,12 @@ import java.util.List;
 @Service
 public class ExternalServiceImpl implements ExternalService {
 
-    @Autowired
     private ExternalDao externalDao;
 
+    @Autowired
+    public ExternalServiceImpl(ExternalDao externalDao) {
+        this.externalDao = externalDao;
+    }
 
     @Override
     @Transactional

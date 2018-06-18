@@ -13,9 +13,15 @@ import java.util.List;
 @Service
 public class CargoServiceImpl implements CargoService {
 
-    @Autowired
     private CargoDao cargoDao;
 
+    @Autowired
+    public CargoServiceImpl(CargoDao cargoDao) {
+        this.cargoDao = cargoDao;
+    }
+
+    public CargoServiceImpl() {
+    }
 
     @Override
     @Transactional

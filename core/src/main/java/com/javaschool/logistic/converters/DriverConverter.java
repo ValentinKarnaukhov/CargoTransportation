@@ -9,9 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class DriverConverter implements Converter<Object, Driver> {
 
+    private DriverDao driverDao;
 
     @Autowired
-    private DriverDao driverDao;
+    public DriverConverter(DriverDao driverDao) {
+        this.driverDao = driverDao;
+    }
 
     @Override
     public Driver convert(Object o) {

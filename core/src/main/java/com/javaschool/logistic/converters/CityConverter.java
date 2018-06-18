@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CityConverter implements Converter<Object, City> {
 
-
-    @Autowired
     private CityDao cityDao;
 
-
+    @Autowired
+    public CityConverter(CityDao cityDao) {
+        this.cityDao = cityDao;
+    }
 
     @Override
     public City convert(Object o) {

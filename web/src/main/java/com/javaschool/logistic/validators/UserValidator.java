@@ -15,8 +15,12 @@ import org.springframework.validation.Validator;
 @PropertySource(value = { "classpath:validation.properties"})
 public class UserValidator implements Validator {
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public UserValidator(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean supports(Class<?> aClass) {

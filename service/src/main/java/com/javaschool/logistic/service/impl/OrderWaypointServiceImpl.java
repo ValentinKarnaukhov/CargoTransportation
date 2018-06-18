@@ -22,24 +22,32 @@ import java.util.List;
 @Service
 public class OrderWaypointServiceImpl implements OrderWaypointService {
 
-    @Autowired
     private CargoDao cargoDao;
 
-    @Autowired
     private OrderWaypointDao orderWaypointDao;
 
-    @Autowired
     private OrderService orderService;
 
-    @Autowired
     private TruckDao truckDao;
 
-    @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Autowired
     private ExternalService externalService;
 
+    @Autowired
+    public OrderWaypointServiceImpl(CargoDao cargoDao, OrderWaypointDao orderWaypointDao,
+                                    OrderService orderService, TruckDao truckDao,
+                                    RabbitTemplate rabbitTemplate, ExternalService externalService) {
+        this.cargoDao = cargoDao;
+        this.orderWaypointDao = orderWaypointDao;
+        this.orderService = orderService;
+        this.truckDao = truckDao;
+        this.rabbitTemplate = rabbitTemplate;
+        this.externalService = externalService;
+    }
+
+    public OrderWaypointServiceImpl() {
+    }
 
     @Override
     @Transactional

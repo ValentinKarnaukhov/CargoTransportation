@@ -14,8 +14,12 @@ import org.springframework.validation.Validator;
 @PropertySource(value = { "classpath:validation.properties"})
 public class TruckFormValidator implements Validator {
 
-    @Autowired
     private TruckService truckService;
+
+    @Autowired
+    public TruckFormValidator(TruckService truckService) {
+        this.truckService = truckService;
+    }
 
     @Override
     public boolean supports(Class<?> aClass) {

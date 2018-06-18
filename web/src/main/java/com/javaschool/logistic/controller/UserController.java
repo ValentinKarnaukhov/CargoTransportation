@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class UserController {
 
-
     @GetMapping(value = { "/", "/login"})
     public String loginPage() {
         return "login";

@@ -23,21 +23,26 @@ import java.util.List;
  */
 
 @Service
-
 @PropertySource(value = { "classpath:appConfig.properties" })
 public class DriverServiceImpl implements DriverService {
 
     private static final Logger LOGGER = Logger.getLogger(DriverServiceImpl.class);
 
-    @Autowired
     private DriverDao driverDao;
 
-    @Autowired
     private Environment environment;
 
-    @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @Autowired
+    public DriverServiceImpl(DriverDao driverDao, Environment environment, AmqpTemplate amqpTemplate) {
+        this.driverDao = driverDao;
+        this.environment = environment;
+        this.amqpTemplate = amqpTemplate;
+    }
+
+    public DriverServiceImpl() {
+    }
 
     @Override
     @Transactional

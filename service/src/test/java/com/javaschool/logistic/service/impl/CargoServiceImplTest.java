@@ -26,7 +26,7 @@ public class CargoServiceImplTest {
     private CargoService cargoService = new CargoServiceImpl();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
