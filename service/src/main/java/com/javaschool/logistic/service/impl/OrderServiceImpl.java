@@ -1,5 +1,6 @@
 package com.javaschool.logistic.service.impl;
 
+import com.javaschool.logistic.dao.api.ExternalDao;
 import com.javaschool.logistic.dao.api.OrderDao;
 import com.javaschool.logistic.dao.api.OrderHistoryDao;
 
@@ -7,6 +8,7 @@ import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
+import com.javaschool.logistic.utils.Mapper;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.AmqpConnectException;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -34,6 +36,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @Autowired
+    private ExternalDao externalDao;
+
     @Transactional
     @Override
     public List<Order> findAllOrders() {
@@ -44,15 +49,21 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void createOrder(List<Waypoint> waypointList, Order order){
 
-            orderDao.create(order);
-            orderWaypointService.createWaypoints(waypointList,order);
-            orderHistoryDao.create(new OrderHistory(order,order.getTruck(),order.getTruck().getDrivers()));
-            try {
-                amqpTemplate.convertAndSend("infoQueue", "update");
-            }catch (AmqpConnectException e){
-                LOGGER.warn("Queue server not available", e);
+        for(Waypoint waypoint:waypointList){
+            if(waypoint.isExternal()){
+                externalDao.deleteById(waypoint.getExternal_id());
             }
-            LOGGER.info("Order "+order+" has been created");
+        }
+
+        orderDao.create(order);
+        orderWaypointService.createWaypoints(waypointList,order);
+        orderHistoryDao.create(new OrderHistory(order,order.getTruck(),order.getTruck().getDrivers()));
+        try {
+            amqpTemplate.convertAndSend("infoQueue", "update");
+        }catch (AmqpConnectException e){
+            LOGGER.warn("Queue server not available", e);
+        }
+        LOGGER.info("Order "+order+" has been created");
 
 
     }

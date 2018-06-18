@@ -51,6 +51,9 @@ public class Cargo implements Serializable {
     @OneToMany(mappedBy = "cargo")
     private List<OrderWaypoint> orderWaypoint;
 
+    @Column(name = "external")
+    private boolean external = false;
+
     @Override
     public String toString() {
         return "Cargo[" +

@@ -18,7 +18,7 @@
 </jsp:include>
 <h5 class="indigo-text"><s:message code="manager.neworder.mainlabel"/></h5>
 <div class="section"></div>
-<div  class="row add-driver">
+<div  class="add-driver">
 
     <h5 class="indigo-text"><s:message code="manager.neworder.cargoes.label"/></h5>
 
@@ -48,6 +48,9 @@
 
         <a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/orders/newcargo' />"><s:message code="manager.neworder.cargoes.button"/>
             <i class="material-icons left">add_box</i></a>
+
+        <a class="waves-effect waves-light btn blue-grey" href="<c:url value='/manager_/orders/cargolist' />"><s:message code="maneger.neworder.cargoes.listbutton"/>
+            <i class="material-icons left">view_list</i></a>
 
     <h5 style="margin-top: 100px" class="indigo-text"><s:message code="manager.neworder.truck.form.label"/></h5>
     <form:form class="card-panel" modelAttribute="order"  method="post" >

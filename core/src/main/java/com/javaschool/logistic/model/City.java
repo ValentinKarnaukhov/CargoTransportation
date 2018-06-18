@@ -36,6 +36,12 @@ public class City implements Serializable {
     @OneToMany(mappedBy = "city")
     private List<OrderWaypoint> orderWaypoints;
 
+    @OneToMany(mappedBy = "cityFrom")
+    private List<External> externalsFrom;
+
+    @OneToMany(mappedBy = "cityTo")
+    private List<External> externalsTo;
+
     public int getCity_id() {
         return city_id;
     }
@@ -90,5 +96,31 @@ public class City implements Serializable {
 
     public void setOrderWaypoints(List<OrderWaypoint> orderWaypoints) {
         this.orderWaypoints = orderWaypoints;
+    }
+
+    public List<External> getExternalsFrom() {
+        return externalsFrom;
+    }
+
+    public void setExternalsFrom(List<External> externalsFrom) {
+        this.externalsFrom = externalsFrom;
+    }
+
+    public List<External> getExternalsTo() {
+        return externalsTo;
+    }
+
+    public void setExternalsTo(List<External> externalsTo) {
+        this.externalsTo = externalsTo;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "city_id=" + city_id +
+                ", name='" + name + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }

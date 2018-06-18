@@ -1,11 +1,13 @@
 package com.javaschool.logistic.controller.manager;
 
+import com.javaschool.logistic.clients.ExternalBean;
 import com.javaschool.logistic.model.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.*;
 
 import com.javaschool.logistic.utils.DistanceCalculator;
 
+import com.javaschool.logistic.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,12 @@ public class ManageOrderController {
     @Autowired
     private CargoService cargoService;
 
+    @Autowired
+    private Mapper mapper;
+
+    @Autowired
+    private ExternalBean externals;
+
     private List<Waypoint> waypoints = new LinkedList<>();
     private String orderAttribute = "order";
 
@@ -70,6 +78,7 @@ public class ManageOrderController {
 
     @GetMapping(value = "/manager_/orders/delete_point_{id}")
     public String deletePoint(@PathVariable int id){
+        externals.getExternals().add(mapper.waypointToExternal(waypoints.get(id)));
         waypoints.remove(id);
         return "redirect:/manager_/orders/neworder";
     }
@@ -108,15 +117,31 @@ public class ManageOrderController {
 
     @GetMapping(value = "/manager_/orders/order_info_{order_id}")
     public String getOrderInfo(@PathVariable int order_id, Model model){
-
-            model.addAttribute("cargoes",cargoService.findByOrderId(order_id) );
-
-
+        model.addAttribute("cargoes",cargoService.findByOrderId(order_id));
         return "managersPages/orderInfo";
     }
 
+
+    @GetMapping(value = "/manager_/orders/cargolist")
+    public String getCargoList(Model model){
+        model.addAttribute("externals",externals.getExternals());
+        return "managersPages/cargolist";
+    }
+
+
+    @PostMapping(value = "/manager_/orders/cargolist")
+    public String moveCargoes(@RequestParam(required = false) Integer[] ids){
+        if(ids!=null){
+            externals.moveToList(waypoints,ids);
+        }
+        return "redirect:/manager_/orders/neworder";
+    }
+
+
+
     @GetMapping(value = "/manager_/orders/cancel")
     public String cancelCreate(){
+        externals.moveFromList(waypoints);
         waypoints.clear();
         return "redirect:/manager_/orders";
     }

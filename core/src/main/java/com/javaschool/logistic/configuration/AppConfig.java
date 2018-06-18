@@ -28,17 +28,18 @@ import java.util.Locale;
 @ComponentScan(basePackages = "com.javaschool.logistic")
 public class AppConfig extends WebMvcConfigurerAdapter{
 
+	private CityConverter cityConverter;
+
+	private TruckConverter truckConverter;
+
+	private DriverConverter driverConverter;
 
 	@Autowired
-	CityConverter cityConverter;
-
-	@Autowired
-	TruckConverter truckConverter;
-
-	@Autowired
-	DriverConverter driverConverter;
-
-
+	public AppConfig(CityConverter cityConverter, TruckConverter truckConverter, DriverConverter driverConverter) {
+		this.cityConverter = cityConverter;
+		this.truckConverter = truckConverter;
+		this.driverConverter = driverConverter;
+	}
 
 	@Bean
 	public InternalResourceViewResolver resolver(){

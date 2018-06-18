@@ -1,8 +1,7 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.GenericDao;
-import org.apache.log4j.Logger;
-import org.springframework.dao.DataIntegrityViolationException;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

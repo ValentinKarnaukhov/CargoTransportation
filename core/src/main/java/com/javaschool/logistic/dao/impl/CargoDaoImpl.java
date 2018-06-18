@@ -13,9 +13,8 @@ public class CargoDaoImpl extends GenericDaoImpl<Cargo> implements CargoDao {
     @Override
     public int getLastId(){
         return (int) getEntityManager()
-                .createQuery("SELECT MAX(cargo_id) FROM Cargo ")
+                .createQuery("SELECT COALESCE(MAX(cargo_id), 0) FROM Cargo ")
                 .getSingleResult();
-
     }
 
     @Override

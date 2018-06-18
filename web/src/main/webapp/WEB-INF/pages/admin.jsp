@@ -52,6 +52,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <a href="<c:url value="/test/into"/>" type="">TEST</a>
 </div>
 
 <%--SECOND--%>

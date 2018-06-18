@@ -4,6 +4,7 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +23,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource(value = { "classpath:application.properties" })
 public class JpaConfiguration {
 
-	@Autowired
+
 	private Environment environment;
+
+	@Autowired
+	public JpaConfiguration(Environment environment) {
+		this.environment = environment;
+	}
 
 	@Bean
 	public DataSource dataSource() {
@@ -67,5 +73,6 @@ public class JpaConfiguration {
 		txManager.setEntityManagerFactory(emf);
 		return txManager;
 	}
+
 
 }

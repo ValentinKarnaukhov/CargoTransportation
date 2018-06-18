@@ -41,14 +41,25 @@ public class RabbitMQConfig {
     public Queue cargoesQueue(){ return  new Queue("cargoes");}
 
     @Bean
-    public FanoutExchange fanoutExchange(){
-        return new FanoutExchange("exchange");
+    public Queue answerQueue(){return new Queue("answers");}
+
+    @Bean
+    public DirectExchange directExchange(){
+        return new DirectExchange("exchange");
     }
 
     @Bean
     public Binding bindingOne(){
-        return BindingBuilder.bind(infoQueue()).to(fanoutExchange());
+        return BindingBuilder.bind(infoQueue()).to(directExchange()).with("infoQueue");
     }
+
+    @Bean
+    public Binding bindingTwo(){
+        return BindingBuilder.bind(cargoesQueue()).to(directExchange()).with("cargoes");
+    }
+
+    @Bean
+    public Binding bindingThree(){ return BindingBuilder.bind(answerQueue()).to(directExchange()).with("answers");}
 
     @Bean
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory() {

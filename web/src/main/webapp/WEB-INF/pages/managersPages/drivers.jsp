@@ -45,35 +45,6 @@
                 <td>${driver.status}</td>
                 <td>${driver.truck.order.order_id}</td>
                 <td>${driver.worked_time}</td>
-
-                    <%--<select class="browser-default" style="background-color: transparent; margin-top: -10px; margin-bottom: -10px">--%>
-                        <%--<c:forEach items="${cities}" var="city">--%>
-                            <%--<c:choose>--%>
-                                <%--<c:when test="${city.city_id==driver.city.city_id}">--%>
-                                    <%--<option selected value="${city.city_id}">${city.name}</option>--%>
-                                <%--</c:when>--%>
-                                <%--<c:when test="${city.city_id!=driver.city.city_id}">--%>
-                                    <%--<option value="${city.city_id}">${city.name}</option>--%>
-                                <%--</c:when>--%>
-                            <%--</c:choose>--%>
-                        <%--</c:forEach>--%>
-                    <%--</select>--%>
-
-
-                <%--<td class="status">--%>
-                    <%--<select class="browser-default" style="background-color: transparent; margin-top: -10px; margin-bottom: -10px">--%>
-                        <%--<c:forEach items="${statuses}" var="status">--%>
-                            <%--<c:choose>--%>
-                                <%--<c:when test="${driver.status==status}">--%>
-                                    <%--<option selected>${status}</option>--%>
-                                <%--</c:when>--%>
-                                <%--<c:when test="${driver.status!=status}">--%>
-                                    <%--<option >${status}</option>--%>
-                                <%--</c:when>--%>
-                            <%--</c:choose>--%>
-                        <%--</c:forEach>--%>
-                    <%--</select>--%>
-                <%--</td>--%>
                 <td><a href="<c:url value='/manager_/edit_driver_${driver.driver_id}'/>">
                     <i class="material-icons blue-grey-text">edit</i></a></td>
                 <td><a href="<c:url value='/manager_/delete_driver_${driver.driver_id}'/>">

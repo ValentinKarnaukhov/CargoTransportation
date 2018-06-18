@@ -5,9 +5,12 @@ import com.javaschool.logistic.dao.api.OrderWaypointDao;
 import com.javaschool.logistic.dao.api.TruckDao;
 
 import com.javaschool.logistic.model.*;
+import com.javaschool.logistic.models.OutgoingMessage;
 import com.javaschool.logistic.models.Waypoint;
+import com.javaschool.logistic.service.api.ExternalService;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +34,12 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
     @Autowired
     private TruckDao truckDao;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private ExternalService externalService;
+
 
     @Override
     @Transactional
@@ -53,7 +62,6 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
             orderWaypoint.setCargo(cargo);
             orderWaypoint.setOperation(OrderWaypoint.Operation.UNLOADING);
             orderWaypointDao.create(orderWaypoint);
-
         }
 
     }
@@ -82,6 +90,14 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
             Cargo cargo = point.getCargo();
             cargo.setStatus(Cargo.Status.SHIPPED);
             cargoDao.update(cargo);
+
+            if(cargo.isExternal()){
+                rabbitTemplate
+                        .convertAndSend("answers",
+                                new OutgoingMessage(externalService.getId(cargo.getName()),OutgoingMessage.Status.SHIPPED));
+            }
+
+
             truck.setCity(point.getCity());
             for(Driver driver:truck.getDrivers()){
                 driver.setCity(point.getCity());
@@ -94,6 +110,13 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
             Cargo cargo = point.getCargo();
             cargo.setStatus(Cargo.Status.DONE);
             cargoDao.update(cargo);
+
+            if(cargo.isExternal()){
+                rabbitTemplate
+                        .convertAndSend("answers",
+                                new OutgoingMessage(externalService.getId(cargo.getName()),OutgoingMessage.Status.DELIVERED));
+            }
+
             truck.setCity(point.getCity());
             for(Driver driver:truck.getDrivers()){
                 driver.setCity(point.getCity());
