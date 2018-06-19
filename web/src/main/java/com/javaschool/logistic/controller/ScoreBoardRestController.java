@@ -1,8 +1,9 @@
-package com.javaschool.logistic.controller.manager;
+package com.javaschool.logistic.controller;
 import com.javaschool.logistic.models.JsonResponse;
 import com.javaschool.logistic.service.api.ScoreboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
