@@ -13,12 +13,14 @@
     <jsp:param name="title" value="New truck page"/>
 </jsp:include>
 
+<s:message code="manager.newtruck.label" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="trucks" value="active"/>
+    <jsp:param name="label" value="${label}"/>
 </jsp:include>
 
-<h5 class="indigo-text"><s:message code="manager.newtruck.label"/></h5>
-<div class="section"></div>
+
 <div  class="row card-panel driver-truck">
     <form:form id="truck" modelAttribute="truck" class="col s12" method="post" >
         <div class="row">

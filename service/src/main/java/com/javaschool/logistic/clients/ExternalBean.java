@@ -2,7 +2,7 @@ package com.javaschool.logistic.clients;
 
 
 import com.javaschool.logistic.dao.api.ExternalDao;
-import com.javaschool.logistic.model.External;
+import com.javaschool.logistic.models.External;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;

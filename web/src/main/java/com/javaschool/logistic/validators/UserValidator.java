@@ -1,6 +1,6 @@
 package com.javaschool.logistic.validators;
 
-import com.javaschool.logistic.model.User;
+import com.javaschool.logistic.models.User;
 import com.javaschool.logistic.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;

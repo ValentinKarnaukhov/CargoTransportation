@@ -62,10 +62,12 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         return url;
     }
 
+    @Override
     public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
         this.redirectStrategy = redirectStrategy;
     }
 
+    @Override
     protected RedirectStrategy getRedirectStrategy() {
         return redirectStrategy;
     }

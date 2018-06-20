@@ -24,7 +24,8 @@
 			src/main/webapp/static/js/table.js,
 			src/main/webapp/static/js/jquery.autocomplete.js,
 			src/main/webapp/static/js/materialize.js,
-			src/main/webapp/static/js/jquery.custom.js
+			src/main/webapp/static/js/jquery.custom.js,
+			src/main/java/com/javaschool/logistic/models/*
 		</sonar.exclusions>
 	</properties>
 
@@ -161,13 +162,6 @@
 			<version>2.7.4</version>
 		</dependency>
 
-		<!-- Email -->
-
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4</version>
-		</dependency>
 
 		<!--Tests-->
 		<dependency>

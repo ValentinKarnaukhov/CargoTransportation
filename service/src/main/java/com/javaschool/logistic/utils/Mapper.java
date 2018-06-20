@@ -1,8 +1,8 @@
 package com.javaschool.logistic.utils;
 
 
-import com.javaschool.logistic.model.Cargo;
-import com.javaschool.logistic.model.External;
+import com.javaschool.logistic.models.Cargo;
+import com.javaschool.logistic.models.External;
 import com.javaschool.logistic.models.Waypoint;
 import org.springframework.stereotype.Component;
 

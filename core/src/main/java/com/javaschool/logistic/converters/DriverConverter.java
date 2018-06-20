@@ -1,7 +1,7 @@
 package com.javaschool.logistic.converters;
 
 import com.javaschool.logistic.dao.api.DriverDao;
-import com.javaschool.logistic.model.Driver;
+import com.javaschool.logistic.models.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.javaschool.logistic.dao.api;
 
-import com.javaschool.logistic.model.External;
+import com.javaschool.logistic.models.External;
 
 public interface ExternalDao extends GenericDao<External> {
 

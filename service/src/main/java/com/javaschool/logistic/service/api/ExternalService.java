@@ -1,6 +1,6 @@
 package com.javaschool.logistic.service.api;
 
-import com.javaschool.logistic.model.External;
+import com.javaschool.logistic.models.External;
 
 import java.util.List;
 

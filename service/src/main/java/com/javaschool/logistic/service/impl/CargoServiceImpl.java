@@ -1,7 +1,7 @@
 package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.CargoDao;
-import com.javaschool.logistic.model.Cargo;
+import com.javaschool.logistic.models.Cargo;
 import com.javaschool.logistic.service.api.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

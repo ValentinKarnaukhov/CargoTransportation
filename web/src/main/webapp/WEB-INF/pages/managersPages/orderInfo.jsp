@@ -12,10 +12,13 @@
     <jsp:param name="title" value="Order information"/>
 </jsp:include>
 
+<s:message code="manager.orders.info.label" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
+    <jsp:param name="label" value="${label}"/>
 </jsp:include>
-<h5 class="indigo-text table-in"><s:message code="manager.orders.info.label"/></h5>
+
 <table  class="centered highlight bordered card-panel table">
     <thead>
     <tr>

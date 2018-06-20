@@ -1,7 +1,7 @@
 package com.javaschool.logistic.service.api;
 
 
-import com.javaschool.logistic.model.User;
+import com.javaschool.logistic.models.User;
 
 import java.util.List;
 

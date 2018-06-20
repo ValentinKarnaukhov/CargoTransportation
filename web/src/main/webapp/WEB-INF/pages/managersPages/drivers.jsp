@@ -14,11 +14,13 @@
     <jsp:param name="title" value="Drivers"/>
 </jsp:include>
 
+<s:message code="manager.drivers.label" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
         <jsp:param name="drivers" value="active"/>
+        <jsp:param name="label" value="${label}"/>
 </jsp:include>
 
-    <h5 class="indigo-text table-in"><s:message code="manager.drivers.label"/></h5>
     <table class="centered highlight bordered card-panel table">
         <thead>
         <tr>

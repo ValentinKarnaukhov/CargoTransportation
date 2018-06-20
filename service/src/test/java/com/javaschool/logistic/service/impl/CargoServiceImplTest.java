@@ -1,7 +1,7 @@
 package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.CargoDao;
-import com.javaschool.logistic.model.Cargo;
+import com.javaschool.logistic.models.Cargo;
 import com.javaschool.logistic.service.api.CargoService;
 import org.junit.Before;
 import org.junit.Test;

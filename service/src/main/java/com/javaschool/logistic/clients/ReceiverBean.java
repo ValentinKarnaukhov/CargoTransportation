@@ -3,8 +3,8 @@ package com.javaschool.logistic.clients;
 
 import com.javaschool.logistic.dao.api.CityDao;
 import com.javaschool.logistic.dao.api.ExternalDao;
-import com.javaschool.logistic.model.City;
-import com.javaschool.logistic.model.External;
+import com.javaschool.logistic.models.City;
+import com.javaschool.logistic.models.External;
 import com.javaschool.logistic.models.IncomingMessage;
 import com.javaschool.logistic.models.OutgoingMessage;
 import org.apache.commons.text.similarity.LevenshteinDistance;

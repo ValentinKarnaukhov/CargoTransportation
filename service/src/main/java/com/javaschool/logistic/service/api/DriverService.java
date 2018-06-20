@@ -1,8 +1,8 @@
 package com.javaschool.logistic.service.api;
 
 
-import com.javaschool.logistic.model.Driver;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Driver;
+import com.javaschool.logistic.models.Truck;
 
 import java.util.Date;
 import java.util.List;

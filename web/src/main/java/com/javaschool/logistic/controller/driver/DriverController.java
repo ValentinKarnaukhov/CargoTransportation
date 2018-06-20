@@ -2,9 +2,9 @@ package com.javaschool.logistic.controller.driver;
 
 
 
-import com.javaschool.logistic.model.City;
-import com.javaschool.logistic.model.Driver;
-import com.javaschool.logistic.model.OrderWaypoint;
+import com.javaschool.logistic.models.City;
+import com.javaschool.logistic.models.Driver;
+import com.javaschool.logistic.models.OrderWaypoint;
 
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;

@@ -4,7 +4,7 @@ import com.javaschool.logistic.dao.api.ExternalDao;
 import com.javaschool.logistic.dao.api.OrderDao;
 import com.javaschool.logistic.dao.api.OrderHistoryDao;
 
-import com.javaschool.logistic.model.*;
+import com.javaschool.logistic.models.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;

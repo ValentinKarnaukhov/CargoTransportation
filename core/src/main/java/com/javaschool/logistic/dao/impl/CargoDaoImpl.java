@@ -1,7 +1,7 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.CargoDao;
-import com.javaschool.logistic.model.Cargo;
+import com.javaschool.logistic.models.Cargo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

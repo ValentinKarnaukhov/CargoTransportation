@@ -1,8 +1,8 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.CityDao;
-import com.javaschool.logistic.model.City;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.City;
+import com.javaschool.logistic.models.Truck;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 

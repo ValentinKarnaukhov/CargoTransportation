@@ -1,7 +1,7 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.OrderDao;
-import com.javaschool.logistic.model.Order;
+import com.javaschool.logistic.models.Order;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 

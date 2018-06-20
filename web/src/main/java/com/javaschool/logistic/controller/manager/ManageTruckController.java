@@ -2,8 +2,8 @@ package com.javaschool.logistic.controller.manager;
 
 
 
-import com.javaschool.logistic.model.City;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.City;
+import com.javaschool.logistic.models.Truck;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.TruckService;
 import com.javaschool.logistic.validators.TruckFormValidator;

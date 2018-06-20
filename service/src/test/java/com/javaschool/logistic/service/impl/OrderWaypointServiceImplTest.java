@@ -3,7 +3,7 @@ package com.javaschool.logistic.service.impl;
 import com.javaschool.logistic.dao.api.CargoDao;
 import com.javaschool.logistic.dao.api.OrderWaypointDao;
 import com.javaschool.logistic.dao.api.TruckDao;
-import com.javaschool.logistic.model.*;
+import com.javaschool.logistic.models.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
@@ -13,12 +13,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.javaschool.logistic.model.Cargo.Status.DONE;
-import static com.javaschool.logistic.model.Cargo.Status.SHIPPED;
+import static com.javaschool.logistic.models.Cargo.Status.DONE;
+import static com.javaschool.logistic.models.Cargo.Status.SHIPPED;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 

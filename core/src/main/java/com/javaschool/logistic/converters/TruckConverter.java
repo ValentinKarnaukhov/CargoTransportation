@@ -1,7 +1,7 @@
 package com.javaschool.logistic.converters;
 
 import com.javaschool.logistic.dao.api.TruckDao;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Truck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

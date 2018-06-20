@@ -17,7 +17,7 @@ import java.util.Arrays;
 @Component
 public class MessagesSender {
 
-    private static final String URL = "http://40.89.133.236:8085/api/send";
+    private static final String URL = "http://40.112.75.135:8085/api/send";
     private static final Logger LOGGER = Logger.getLogger(MessagesSender.class);
 
     public String send(String username, String email, String password)  {

@@ -1,7 +1,7 @@
 package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.UserDao;
-import com.javaschool.logistic.model.User;
+import com.javaschool.logistic.models.User;
 import com.javaschool.logistic.service.api.UserService;
 import com.javaschool.logistic.utils.MessagesSender;
 import com.javaschool.logistic.utils.PasswordGenerator;

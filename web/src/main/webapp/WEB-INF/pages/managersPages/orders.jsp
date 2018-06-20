@@ -8,17 +8,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 
 <jsp:include page="../header.jsp">
     <jsp:param name="title" value="Orders"/>
 </jsp:include>
 
+<s:message code="manager.orders.label" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
+    <jsp:param name="label" value="${label}"/>
 </jsp:include>
 
-<h5 class="indigo-text table-in"><s:message code="manager.orders.label"/></h5>
+
+<h5 class="indigo-text table-in"></h5>
 <table class="centered bordered highlight card-panel table">
     <thead>
     <tr>

@@ -1,7 +1,7 @@
 package com.javaschool.logistic.service.impl;
 
 import com.javaschool.logistic.dao.api.ExternalDao;
-import com.javaschool.logistic.model.External;
+import com.javaschool.logistic.models.External;
 import com.javaschool.logistic.service.api.ExternalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,9 @@ public class ExternalServiceImpl implements ExternalService {
     @Autowired
     public ExternalServiceImpl(ExternalDao externalDao) {
         this.externalDao = externalDao;
+    }
+
+    public ExternalServiceImpl() {
     }
 
     @Override

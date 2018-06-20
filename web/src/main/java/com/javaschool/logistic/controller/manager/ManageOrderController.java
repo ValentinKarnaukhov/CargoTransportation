@@ -1,7 +1,7 @@
 package com.javaschool.logistic.controller.manager;
 
 import com.javaschool.logistic.clients.ExternalBean;
-import com.javaschool.logistic.model.*;
+import com.javaschool.logistic.models.*;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.*;
 
@@ -39,7 +39,7 @@ public class ManageOrderController {
 
     private ExternalBean externals;
 
-    private List<Waypoint> waypoints = new LinkedList<>();
+    private List<Waypoint> waypoints;
 
     @Autowired
     public ManageOrderController(CityService cityService, DriverService driverService,
@@ -54,6 +54,7 @@ public class ManageOrderController {
         this.cargoService = cargoService;
         this.mapper = mapper;
         this.externals = externals;
+        this.waypoints = new LinkedList<>();
     }
 
     @GetMapping(value = "/manager_/orders/newcargo")
@@ -84,7 +85,9 @@ public class ManageOrderController {
 
     @GetMapping(value = "/manager_/orders/delete_point_{id}")
     public String deletePoint(@PathVariable int id){
-        externals.getExternals().add(mapper.waypointToExternal(waypoints.get(id)));
+        if(waypoints.get(id).isExternal()){
+            externals.getExternals().add(mapper.waypointToExternal(waypoints.get(id)));
+        }
         waypoints.remove(id);
         return "redirect:/manager_/orders/neworder";
     }

@@ -45,7 +45,7 @@ public class JpaConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		factoryBean.setPackagesToScan("com.javaschool.logistic.model");
+		factoryBean.setPackagesToScan("com.javaschool.logistic.models");
 		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
 		factoryBean.setJpaProperties(jpaProperties());
 		return factoryBean;

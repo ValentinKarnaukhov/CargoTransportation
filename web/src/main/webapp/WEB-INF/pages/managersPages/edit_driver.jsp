@@ -10,17 +10,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <jsp:include page="../header.jsp">
     <jsp:param name="title" value="Driver editing"/>
 </jsp:include>
 
+<s:message code="manager.drivers.edit.label" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="drivers" value="active"/>
+    <jsp:param name="label" value="${label}"/>
 </jsp:include>
 
 
-<h5 class="indigo-text"><s:message code="manager.drivers.edit.label"/></h5>
+<h5 class="indigo-text"></h5>
 <div class="section"></div>
 <div  class="row card-panel driver-truck">
     <form:form modelAttribute="driver" class="col s12" method="post" >

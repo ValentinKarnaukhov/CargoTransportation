@@ -2,7 +2,7 @@ package com.javaschool.logistic.service.impl;
 
 
 import com.javaschool.logistic.dao.api.TruckDao;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Truck;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.TruckService;
 import org.apache.log4j.Logger;

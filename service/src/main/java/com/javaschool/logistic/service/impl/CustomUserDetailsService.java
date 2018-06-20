@@ -1,6 +1,6 @@
 package com.javaschool.logistic.service.impl;
 
-import com.javaschool.logistic.model.User;
+import com.javaschool.logistic.models.User;
 import com.javaschool.logistic.service.api.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

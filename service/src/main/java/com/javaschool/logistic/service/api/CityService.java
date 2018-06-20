@@ -1,7 +1,7 @@
 package com.javaschool.logistic.service.api;
 
-import com.javaschool.logistic.model.City;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.City;
+import com.javaschool.logistic.models.Truck;
 
 import java.util.List;
 

@@ -2,9 +2,9 @@ package com.javaschool.logistic.controller;
 
 
 import com.javaschool.logistic.models.WaypointDto;
-import com.javaschool.logistic.model.Driver;
-import com.javaschool.logistic.model.OrderWaypoint;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Driver;
+import com.javaschool.logistic.models.OrderWaypoint;
+import com.javaschool.logistic.models.Truck;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
 import com.javaschool.logistic.service.api.TruckService;
@@ -37,8 +37,9 @@ public class RestController {
         driverService.updateDriver(driver);
     }
 
-    @GetMapping(value = "/driver/{driver_id}/changeCity")
-    public void changeCity(@PathVariable int driver_id, @RequestParam Integer city_id){
+    @PutMapping(value = "/driver/{driver_id}/changeCity")
+    public void changeCity(@PathVariable int driver_id, @RequestBody Map<String,String> city){
+        Integer city_id = Integer.parseInt(city.get("city_id"));
         Driver driver = driverService.findById(driver_id);
         driver.getCity().setCity_id(city_id);
         driverService.updateDriver(driver);

@@ -2,7 +2,7 @@ package com.javaschool.logistic.dao.impl;
 
 
 import com.javaschool.logistic.dao.api.UserDao;
-import com.javaschool.logistic.model.User;
+import com.javaschool.logistic.models.User;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 

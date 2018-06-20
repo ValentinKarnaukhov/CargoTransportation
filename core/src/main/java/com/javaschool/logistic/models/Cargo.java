@@ -1,4 +1,4 @@
-package com.javaschool.logistic.model;
+package com.javaschool.logistic.models;
 
 import lombok.Getter;
 import lombok.Setter;

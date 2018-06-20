@@ -56,7 +56,7 @@ body{
     font-size: xx-large;
     margin: 0;
     padding-top: 15px;
-    padding-bottom: 85px;
+    padding-bottom: 45px;
 }
 
 .driver-logo{
@@ -80,13 +80,13 @@ body{
 
 
 .left-menu{
-    width: 16%;
+    width: 21%;
 }
 
 .in-left-menu{
-    margin-left: 18%;
+    margin-left: 21.8%;
     margin-right: 3%;
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
 .table-in{

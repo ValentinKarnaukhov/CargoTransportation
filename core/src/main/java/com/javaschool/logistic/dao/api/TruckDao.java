@@ -1,6 +1,6 @@
 package com.javaschool.logistic.dao.api;
 
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Truck;
 
 import java.util.List;
 

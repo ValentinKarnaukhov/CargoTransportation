@@ -3,7 +3,7 @@ package com.javaschool.logistic.service.impl;
 import com.javaschool.logistic.dao.api.DriverDao;
 import com.javaschool.logistic.dao.api.OrderDao;
 import com.javaschool.logistic.dao.api.TruckDao;
-import com.javaschool.logistic.model.*;
+import com.javaschool.logistic.models.*;
 import com.javaschool.logistic.models.JsonResponse;
 import com.javaschool.logistic.models.ScoreboardRow;
 import com.javaschool.logistic.service.api.ScoreboardService;

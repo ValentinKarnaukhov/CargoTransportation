@@ -14,13 +14,14 @@
     <jsp:param name="title" value="Cargoes List"/>
 </jsp:include>
 
+<s:message code="manager.neworder.cargolist.label" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
+    <jsp:param name="label" value="${label}"/>
 </jsp:include>
 
 
-
-<h5 class="indigo-text table-in"><s:message code="manager.neworder.cargolist.label"/></h5>
 <form:form  method="post">
 <table class="centered highlight bordered card-panel table">
     <thead>

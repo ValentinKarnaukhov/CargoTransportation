@@ -1,7 +1,7 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.ExternalDao;
-import com.javaschool.logistic.model.External;
+import com.javaschool.logistic.models.External;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,8 +1,8 @@
 package com.javaschool.logistic.utils;
 
 
-import com.javaschool.logistic.model.City;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.City;
+import com.javaschool.logistic.models.Truck;
 import com.javaschool.logistic.models.Waypoint;
 import org.junit.Test;
 import org.mockito.InjectMocks;

@@ -9,17 +9,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <jsp:include page="../header.jsp">
     <jsp:param name="title" value="New driver page"/>
 </jsp:include>
 
+<s:message code="manager.newdriver.label" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="drivers" value="active"/>
+    <jsp:param name="label" value="${label}"/>
 </jsp:include>
 
 
-<h5 class="indigo-text"><s:message code="manager.newdriver.label"/></h5>
-<div class="section"></div>
 <div  class="row card-panel driver-truck">
     <form:form id="driver" modelAttribute="driver" class="col s12" method="post" >
         <div class="row">

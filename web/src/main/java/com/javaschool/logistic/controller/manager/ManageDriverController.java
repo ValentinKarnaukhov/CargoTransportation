@@ -1,9 +1,9 @@
 package com.javaschool.logistic.controller.manager;
 
 
-import com.javaschool.logistic.model.City;
-import com.javaschool.logistic.model.Driver;
-import com.javaschool.logistic.model.User;
+import com.javaschool.logistic.models.City;
+import com.javaschool.logistic.models.Driver;
+import com.javaschool.logistic.models.User;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.UserService;
@@ -96,7 +96,7 @@ public class ManageDriverController {
 
     }
 
-    //TODO add javadocs
+
     @GetMapping(value = "/manager_/drivers/updateTime")
     public String updateTime(){
         driverService.setWorktimeForAll(0,new Date());

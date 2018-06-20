@@ -1,8 +1,8 @@
 package com.javaschool.logistic.dao.impl;
 
 import com.javaschool.logistic.dao.api.DriverDao;
-import com.javaschool.logistic.model.Driver;
-import com.javaschool.logistic.model.Truck;
+import com.javaschool.logistic.models.Driver;
+import com.javaschool.logistic.models.Truck;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;

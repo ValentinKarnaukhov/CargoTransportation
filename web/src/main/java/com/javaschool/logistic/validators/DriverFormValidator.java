@@ -1,7 +1,7 @@
 package com.javaschool.logistic.validators;
 
 
-import com.javaschool.logistic.model.Driver;
+import com.javaschool.logistic.models.Driver;
 
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;

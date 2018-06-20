@@ -1,11 +1,12 @@
-package com.javaschool.logistic.model;
+package com.javaschool.logistic.models;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "EXTERNAL")
-public class External {
+public class External implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

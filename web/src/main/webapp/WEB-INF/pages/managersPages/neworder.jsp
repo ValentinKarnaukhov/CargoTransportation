@@ -13,13 +13,14 @@
     <jsp:param name="title" value="New order"/>
 </jsp:include>
 
+<s:message code="manager.neworder.mainlabel" var="label"/>
+
 <jsp:include page="../leftMenu.jsp">
     <jsp:param name="orders" value="active"/>
+    <jsp:param name="label" value="${label}"/>
 </jsp:include>
-<h5 class="indigo-text"><s:message code="manager.neworder.mainlabel"/></h5>
-<div class="section"></div>
-<div  class="add-driver">
 
+<div  class="add-driver">
     <h5 class="indigo-text"><s:message code="manager.neworder.cargoes.label"/></h5>
 
         <table class="centered highlight bordered card-panel">

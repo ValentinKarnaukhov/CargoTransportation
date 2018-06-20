@@ -1,7 +1,7 @@
 package com.javaschool.logistic.controller;
 
 
-import com.javaschool.logistic.model.User;
+import com.javaschool.logistic.models.User;
 import com.javaschool.logistic.models.IncomingMessage;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.TruckService;

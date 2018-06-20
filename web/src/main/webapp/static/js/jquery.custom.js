@@ -28,10 +28,19 @@ $(document).ready(function(){
     });
 
     $('#city_ok').on('click',function () {
+
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
        $.ajax({
-           type: 'get',
+           beforeSend: function (xhr) {
+               xhr.setRequestHeader(header, token);
+           },
+           type: 'put',
            url: '/driver/'+$('#driver_id').val()+'/changeCity',
-           data: ({
+           contentType: 'application/json',
+           dataType: 'json',
+           data: JSON.stringify({
                city_id: $('#changeCity option:selected').val()
            })
        }) ;
