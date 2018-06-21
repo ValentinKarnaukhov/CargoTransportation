@@ -1,4 +1,4 @@
-ALTER TABLE cargo ADD external BOOLEAN DEFAULT false;
+ALTER TABLE CARGO ADD external BOOLEAN DEFAULT false;
 
 create table if not exists EXTERNAL (
   external_id BIGINT NOT NULL AUTO_INCREMENT,
