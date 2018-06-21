@@ -1,6 +1,8 @@
 package com.javaschool.logistic.utils;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -15,9 +17,16 @@ import java.util.Arrays;
 
 
 @Component
+
 public class MessagesSender {
 
-    private static final String URL = "http://40.112.75.135:8085/api/send";
+    private final String URL;
+
+    @Autowired
+    public MessagesSender(Environment environment) {
+        this.URL= environment.getProperty("address");
+    }
+
     private static final Logger LOGGER = Logger.getLogger(MessagesSender.class);
 
     public String send(String username, String email, String password)  {
