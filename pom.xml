@@ -222,19 +222,6 @@
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>org.flywaydb</groupId>
-					<artifactId>flyway-maven-plugin</artifactId>
-					<version>5.1.1</version>
-					<configuration>
-						<url>jdbc:mysql://206.189.24.66:3306</url>
-						<user>root</user>
-						<password>root</password>
-						<schemas>
-							<schema>logistic</schema>
-						</schemas>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
