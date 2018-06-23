@@ -84,7 +84,6 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 
 
 
-
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(truckConverter);

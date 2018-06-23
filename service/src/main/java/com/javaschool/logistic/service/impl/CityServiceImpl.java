@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @author Valentin
- */
 @Service
 public class CityServiceImpl implements CityService {
 

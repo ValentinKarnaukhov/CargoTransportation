@@ -9,9 +9,7 @@ import javax.persistence.NoResultException;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author Valentin
- */
+
 @Repository
 public class DriverDaoImpl extends GenericDaoImpl<Driver> implements DriverDao {
 

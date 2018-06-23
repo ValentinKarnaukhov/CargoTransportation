@@ -8,9 +8,6 @@ import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-/**
- * @author Valentin
- */
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
 

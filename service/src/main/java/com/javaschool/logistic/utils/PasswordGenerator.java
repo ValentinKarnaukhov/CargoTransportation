@@ -1,6 +1,5 @@
 package com.javaschool.logistic.utils;
 
-
 import org.springframework.stereotype.Service;
 
 import java.util.Random;

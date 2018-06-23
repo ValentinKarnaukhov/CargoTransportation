@@ -18,10 +18,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-/**
- * @author Valentin
- */
-
 @Service
 @PropertySource(value = { "classpath:appConfig.properties" })
 public class DriverServiceImpl implements DriverService {

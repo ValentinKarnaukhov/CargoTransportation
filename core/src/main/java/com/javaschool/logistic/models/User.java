@@ -1,14 +1,8 @@
 package com.javaschool.logistic.models;
 
-
-
-
-
 import java.io.Serializable;
 
-
 import javax.persistence.*;
-
 
 
 @Entity

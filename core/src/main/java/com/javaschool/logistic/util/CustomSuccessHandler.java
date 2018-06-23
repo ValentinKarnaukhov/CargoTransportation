@@ -14,10 +14,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author Valentin
- */
-
 
 @Component
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {

@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.NoResultException;
 import java.util.List;
 
-/**
- * @author Valentin
- */
 
 @Repository
 public class CityDaoImpl extends GenericDaoImpl<City> implements CityDao {

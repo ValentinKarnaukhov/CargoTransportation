@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface OrderWaypointService {
 
-
-
     void createWaypoints(List<Waypoint> waypointList, Order order);
 
     List<OrderWaypoint> findByOrderId(int order_id);

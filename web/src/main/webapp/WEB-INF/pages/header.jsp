@@ -11,10 +11,10 @@
 <html>
 <head>
     <title><c:out value="${param.title}"/></title>
-    <link href="<c:url value="/static/css/material-icons.css"/>" rel="stylesheet">
-    <link href="<c:url value='/static/css/materialize.css' />" rel="stylesheet"/>
-    <link href="<c:url value='/static/css/styles.css' />" rel="stylesheet"/>
-    <link href="<c:url value='/static/css/table.css' />" rel="stylesheet"/>
+    <link href="<c:url value="/static/css/min/material-icons.min.css"/>" rel="stylesheet">
+    <link href="<c:url value='/static/css/min/materialize.min.css' />" rel="stylesheet"/>
+    <link href="<c:url value='/static/css/min/styles.min.css' />" rel="stylesheet"/>
+    <link href="<c:url value='/static/css/min/table.min.css' />" rel="stylesheet"/>
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>

@@ -5,9 +5,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author Valentin
- */
 
 @Entity
 @Table(name = "CITY")

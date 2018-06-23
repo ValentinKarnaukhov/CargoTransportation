@@ -1,6 +1,5 @@
 package com.javaschool.logistic.utils;
 
-
 import com.javaschool.logistic.models.Cargo;
 import com.javaschool.logistic.models.External;
 import com.javaschool.logistic.models.Waypoint;

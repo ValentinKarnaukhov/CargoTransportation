@@ -4,10 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 
-/**
- * @author Valentin
- */
-
 @Entity
 @Table(name = "ORDER_WAYPOINT")
 public class OrderWaypoint implements Serializable {
