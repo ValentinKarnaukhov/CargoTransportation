@@ -1,11 +1,16 @@
 package com.javaschool.logistic.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 
 @Entity
+@Getter
+@Setter
 @Table(name = "TRUCK")
 public class Truck implements Serializable {
 
@@ -48,86 +53,6 @@ public class Truck implements Serializable {
 
     @OneToMany(mappedBy = "truck")
     private List<OrderHistory> orderHistory;
-
-    public List<OrderHistory> getOrderHistory() {
-        return orderHistory;
-    }
-
-    public void setOrderHistory(List<OrderHistory> orderHistory) {
-        this.orderHistory = orderHistory;
-    }
-
-    public int getTruck_id() {
-        return truck_id;
-    }
-
-    public void setTruck_id(int truck_id) {
-        this.truck_id = truck_id;
-    }
-
-    public String getReg_number() {
-        return reg_number;
-    }
-
-    public void setReg_number(String reg_number) {
-        this.reg_number = reg_number;
-    }
-
-    public int getMax_drivers() {
-        return max_drivers;
-    }
-
-    public void setMax_drivers(int max_drivers) {
-        this.max_drivers = max_drivers;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public List<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
 
 
     @Override

@@ -18,6 +18,7 @@
     </c:otherwise>
 </c:choose>
 <script type="text/javascript" src="<c:url value="/static/js/min/jquery.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/min/jquery.validate.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/min/materialize.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/min/custom.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/table.js"/>"></script>

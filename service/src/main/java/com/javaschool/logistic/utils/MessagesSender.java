@@ -16,8 +16,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 
 
+/**
+ * Class sender credentials of remote service
+ */
 @Component
-
 public class MessagesSender {
 
     private final String URL;

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Class for calculate distance between points of gaversin theorem
+ */
 @Component
 public class DistanceCalculator{
 

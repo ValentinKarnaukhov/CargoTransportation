@@ -1,10 +1,15 @@
 package com.javaschool.logistic.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 
 @Entity
+@Getter
+@Setter
 @Table(name = "ORDER_WAYPOINT")
 public class OrderWaypoint implements Serializable {
 
@@ -42,54 +47,6 @@ public class OrderWaypoint implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status = Status.PROGRESS;
-
-    public int getOrder_waypoint_id() {
-        return order_waypoint_id;
-    }
-
-    public void setOrder_waypoint_id(int order_waypoint_id) {
-        this.order_waypoint_id = order_waypoint_id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public Cargo getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
-    }
-
-    public Operation getOperation() {
-        return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        this.operation = operation;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 
     @Override
     public String toString() {

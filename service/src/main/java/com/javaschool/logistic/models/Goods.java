@@ -2,7 +2,7 @@ package com.javaschool.logistic.models;
 
 import java.io.Serializable;
 
-public class IncomingMessage implements Serializable {
+public class Goods implements Serializable {
 
     private int id;
     private int weight;
@@ -34,7 +34,7 @@ public class IncomingMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "IncomingMessage{" +
+        return "Goods{" +
                 "id=" + id +
                 ", weight=" + weight +
                 ", cityTo='" + cityTo + '\'' +

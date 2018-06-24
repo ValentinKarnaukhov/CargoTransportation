@@ -5,7 +5,7 @@ import com.javaschool.logistic.dao.api.OrderWaypointDao;
 import com.javaschool.logistic.dao.api.TruckDao;
 
 import com.javaschool.logistic.models.*;
-import com.javaschool.logistic.models.OutgoingMessage;
+import com.javaschool.logistic.models.GoodsInfo;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.ExternalService;
 import com.javaschool.logistic.service.api.OrderService;
@@ -89,6 +89,11 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
     }
 
 
+    /**
+     * changing status for cargo if all point is done or first point is done
+     * @param point point
+     * @return order is done?
+     */
     @Override
     @Transactional
     public boolean updatePoint(OrderWaypoint point) {
@@ -102,7 +107,7 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
             if(cargo.isExternal()){
                 rabbitTemplate
                         .convertAndSend("answers",
-                                new OutgoingMessage(externalService.getId(cargo.getName()),OutgoingMessage.Status.SHIPPED));
+                                new GoodsInfo(externalService.getId(cargo.getName()),GoodsInfo.Status.SHIPPED));
             }
 
 
@@ -122,7 +127,7 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
             if(cargo.isExternal()){
                 rabbitTemplate
                         .convertAndSend("answers",
-                                new OutgoingMessage(externalService.getId(cargo.getName()),OutgoingMessage.Status.DELIVERED));
+                                new GoodsInfo(externalService.getId(cargo.getName()),GoodsInfo.Status.DELIVERED));
             }
 
             truck.setCity(point.getCity());
@@ -137,6 +142,11 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
     }
 
 
+    /**
+     * find waypoints that have not complete status
+     * @param order_id order id
+     * @return satiable waypoints
+     */
     @Override
     @Transactional
     public List<OrderWaypoint> findByOrderIdLoad(int order_id) {

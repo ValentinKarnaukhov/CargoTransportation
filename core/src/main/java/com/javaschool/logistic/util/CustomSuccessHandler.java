@@ -15,6 +15,9 @@ import java.util.Collection;
 import java.util.List;
 
 
+/**
+ * class for redirect users from login page
+ */
 @Component
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 

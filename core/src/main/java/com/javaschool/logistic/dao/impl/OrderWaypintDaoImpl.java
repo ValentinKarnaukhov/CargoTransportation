@@ -48,10 +48,16 @@ public class OrderWaypintDaoImpl extends GenericDaoImpl<OrderWaypoint> implement
 
     @Override
     public OrderWaypoint findUnloadByCargoId(int cargo_id) {
-        return (OrderWaypoint) getEntityManager()
-                .createQuery("SELECT u FROM OrderWaypoint u WHERE u.cargo.cargo_id=:id" +
-                        " AND u.operation='UNLOADING'")
-                .setParameter("id", cargo_id)
-                .getSingleResult();
+        try {
+            return (OrderWaypoint) getEntityManager()
+                    .createQuery("SELECT u FROM OrderWaypoint u WHERE u.cargo.cargo_id=:id" +
+                            " AND u.operation='UNLOADING'")
+                    .setParameter("id", cargo_id)
+                    .getSingleResult();
+        }catch (NoResultException e){
+            LOGGER.warn("Problem with database", e);
+            throw new IllegalStateException();
+        }
+
     }
 }

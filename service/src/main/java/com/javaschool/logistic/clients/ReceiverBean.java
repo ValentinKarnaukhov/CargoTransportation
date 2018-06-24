@@ -5,8 +5,8 @@ import com.javaschool.logistic.dao.api.CityDao;
 import com.javaschool.logistic.dao.api.ExternalDao;
 import com.javaschool.logistic.models.City;
 import com.javaschool.logistic.models.External;
-import com.javaschool.logistic.models.IncomingMessage;
-import com.javaschool.logistic.models.OutgoingMessage;
+import com.javaschool.logistic.models.Goods;
+import com.javaschool.logistic.models.GoodsInfo;
 import org.apache.commons.text.similarity.LevenshteinDistance;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -18,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
+/**
+ * class for listening queues
+ */
 @Component
 public class ReceiverBean {
 
@@ -40,34 +43,34 @@ public class ReceiverBean {
 
     @Transactional
     @RabbitListener(queues = "cargoes")
-        public void receive(IncomingMessage incomingMessage) {
+        public void receive(Goods goods) {
 
-        City city = getSuitedCity(incomingMessage.getCityTo(),2);
+        City city = getSuitedCity(goods.getCityTo(),2);
 
         if(city!=null){
 
             External external = new External();
             external.setCityTo(city);
             external.setCityFrom(cityDao.findById(35));
-            external.setName(String.valueOf(incomingMessage.getId())+"-external");
-            external.setWeight(incomingMessage.getWeight());
+            external.setName(String.valueOf(goods.getId())+"-external");
+            external.setWeight(goods.getWeight());
 
             externalDao.create(external);
             externalBean.getExternals().add(external);
 
-            OutgoingMessage outgoingMessage = new OutgoingMessage();
-            outgoingMessage.setId(incomingMessage.getId());
-            outgoingMessage.setStatus(OutgoingMessage.Status.OK);
+            GoodsInfo goodsInfo = new GoodsInfo();
+            goodsInfo.setId(goods.getId());
+            goodsInfo.setStatus(GoodsInfo.Status.OK);
 
-            rabbitTemplate.convertAndSend("answers",outgoingMessage);
+            rabbitTemplate.convertAndSend("answers", goodsInfo);
 
         }else{
 
-            OutgoingMessage outgoingMessage = new OutgoingMessage();
-            outgoingMessage.setId(incomingMessage.getId());
-            outgoingMessage.setStatus(OutgoingMessage.Status.REJECTED);
+            GoodsInfo goodsInfo = new GoodsInfo();
+            goodsInfo.setId(goods.getId());
+            goodsInfo.setStatus(GoodsInfo.Status.REJECTED);
 
-            rabbitTemplate.convertAndSend("answers", outgoingMessage);
+            rabbitTemplate.convertAndSend("answers", goodsInfo);
         }
 
 
@@ -99,8 +102,8 @@ public class ReceiverBean {
 
 
     @RabbitListener(queues = "answers")
-    public void listen(OutgoingMessage outgoingMessage){
-        System.out.println(outgoingMessage);
+    public void listen(GoodsInfo goodsInfo){
+        System.out.println(goodsInfo);
     }
 
 }

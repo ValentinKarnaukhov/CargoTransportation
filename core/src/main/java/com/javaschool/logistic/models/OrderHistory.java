@@ -1,11 +1,16 @@
 package com.javaschool.logistic.models;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "ORDER_HISTORY")
 public class OrderHistory implements Serializable {
 
@@ -37,36 +42,5 @@ public class OrderHistory implements Serializable {
         this.drivers = drivers;
     }
 
-    public int getHistory_id() {
-        return history_id;
-    }
-
-    public void setHistory_id(int history_id) {
-        this.history_id = history_id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Truck getTruck() {
-        return truck;
-    }
-
-    public void setTruck(Truck truck) {
-        this.truck = truck;
-    }
-
-    public List<Driver> getDrivers() {
-        return drivers;
-    }
-
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
-    }
 
 }

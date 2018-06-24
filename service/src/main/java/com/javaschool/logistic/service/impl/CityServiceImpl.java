@@ -21,6 +21,10 @@ public class CityServiceImpl implements CityService {
         this.cityDao = cityDao;
     }
 
+    public CityServiceImpl() {
+
+    }
+
     @Override
     @Transactional
     public void createCity(City city) {

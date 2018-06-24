@@ -2,7 +2,7 @@ package com.javaschool.logistic.controller;
 
 
 import com.javaschool.logistic.models.User;
-import com.javaschool.logistic.models.IncomingMessage;
+import com.javaschool.logistic.models.Goods;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.TruckService;
 import com.javaschool.logistic.service.api.UserService;
@@ -65,11 +65,11 @@ public class AdminController {
 
     @GetMapping(value = "/test/into")
     public String into(){
-        IncomingMessage incomingMessage = new IncomingMessage();
-        incomingMessage.setId(1);
-        incomingMessage.setCityTo("Saint-Petersburg");
-        incomingMessage.setWeight(10);
-        rabbitTemplate.convertAndSend("cargoes", incomingMessage);
+        Goods goods = new Goods();
+        goods.setId(1);
+        goods.setCityTo("Saint-Petersburg");
+        goods.setWeight(10);
+        rabbitTemplate.convertAndSend("cargoes", goods);
         return "redirect:/admin";
     }
 

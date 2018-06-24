@@ -1,12 +1,17 @@
 package com.javaschool.logistic.models;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 
 @Entity
+@Getter
+@Setter
 @Table(name = "ORDERS")
 public class Order implements Serializable {
 
@@ -33,55 +38,6 @@ public class Order implements Serializable {
 
     @OneToOne(mappedBy = "order")
     private OrderHistory orderHistory;
-
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
-    }
-
-    public Truck getTruck() {
-        return truck;
-    }
-
-    public void setTruck(Truck truck) {
-        this.truck = truck;
-    }
-
-    public boolean isComplete() {
-        return complete;
-    }
-
-    public void setComplete(boolean complete) {
-        this.complete = complete;
-    }
-
-    public List<Cargo> getCargoes() {
-        return cargoes;
-    }
-
-    public void setCargoes(List<Cargo> cargoes) {
-        this.cargoes = cargoes;
-    }
-
-
-    public List<OrderWaypoint> getOrderWaypoints() {
-        return orderWaypoints;
-    }
-
-    public void setOrderWaypoints(List<OrderWaypoint> orderWaypoints) {
-        this.orderWaypoints = orderWaypoints;
-    }
-
-    public OrderHistory getOrderHistory() {
-        return orderHistory;
-    }
-
-    public void setOrderHistory(OrderHistory orderHistory) {
-        this.orderHistory = orderHistory;
-    }
 
     @Override
     public String toString() {

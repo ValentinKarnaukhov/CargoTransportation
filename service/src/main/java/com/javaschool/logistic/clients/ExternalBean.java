@@ -14,6 +14,9 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+/**
+ * Class for saving external data as in cart
+ */
 @Component
 @Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ExternalBean {
@@ -56,7 +59,6 @@ public class ExternalBean {
     }
 
     public void moveFromList(List<Waypoint> waypoints){
-
         for(Waypoint waypoint:waypoints){
             if(waypoint.isExternal()){
                 externals.add(mapper.waypointToExternal(waypoint));

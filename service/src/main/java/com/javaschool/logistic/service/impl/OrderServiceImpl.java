@@ -61,7 +61,6 @@ public class OrderServiceImpl implements OrderService {
                 externalDao.deleteById(waypoint.getExternal_id());
             }
         }
-
         orderDao.create(order);
         orderWaypointService.createWaypoints(waypointList,order);
         orderHistoryDao.create(new OrderHistory(order,order.getTruck(),order.getTruck().getDrivers()));
@@ -74,7 +73,6 @@ public class OrderServiceImpl implements OrderService {
 
 
     }
-
 
     @Override
     @Transactional

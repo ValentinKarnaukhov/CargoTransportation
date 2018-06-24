@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Support class for spring security
+ */
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 

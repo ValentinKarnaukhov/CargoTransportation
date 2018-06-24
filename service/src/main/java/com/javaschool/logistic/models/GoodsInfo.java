@@ -3,7 +3,7 @@ package com.javaschool.logistic.models;
 
 import java.io.Serializable;
 
-public class OutgoingMessage implements Serializable {
+public class GoodsInfo implements Serializable {
 
     public enum Status implements Serializable{
         REJECTED,
@@ -15,12 +15,12 @@ public class OutgoingMessage implements Serializable {
     private int id;
     private Status status;
 
-    public OutgoingMessage(int id, Status status) {
+    public GoodsInfo(int id, Status status) {
         this.id = id;
         this.status = status;
     }
 
-    public OutgoingMessage() {
+    public GoodsInfo() {
     }
 
     public int getId() {
@@ -41,7 +41,7 @@ public class OutgoingMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "OutgoingMessage{" +
+        return "GoodsInfo{" +
                 "id=" + id +
                 ", status=" + status +
                 '}';

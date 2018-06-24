@@ -31,6 +31,10 @@ public class TruckServiceImpl implements TruckService {
         this.amqpTemplate = amqpTemplate;
     }
 
+    public TruckServiceImpl() {
+
+    }
+
 
     @Override
     @Transactional
@@ -53,6 +57,10 @@ public class TruckServiceImpl implements TruckService {
     }
 
 
+    /**
+     * not remove from database only change enable status
+     * @param truck_id truck id
+     */
     @Override
     @Transactional
     public void deleteById(int truck_id) {

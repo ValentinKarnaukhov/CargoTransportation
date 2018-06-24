@@ -65,6 +65,10 @@ public class DriverServiceImpl implements DriverService {
     }
 
 
+    /**
+     * driver no deletes from database, only changes enable status
+     * @param driver_id driver id
+     */
     @Override
     @Transactional
     public void deleteById(int driver_id) {
@@ -87,6 +91,12 @@ public class DriverServiceImpl implements DriverService {
     }
 
 
+    /**
+     * intelligent drivers updater, if driver has status REST and change on different then
+     *  date field gets timestamp with start time
+     *  if status changes to REST then remove timestamp and add time to worked time
+     * @param driver driver id
+     */
     @Override
     @Transactional
     public void updateDriver(Driver driver) {
@@ -119,6 +129,11 @@ public class DriverServiceImpl implements DriverService {
     }
 
 
+    /**
+     * @param distance full distance in the road
+     * @param truck truck for order
+     * @return list drivers with satiable city and worked time
+     */
     @Override
     @Transactional
     public List<Driver> findSuitableDrivers(int distance, Truck truck){
