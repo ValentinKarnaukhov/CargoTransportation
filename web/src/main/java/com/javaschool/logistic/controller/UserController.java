@@ -23,6 +23,7 @@ public class UserController {
 
     @GetMapping(value = { "/", "/login"})
     public String loginPage() {
+
         switch (getRole()){
             case "ROLE_ADMIN":
                 return "redirect:/admin";

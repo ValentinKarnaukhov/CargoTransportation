@@ -5,8 +5,8 @@ import com.javaschool.logistic.dao.api.CityDao;
 import com.javaschool.logistic.dao.api.ExternalDao;
 import com.javaschool.logistic.models.City;
 import com.javaschool.logistic.models.External;
-import com.javaschool.logistic.models.Goods;
-import com.javaschool.logistic.models.GoodsInfo;
+import com.tsystems.fury.model.Goods;
+import com.tsystems.fury.model.GoodsInfo;
 import org.apache.commons.text.similarity.LevenshteinDistance;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -42,9 +42,9 @@ public class ReceiverBean {
     }
 
     @Transactional
-    @RabbitListener(queues = "cargoes")
+    @RabbitListener(queues = "delivery-to")
         public void receive(Goods goods) {
-
+        System.out.println(goods);
         City city = getSuitedCity(goods.getCityTo(),2);
 
         if(city!=null){
@@ -52,25 +52,25 @@ public class ReceiverBean {
             External external = new External();
             external.setCityTo(city);
             external.setCityFrom(cityDao.findById(35));
-            external.setName(String.valueOf(goods.getId())+"-external");
-            external.setWeight(goods.getWeight());
+            external.setName(String.valueOf(goods.getOrderId())+"-external");
+            external.setWeight(goods.getWeight()/1000+1);
 
             externalDao.create(external);
             externalBean.getExternals().add(external);
 
             GoodsInfo goodsInfo = new GoodsInfo();
-            goodsInfo.setId(goods.getId());
+            goodsInfo.setOrderId(goods.getOrderId());
             goodsInfo.setStatus(GoodsInfo.Status.OK);
 
-            rabbitTemplate.convertAndSend("answers", goodsInfo);
+            rabbitTemplate.convertAndSend("delivery-from", goodsInfo);
 
         }else{
 
             GoodsInfo goodsInfo = new GoodsInfo();
-            goodsInfo.setId(goods.getId());
+            goodsInfo.setOrderId(goods.getOrderId());
             goodsInfo.setStatus(GoodsInfo.Status.REJECTED);
 
-            rabbitTemplate.convertAndSend("answers", goodsInfo);
+            rabbitTemplate.convertAndSend("delivery-from", goodsInfo);
         }
 
 
@@ -100,10 +100,5 @@ public class ReceiverBean {
 
     }
 
-
-    @RabbitListener(queues = "answers")
-    public void listen(GoodsInfo goodsInfo){
-        System.out.println(goodsInfo);
-    }
 
 }

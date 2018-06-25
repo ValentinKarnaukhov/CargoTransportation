@@ -16,8 +16,13 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     @Bean
-    public ConnectionFactory connectionFactory(){
-        return new CachingConnectionFactory("localhost");
+    public ConnectionFactory connectionFactory() {
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+        connectionFactory.setHost("localhost");
+        connectionFactory.setPort(5672);
+        connectionFactory.setUsername("admin");
+        connectionFactory.setPassword("admin");
+        return connectionFactory;
     }
 
     @Bean
@@ -38,10 +43,10 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Queue cargoesQueue(){ return  new Queue("cargoes");}
+    public Queue cargoesQueue(){ return  new Queue("delivery-to");}
 
     @Bean
-    public Queue answerQueue(){return new Queue("answers");}
+    public Queue answerQueue(){return new Queue("delivery-from");}
 
     @Bean
     public DirectExchange directExchange(){
@@ -55,11 +60,12 @@ public class RabbitMQConfig {
 
     @Bean
     public Binding bindingTwo(){
-        return BindingBuilder.bind(cargoesQueue()).to(directExchange()).with("cargoes");
+        return BindingBuilder.bind(cargoesQueue())
+                .to(directExchange()).with("delivery-to");
     }
 
     @Bean
-    public Binding bindingThree(){ return BindingBuilder.bind(answerQueue()).to(directExchange()).with("answers");}
+    public Binding bindingThree(){ return BindingBuilder.bind(answerQueue()).to(directExchange()).with("delivery-from");}
 
     @Bean
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory() {

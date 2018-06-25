@@ -5,7 +5,7 @@ import com.javaschool.logistic.dao.api.OrderWaypointDao;
 import com.javaschool.logistic.dao.api.TruckDao;
 
 import com.javaschool.logistic.models.*;
-import com.javaschool.logistic.models.GoodsInfo;
+import com.tsystems.fury.model.GoodsInfo;
 import com.javaschool.logistic.models.Waypoint;
 import com.javaschool.logistic.service.api.ExternalService;
 import com.javaschool.logistic.service.api.OrderService;
@@ -106,7 +106,7 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
 
             if(cargo.isExternal()){
                 rabbitTemplate
-                        .convertAndSend("answers",
+                        .convertAndSend("delivery-from",
                                 new GoodsInfo(externalService.getId(cargo.getName()),GoodsInfo.Status.SHIPPED));
             }
 
@@ -126,7 +126,7 @@ public class OrderWaypointServiceImpl implements OrderWaypointService {
 
             if(cargo.isExternal()){
                 rabbitTemplate
-                        .convertAndSend("answers",
+                        .convertAndSend("delivery-from",
                                 new GoodsInfo(externalService.getId(cargo.getName()),GoodsInfo.Status.DELIVERED));
             }
 

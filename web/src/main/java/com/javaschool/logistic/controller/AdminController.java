@@ -2,11 +2,9 @@ package com.javaschool.logistic.controller;
 
 
 import com.javaschool.logistic.models.User;
-import com.javaschool.logistic.models.Goods;
 import com.javaschool.logistic.service.api.OrderService;
 import com.javaschool.logistic.service.api.TruckService;
 import com.javaschool.logistic.service.api.UserService;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,15 +22,13 @@ public class AdminController {
 
     private OrderService orderService;
 
-    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     public AdminController(UserService userService, TruckService truckService,
-                           OrderService orderService, RabbitTemplate rabbitTemplate) {
+                           OrderService orderService) {
         this.userService = userService;
         this.truckService = truckService;
         this.orderService = orderService;
-        this.rabbitTemplate = rabbitTemplate;
     }
 
     @PostMapping(value = "/admin")
@@ -62,15 +58,5 @@ public class AdminController {
         return "admin";
     }
 
-
-    @GetMapping(value = "/test/into")
-    public String into(){
-        Goods goods = new Goods();
-        goods.setId(1);
-        goods.setCityTo("Saint-Petersburg");
-        goods.setWeight(10);
-        rabbitTemplate.convertAndSend("cargoes", goods);
-        return "redirect:/admin";
-    }
 
 }
