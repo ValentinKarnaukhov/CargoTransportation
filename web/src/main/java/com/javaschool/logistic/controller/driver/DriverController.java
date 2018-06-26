@@ -6,6 +6,7 @@ import com.javaschool.logistic.models.City;
 import com.javaschool.logistic.models.Driver;
 import com.javaschool.logistic.models.OrderWaypoint;
 
+import com.javaschool.logistic.models.User;
 import com.javaschool.logistic.service.api.CityService;
 import com.javaschool.logistic.service.api.DriverService;
 import com.javaschool.logistic.service.api.OrderWaypointService;
@@ -45,7 +46,9 @@ public class DriverController {
 
     @GetMapping(value = "/driver")
     public String loadPageForDriver(Model model){
-        int driver_id = userService.findByEmail(getPrincipal()).getDriver().getDriver_id();
+        User user = userService.findByEmail(getPrincipal());
+        if(user.getRole()!=User.Role.DRIVER)return "accessDenied";
+        int driver_id = user.getDriver().getDriver_id();
         Driver driver = driverService.findById(driver_id);
         List<OrderWaypoint> waypoints = new LinkedList<>();
         if(driver.getTruck()!=null) waypoints = orderWaypointService.findByOrderIdLoad(driver.getTruck().getOrder().getOrder_id());

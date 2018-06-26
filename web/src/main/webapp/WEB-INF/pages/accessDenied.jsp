@@ -4,8 +4,13 @@
 <head>
     <title>Access denied page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/css/min/materialize.min.css"/>"/>
 </head>
 <body>
-Dear ${SPRING_SECURITY_LAST_USERNAME}, You are not authorized to access this page.
+<div class="center">
+    <img src="<c:url value="/static/img/403.jpg"/>" style="margin-top: 5%;height: 20%"/><br>
+    <span style="font-size: 50px">403 FORBIDDEN</span><br>
+    <a href="<c:url value="/login"/>">Home</a>
+</div>
 </body>
 </html>
